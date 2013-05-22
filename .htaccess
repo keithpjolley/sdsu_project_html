@@ -1,0 +1,8 @@
+##
+#
+#
+Options +ExecCGI
+AddHandler cgi-script pl 
+#
+#
+##
