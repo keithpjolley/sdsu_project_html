@@ -1,0 +1,58 @@
+#
+# kjolley - 18 may 2013
+# 
+# this file helps define the html tables
+#
+# first column is attribute name as created in the metrics.R file and placed in the JSON file
+# second column is the perl key
+# third column is the value
+# columns separated by ";"
+#
+# key:       order : int     -- which column number to display this value in?
+# key: display_name: string  -- the column header text to display
+# key:   popup_text: string  -- text to put in a little popup display. less is more.
+#
+betweenness_vertex;display_name;Betweenness
+betweenness_vertex;order;4
+betweenness_vertex;popup_text;Vertex Betweenness shows how many times a node is on the shortest path between other nodes. A high Betweenness score indicates that this person connects a lot of people.
+#
+closeness_in;display_name;Closeness In
+closeness_in;order;5
+closeness_in;popup_text;Closeness In is the average distance between this node FROM all other nodes. A node with a HIGHER score will receive information more quickly than others in this network.
+#
+closeness_out;display_name;Closeness Out
+closeness_out;order;6
+closeness_out;popup_text;A HIGH Closeness Out score means that this node will disseminate information within this network more quickly than those with a low score.
+#
+community;display_name;Community
+community;order;7
+community;popup_text;The Community shows groups of nodes that regularly communicate within the group. We use the algorithm shown in the "Fast unfolding of communities in large networks" paper to determine the communities. A community shows that there is more communication among those within a community than to those outside.
+#
+degree;display_name;Degree
+degree;order;8
+degree;popup_text;Degree is the total number of edges (connections) this node has within this network. The quality of those connections is not a factored.
+#
+evcent;display_name;Eigenvector Centrality
+evcent;order;3
+evcent;popup_text;Eigenvector Centrality shows the influence of a node in a network by assigning a higher value to those nodes closely connected to highly connected nodes than to those that are only connected to poorly connected nodes. It's closely related to the PageRank. Tom, in the Godfather, would have low connection count but a high Eigenvector Centrality score because he did not have a lot of connections but those he did have were very powerful.
+#
+graph_strength_in;display_name;Strength In
+graph_strength_in;order;9
+graph_strength_in;popup_text;Total incoming edges.
+#
+graph_strength_out;display_name;Strength Out
+graph_strength_out;order;10
+graph_strength_out;popup_text;Total outbound edges
+#
+isperson;display_name;Person?
+isperson;order;11
+isperson;popup_text;Is this a person or a mailing list?
+#
+name;display_name;Name
+name;order;1
+name;popup_text;The name of the node - typically the person's email address.
+#
+pr;display_name;PageRank
+pr;order;2
+pr;popup_text;PageRank is a measure of influence in a network. A higher PageRank says that people are reaching out more to that person on that particular topic. If all roads lead to Rome, then Rome must be important. PageRank shows where all roads lead to.
+#

@@ -1,0 +1,59 @@
+#!/usr/local/bin/perl -w
+# kjolley
+
+use strict;
+use File::Basename;
+
+my $bin  = basename $0;
+my $json = ($ARGV[0] || "graph.json");
+
+my %h = ();
+my ($first, $last);
+
+# these _should_ be available on most machines
+for (qw(/usr/share/dict/propernames /usr/share/dict/american /usr/share/dict/web2        /usr/share/dict/words)){if(-r $_){$first=$_;last;}}
+for (qw(/usr/share/dict/web2        /usr/share/dict/american /usr/share/dict/propernames /usr/share/dict/words)){if(-r $_){ $last=$_;last;}}
+
+die "ERROR: $bin: can't find any dictionaries" unless ($first and $last);
+
+my @first;
+my @last;
+
+srand;
+
+open (FILE, "$first")
+  or die "ERROR: $bin: Can't read $first: $!\n"; 
+while (<FILE>) {
+  chomp;
+  next if /\W/;
+  push @first,$_;
+} 
+close (FILE)
+    or die "ERROR: $bin: Can't close $first: $!\n";
+
+open (FILE, "$last")
+  or die "ERROR: $bin: Can't read $last: $!\n"; 
+while (<FILE>) {
+  chomp;
+  next if /\W/;
+  push @last,$_;
+} 
+close (FILE)
+    or die "ERROR: $bin: Can't close $first: $!\n";
+
+open (FILE, "$json")
+  or die "ERROR: $bin: Can't read $json: $!\n"; 
+while (<FILE>) {
+  if (!/"name":/) {
+    print;
+  } else {
+    my $aka = ucfirst($first[rand @first]) . "." . ucfirst($last[rand @last]);
+    m/(.*"name":")(.*)(","community":)/;
+    my $a=$1; my $b=$2; my $c=$3;
+    $aka = uc($aka) if (-f "./mailing-lists/$b");
+    s/($1)$2($3)/$1$aka$2/;
+    print;
+  }
+} 
+close (FILE)
+  or die "ERROR: $bin: Can't close $json: $!\n";
