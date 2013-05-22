@@ -1,9 +1,12 @@
+#!/usr/bin/perl -w
 #!/usr/local/bin/perl5.16.3 -w
 
 # kjolley
 # April 01, 2013
 
 #use v5.10;
+
+use lib qw(/home/student/jolley/perl/lib/perl5/site_perl/5.8.8);
 use strict;
 use CGI qw(:standard *table);
 use File::Basename;
@@ -40,7 +43,7 @@ my $d3js     = "$include/myD3.js";
 my $jdir     = "../__cache__/JSON";
 
 # url paths
-my $inc_url  = url(-base=>1) . dirname (dirname (url(-absolute=>1))) . "/";
+my $inc_url  = url(-base=>1) . dirname (dirname (url(-absolute=>1)));
 my @css      = ($inc_url . "include/css/style.css",
                 $inc_url . "include/css/demo_table.css",);
 my @js       = ($inc_url . "include/d3.v3.min.js",
