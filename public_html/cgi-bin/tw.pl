@@ -44,7 +44,7 @@ my $jdir     = "../__cache__/JSON";
 
 # url paths
 my $inc_url  = url(-base=>1) . dirname (dirname (url(-absolute=>1)));
-$inc_url .= "/" unless (hostname eq volta);
+$inc_url .= "/" unless (hostname eq 'volta');
 
 my @css      = ($inc_url . "include/css/style.css",
                 $inc_url . "include/css/demo_table.css",);
