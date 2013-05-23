@@ -5,7 +5,14 @@
 # April 01, 2013
 
 # for use on volta.
-use lib qw(/home/student/jolley/perl/lib/perl5/site_perl/5.8.8);
+if (-d qw(/home/student/jolley/perl/lib/perl5/site_perl/5.8.8)) {
+  use lib qw(/home/student/jolley/perl/lib/perl5/site_perl/5.8.8)
+}
+# for use on kjolley-oc.
+if (-d qw(/usr/local/lib/perl5/site_perl/5.16.3)) {
+  use lib qw(/usr/local/lib/perl5/site_perl/5.16.3)
+}
+
 use strict;
 use CGI qw(:standard *table);
 use File::Basename;
