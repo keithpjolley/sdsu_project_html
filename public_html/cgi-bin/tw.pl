@@ -23,7 +23,7 @@ $ENV{'LC_CTYPE'} = 'C';
 $ENV{'LANG'} = 'C';
 
 # python http server acts differently than apache.
-chdir("cgi-bin") if ((-d "cgi-bin") and (basename(getcwd) eq ("public_html"));
+chdir("cgi-bin") if ((-d "cgi-bin") and (basename(getcwd) eq ("public_html")));
 my $dir = getcwd;
 die "ERROR: $bin: must be invoked from directory 'cgi-bin'. Called from: " . $dir unless (basename($dir) eq "cgi-bin");
 
