@@ -1,4 +1,3 @@
-#!/usr/bin/perl -w
 #!/usr/local/bin/perl5.16.3 -w
 #!/usr/local/bin/perl -w
 #

@@ -54,15 +54,16 @@ graphToJSON <- function(g_local) {
   vertices_local[vertices_local==-1/0] <- 0/0  # assigning <- NULL comes up as an error.
 
 # create some parameters for plotting
-  vertices_local$radius    <-  map(vertices_local$key, 5, 30) # radius of vertices in pixels
+  vertices_local$evc_rad   <-  map(vertices_local$evcent, 5, 30) # radius of vertices in pixels
+  vertices_local$pr_rad    <-  map(vertices_local$pr,     5, 30) # radius of vertices in pixels
   gravity                  <-  exp(-50/nrow(vertices_local))/2 + 0.25  # this is a scalar.
   vertices_local$gravity   <-  0.51 # overload the dataframe out of convenience
-  vertices_local$charge    <- -map(vertices_local$betweenness_vertex, 50, 100) # strength of edge
+  vertices_local$charge    <- -map(vertices_local$betweenness_vertex, 20, 50) # strength of edge
 
   edges_local              <-  subset(edges_local, select=c(source, target, weight))
-  edges_local$width        <-  map(edges_local$weight,   1,       5) # how many pixels wide to draw the edges
-  edges_local$linkStrength <-  map(edges_local$weight, 0.5,   0.599)
-  edges_local$linkDistance <-  map(edges_local$weight, 100,     250)
+  edges_local$width        <-  map(edges_local$weight,    1,     5) # how many pixels wide to draw the edges
+  edges_local$linkStrength <-  map(edges_local$weight, 0.25,  0.95)
+  edges_local$linkDistance <-  map(edges_local$weight,  100,    50) # note the decreasing map
 
 # remove anything we don't want passed to the output file
 # vertices_local           <-  subset(vertices_local, select=-c(index, pr))

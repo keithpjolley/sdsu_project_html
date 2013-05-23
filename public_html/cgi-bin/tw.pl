@@ -4,8 +4,7 @@
 # kjolley
 # April 01, 2013
 
-#use v5.10;
-
+# for use on volta.
 use lib qw(/home/student/jolley/perl/lib/perl5/site_perl/5.8.8);
 use strict;
 use CGI qw(:standard *table);
@@ -23,10 +22,10 @@ $ENV{'PATH'} = '/home/student/jolley/bin' . ':' . $ENV{'PATH'} if (hostname eq '
 $ENV{'LC_CTYPE'} = 'C';
 $ENV{'LANG'} = 'C';
 
-# python server acts differently than apache
-chdir("cgi-bin") if ((-d "cgi-bin") and (basename(getcwd) eq "public_html"));
+# python http server acts differently than apache.
+chdir("cgi-bin") if ((-d "cgi-bin") and (basename(getcwd) eq ("public_html"));
 my $dir = getcwd;
-die "ERROR: $bin: must be invoked from 'cgi-bin'. Called from: " . $dir unless (basename($dir) eq "cgi-bin");
+die "ERROR: $bin: must be invoked from directory 'cgi-bin'. Called from: " . $dir unless (basename($dir) eq "cgi-bin");
 
 # include is inside the cgi-bin directory. it contains all the js and css files
 # input is created during pre-processing. it contains, at minimum, the netlist
@@ -40,10 +39,11 @@ my $topicpop = "$input/interesting_topic.html";
 my $mlistpop = "$input/interesting_list.html";
 my $emailpop = "$input/interesting_people.html";
 my $d3js     = "$include/myD3.js";  
+my $mychecker= "$include/myChecker.js";  
 my $jdir     = "../__cache__/JSON";
 
 # url paths
-my $inc_url  = url(-base=>1) . dirname (dirname (url(-absolute=>1)));
+my $inc_url  = url(-base=>1) . dirname (dirname (url(-absolute=>1))) . "/";
 my @css      = ($inc_url . "include/css/style.css",
                 $inc_url . "include/css/demo_table.css",);
 my @js       = ($inc_url . "include/d3.v3.min.js",
@@ -62,16 +62,16 @@ $topicpop = 0 if (! -f $topicpop);
 $mlistpop = 0 if (! -f $mlistpop);
 $emailpop = 0 if (! -f $emailpop);
 
-sub mydiv;
 sub dograph;
 sub fixnans;
 sub fmt;
 sub footer;
 sub json2table;
 sub metrics;
+sub mychecker;
+sub mydiv;
 sub netword;
-sub printplaintable;
-sub printattribtable;
+sub printtable;
 sub search;
 sub showgraph;
 sub wanted;
@@ -82,7 +82,7 @@ my $tablejs = <<'EOF';
         } );
 EOF
 
-my $title    = ($bin eq "tw-qcom.pl") ? "QUALCOMM" : "ENRON";
+my $title = ($bin eq "tw-qcom.pl") ? "QUALCOMM" : "ENRON";
 
 print
   header,
@@ -109,32 +109,38 @@ print
               ),
            ]),
         td([
-              textfield(-name=>'all', -size=>45),
-              textfield(-name=>'topic'),
-              ($maillist
-                ? (textfield(-name=>'mlist'), textfield(-name=>'email'))
-                :  textfield(-name=>'email')
-              ),
+            textfield(-name=>'all', -size=>45),
+            textfield(-name=>'topic'),
+            ($maillist
+              ? (textfield(-name=>'mlist'), textfield(-name=>'email'))
+              :  textfield(-name=>'email')
+             ),
            ]),
-        (($topicpop or $mlistpop or $emailpop) ?
+        (
+          ($topicpop or $mlistpop or $emailpop)
+          ?
           td([
-                (submit . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; suggested queries:"),
-                $topicpop ? a({-href=>"$topicpop", -target=>"_blank"}, "topics")          : "(none)",
-                ($maillist
-                  ? (($mlistpop ? a({-href=>"$mlistpop", -target=>"_blank"}, "mail lists")      : "(none)"),
-                     ($emailpop ? a({-href=>"$emailpop", -target=>"_blank"}, "email addresses") : "(none)"))
-                  :  ($emailpop ? a({-href=>"$emailpop", -target=>"_blank"}, "email addresses") : "(none)")
-                ),
-           ])
-        :
+              (submit . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; suggested queries:"),
+              $topicpop ? a({-href=>"$topicpop", -target=>"_blank"}, "topics")          : "(none)",
+              ($maillist
+                ? (($mlistpop ? a({-href=>"$mlistpop", -target=>"_blank"}, "mail lists")      : "(none)"),
+                   ($emailpop ? a({-href=>"$emailpop", -target=>"_blank"}, "email addresses") : "(none)"))
+                :  ($emailpop ? a({-href=>"$emailpop", -target=>"_blank"}, "email addresses") : "(none)")
+              ),])
+          :
           td( {-colspan=>($maillist ? "4" : "3")}, (submit . '&nbsp run "goodword.pl" to enable suggestions')),
         ),
-        td( {-colspan=>"0"}, "Using " . $title . " data"),
+        td([
+            ('Using ' . $title . ' data.  Size by: <form id="radius" class="radius">'), 
+            ('<input type="radio" name="whichradius" id="evc" value="evc" onClick="resize()">Eigenvector Centrality'),
+            ('<input type="radio" name="whichradius" id="pr"  value="pr"  onClick="resize()">PageRank' . '</form>'),
+         ]),
       ]),
   ),
   p,
   end_form,
-  mydiv('close');
+  mydiv('close'),
+  mychecker;
 
 if (param) {
   mydiv('left');
@@ -158,10 +164,10 @@ sub mydiv {
 }
 
 sub footer {
-  return <<'EOF1'
-  <div id="footer" style="background-color:#003399;clear:both;text-align:center;color:#FFF;">
-  Content may be QUALCOMM Proprietary</div>
-EOF1
+  my $text = "Copyright 2013 Keith P. Jolley";
+  $text = $text . ". Content may be QUALCOMM Proprietary" if ($bin eq "tw-qcom.pl");
+  $text = '<div id="footer" style="background-color:#003399;clear:both;text-align:center;color:#FFF;">' . $text . '</div>' . "\n";
+  return $text;
 }
 
 sub dograph {
@@ -217,12 +223,12 @@ sub search {
   my $net   = shift;
   my $edges = 0;
 
-  open (LIST, "$thelist")
+  open (LIST, "<", $thelist)
       or die "ERROR: $bin: 1. Can't read $thelist: $!\n";
   my @lines = <LIST>;
   close (LIST)
       or die "ERROR: $bin: 2. Can't close $thelist: $!\n";
-  open (NET, ">$net")
+  open (NET, ">", $net)
       or die "ERROR: $bin: 3. Can't open $net: $!\n";
 
 #  warn "\$all: $all";
@@ -272,7 +278,7 @@ sub netword {
   my $mfile = "$tmpdir/$q.metrics.txt";
   my $vfile = "$tmpdir/$q.vertices.txt";
 
-  open (RFILE, ">$rfile")
+  open (RFILE, ">", $rfile)
     or die "ERROR: $bin: 6. Can't open $rfile: $!\n";
   print RFILE <<EOF2;
 rfile <- "$net"    # raw edges file
@@ -301,12 +307,12 @@ EOF2
 # wow. it really takes this much code to do 'sed -i s/foo/bar/g file'?
 sub fixnans {
   my $json  = shift;
-  open (JFILE, "$json")
+  open (JFILE, "<", $json)
     or die "ERROR: $bin: 8. Can't read $json: $!\n";
   my @lines = <JFILE>;
   close (JFILE)
     or die "ERROR: 9. $bin: Can't close $json: $!\n";
-  open (JFILE, ">$json")
+  open (JFILE, ">", $json)
     or die "ERROR: $bin: 10. Can't write $json: $!\n";
   for (@lines) {
     s/:NaN/:null/g;
@@ -319,7 +325,7 @@ sub fixnans {
 
 sub showgraph {
   my $json = shift;
-  open (FILE, "$d3js") or die "ERROR: $bin: 12. Can't read $d3js: $!\n";
+  open (FILE, "<", $d3js) or die "ERROR: $bin: 12. Can't read $d3js: $!\n";
   my @lines = <FILE>;
   for (@lines) {
     s#__JSON_FILE__#$json#;
@@ -328,11 +334,10 @@ sub showgraph {
   close (FILE) or die "ERROR: $bin: 13. Can't close $d3js: $!\n";
 }
 
-# this is completely f'ing retarded
+# this is silly
 sub json2table {
   my $json = shift;
 #  warn "j2t: \$json $json: " . ((-r $json) ? "readable" : "nonsuch");
-  local $/;
   my @nodeattribs = qw(
         name
         pr
@@ -363,10 +368,13 @@ sub json2table {
 
   # delete the "isperson" column if we don't have any mail-lists to check against
   @nodeattribs = grep {$_ ne 'isperson'} @nodeattribs unless $maillist;
-
-  open (my $fh, "<", "$json") or die "ERROR: $bin: 12. Can't read $json: $!\n";
-  my $json_text = <$fh>;
-  close ($fh) or die "ERROR: $bin: 13. Can't close $json: $!\n";
+  my $json_text;
+  {
+    local($/);
+    open (my $fh, "<", "$json") or die "ERROR: $bin: 12. Can't read $json: $!\n";
+    $json_text = <$fh>;
+    close ($fh) or die "ERROR: $bin: 13. Can't close $json: $!\n";
+  }
   my $ps = decode_json($json_text);
   # if my brain was bigger i'd know an easier way of doing this.
   my %temphash = ();
@@ -376,88 +384,47 @@ sub json2table {
     $temphash{$foo->{'index'}} = $name;
   }
   for my $key (keys %{$ps}) {
-    my $attribs = "$include/attributes/$key";
-#    if (-d $attribs) {
-#      printattribtable ($key, $ps, {},         $attribs) if ($key eq 'nodes');
-#      printattribtable ($key, $ps, \%temphash, $attribs) if ($key eq 'links');
-#    } else {
-      printplaintable  ($key, $ps, {},         @nodeattribs) if ($key eq 'nodes');
-      printplaintable  ($key, $ps, \%temphash, @linkattribs) if ($key eq 'links');
-#    }
+    my $attribfile = "$include/attributes/$key";
+    printtable  ($key, $ps, {},         $attribfile, @nodeattribs) if ($key eq 'nodes');
+    printtable  ($key, $ps, \%temphash, $attribfile, @linkattribs) if ($key eq 'links');
   }
 }
 
-sub printattribtable {
-#  my ($key, $href, $hash, $attribs) = @_;
-#  my $word = $key; 
-#  if ($word eq 'nodes') {
-#    $word = "People";
-#    print mydiv('full');
-#  } elsif ($word eq 'links') {
-#    print mydiv('left');
-#    $word = "Connections";
-#  }
-#  print '<h2>' . $word . ':</h2>';
-#  print '<table cellpadding="0" border="0" style="width:900px" class="display dataTable" id="' . $key . '">' . "\n";
-#  print '  <thead>' . "\n";
-#  print '    <tr>' . "\n";
-#  for my $attr (@attribs) {
-#    print '      <th>' . $attr . '</th>' . "\n";
-#  }
-#  print '    </tr>' . "\n";
-#  print '  </thead>' . "\n";
-#  print '  <tbody>' . "\n";
-#
-#
-#  for my $foo (@{$href->{$key}}) {
-#    print '    <tr>' . "\n";
-#    for my $attr (@attribs) {
-#      if (($key eq 'links') and ($attr eq 'source' or $attr eq 'target')) {
-#        my $name = $$hash{$foo->{$attr}} || $foo->{$attr};
-#        print '      <td>' . $name . '</td>' . "\n";
-#      } elsif (($key eq 'nodes') and ($attr eq 'isperson')) {
-#        print '      <td>' . ($foo->{$attr} ? 'person' : 'list') . '</td>' . "\n";
-#      } else {
-#        my $tmp = $foo->{$attr};
-#        if ($attr eq 'name' and not $foo->{'isperson'}) {
-#          $tmp = uc($tmp);
-#        } else {
-#          $tmp = fmt($tmp);
-#        }
-#        print '      <td>' . $tmp . '</td>' . "\n";
-#      }
-#    }
-#    print '    </tr>' . "\n";
-#  }
-#  print '  </tbody>' . "\n";
-#  print '</table>' . "\n";
-#  print mydiv('close');
-  return;
-}
 
-sub printplaintable {
-  my ($key, $href, $hash, @attribs) = @_;
+sub printtable {
+  my ($key, $href, $hash, $attribfile, @attriblist) = @_;
   my $word = $key; 
+  my $hashref = (-f $attribfile) ? getattrhash($attribfile) : 0;
+  print mydiv('left');
   if ($word eq 'nodes') {
     $word = "People";
-    print mydiv('full');
   } elsif ($word eq 'links') {
-    print mydiv('left');
     $word = "Connections";
   }
   print '<h2>' . $word . ':</h2>';
   print '<table cellpadding="0" border="0" style="width:900px" class="display dataTable" id="' . $key . '">' . "\n";
   print '  <thead>' . "\n";
   print '    <tr>' . "\n";
-  for my $attr (@attribs) {
-    print '      <th>' . $attr . '</th>' . "\n";
+  if ($hashref) { 
+    @attriblist = ();
+    for my $attr (sort { $hashref->{$a}->{'order'} <=> $hashref->{$b}->{'order'} } keys %$hashref) {
+      my $name  = $hashref->{$attr}->{'display_name'};
+      my $pop   = $hashref->{$attr}->{'popup_text'};
+      push @attriblist, $attr;
+      print '      <th><div title="'. $pop . '">' . $name . '</div></th>' . "\n";
+    }
+  } else {
+    for my $attr (@attriblist) {
+      print '      <th id="b">' . $attr . '</th>' . "\n";
+    }
   }
   print '    </tr>' . "\n";
   print '  </thead>' . "\n";
   print '  <tbody>' . "\n";
+
   for my $foo (@{$href->{$key}}) {
     print '    <tr>' . "\n";
-    for my $attr (@attribs) {
+    for my $attr (@attriblist) {
       if (($key eq 'links') and ($attr eq 'source' or $attr eq 'target')) {
         my $name = $$hash{$foo->{$attr}} || $foo->{$attr};
         print '      <td>' . $name . '</td>' . "\n";
@@ -488,7 +455,7 @@ sub metrics {
   print mydiv('right');
   print '<table class="metrics">';
   print '<tr><th colspan="2">Graph Properties</th></tr>';
-  unless (open (FILE, $mfile)) {
+  unless (open (FILE, "<", $mfile)) {
     warn "WARNING: $bin: Can't read $mfile: $!\n";
     return;
   }
@@ -506,17 +473,6 @@ sub metrics {
 
 sub fmt {
   my $in = shift;
-# thank you mr. ancient perl
-#  given( $in ) {
-#    when( /^\d+\z/ )      { return $in; }
-#    when( /^-?\d+\z/ )    { return $in; }
-#    when( /^[+-]?\d+\z/ ) { return $in; }
-#    when( /^[+-]?(?=\.?\d)\d*\.?\d*(?:e[+-]?\d+)?\z/i || /^-?(?:\d+\.?|\.\d)\d*\z/ ) {
-#      return (sprintf "%.3f", $in) if ($in >= 0.01);
-#      return (sprintf "%.5f", $in) if ($in >= 0.0001);
-#      return (sprintf "%.7f", $in);
-#    }
-#  }
   if ( $in =~ /^\d+\z/ )      { return $in; }
   if ( $in =~ /^-?\d+\z/ )    { return $in; }
   if ( $in =~ /^[+-]?\d+\z/ ) { return $in; }
@@ -527,4 +483,35 @@ sub fmt {
     return (sprintf "%.7f", $in);
   }
   return ($in);
+}
+
+sub getattrhash {
+  my $attribs =  shift;
+  my $hashref;
+  my @lines;
+  {
+    local($\);
+    open (FILE, "<", $attribs) or return 0;
+    @lines = <FILE>;
+    close (FILE) or return 0;
+  }
+  for (@lines) {
+    next if /^#/;
+    chomp;
+    my ($attrib, $key, $value) = split (/;/);
+    next unless (defined($attrib) and defined ($key) and defined ($value));
+    $hashref->{$attrib}->{$key} = $value;
+  }
+  return $hashref;
+}
+
+sub mychecker {
+  my @lines;
+  {
+    local($\);
+    open (FILE, "<", $mychecker) or return;
+    @lines = <FILE>;
+    close (FILE) or return;
+  }
+  return @lines;
 }

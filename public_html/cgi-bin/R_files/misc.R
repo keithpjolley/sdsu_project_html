@@ -5,7 +5,9 @@
 #
 ##
 
-# except start1 and stop1 are embedded into "value"
+# remaps a number (vector) from one range to another.
+# modeled from map in processing except start1 and stop1 are embedded into "value"
+# http://processing.org/reference/map_.html
 map <- function(value, start2, stop2) {
   (stop2-start2)*(value-min(value))/(max(value)-min(value))+start2
 }
@@ -23,21 +25,17 @@ getgraph <- function(raw) {
     d <- subset(d, select=c("source", "target"))
     d$weight <- 1
   }
-
   if (interactive()) cat(paste("R: Collected", nrow(d), "unique edges.\n"))
-
   if (interactive()) cat("R: Creating graph from edges.\n")
   g <- graph.data.frame(d, directed=TRUE)
   rm(d) # housekeeping - free up some memory
 
   # this unassuming function collapses all our edges of weight 1 into single edges of weight (sum to/from combos)
   g <- simplify(g, edge.attr.comb="sum")
-
   g <- mysimplify(g) # remove any vertices without edges
 
   # add an "is this vertex a person?" attribute
   V(g)$isperson <- isperson(V(g)$name, maillistdir)
-
   return(g)
 }
 
@@ -57,10 +55,10 @@ mibnodes <- function(g_local, N) {
 
 # return only the top N nodes - based on $key. may return less than N due to the removal
 # of orphaned vertices
-cutnodes <- function(g_local, N) {
-  tocut <- length(V(g_local)$key) - N
-  if (tocut>0) {
-    g_local <- delete.vertices(g_local, order(V(g_local)$key)[1:(tocut-N)])
+cutnodes <- function(g_local, tocut) {
+  tokeep <- length(V(g_local)$key) - tocut
+  if (tokeep>0) {
+    g_local <- delete.vertices(g_local, order(V(g_local)$key)[1:tokeep])
   }
   g_local <- mysimplify(g_local)
   return(g_local) # these nodes are the best of the best of the best, sir!

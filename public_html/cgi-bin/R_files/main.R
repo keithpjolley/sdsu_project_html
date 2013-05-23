@@ -23,18 +23,19 @@ if (interactive()) cat(paste("R: Reading input table:", rfile, "\n"))
 g <- getgraph(rfile)
 if (interactive()) cat(paste("R: This graph has", length(E(g)$weight), "edges and", length(V(g)), "vertices\n"))
 
-# this provides a list of vertices and their page.rank based on the number of messages they sent
+# we use this KEY to filter out vertices.
 if (interactive()) cat("R: creating key metric for graph (eigenvector centrality).\n")
-#V(g)$key <- page.rank(g)$vector   # key attribute. is it the best? stay tuned.
+#V(g)$key <- page.rank(g)$vector   # key off of pagerank?  evc seems to work better.
 V(g)$key <- evcent(g)$vector
 
-
+# get rid of some of the noise
 N <- 25
 if (interactive()) cat(paste("R: cutting out the bottom", N, "percent page.ranked nodes.  noise reduction\n"))
 g <- mibnodes(g, N)
 if (interactive()) cat(paste("R: This graph has", length(E(g)$weight), "edges and", length(V(g)), "vertices\n"))
 
-N <- 500
+# don't allow more than this many nodes on the screen at once
+N <- 750
 if (interactive()) cat(paste("R: cutting out all but the top", N, "page.ranked nodes.  noise reduction\n"))
 g <- cutnodes(g, N)
 if (interactive()) cat(paste("R: This graph has", length(E(g)$weight), "edges and", length(V(g)), "vertices\n"))
