@@ -43,7 +43,9 @@ my $mychecker= "$include/myChecker.js";
 my $jdir     = "../__cache__/JSON";
 
 # url paths
-my $inc_url  = url(-base=>1) . dirname (dirname (url(-absolute=>1))) . "/";
+my $inc_url  = url(-base=>1) . dirname (dirname (url(-absolute=>1)));
+$inc_url .= "/" unless (hostname eq volta);
+
 my @css      = ($inc_url . "include/css/style.css",
                 $inc_url . "include/css/demo_table.css",);
 my @js       = ($inc_url . "include/d3.v3.min.js",
