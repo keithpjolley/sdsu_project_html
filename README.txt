@@ -1,4 +1,16 @@
 #
+# kjolley
+# Thu May 23 17:41:45 PDT 2013
+# 
+# to git this:
+# git clone git@github.com:keithpjolley/sdsu_project_html.git
+#
+# to commit an edit:
+# git commit -am 'comment goes here'
+#
+# to upload edits to github:
+# git push origin master
+#
 # you probably need to:
 cd public_html/cgi-bin/community
 make clean all
