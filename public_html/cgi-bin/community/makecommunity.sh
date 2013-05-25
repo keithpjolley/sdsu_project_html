@@ -33,11 +33,7 @@ function clean () {
 trap clean 0 1 2 6 15
 
 [ "${verbose}" -gt 0 ] && echo "${bin}: making sure i have the right binaries"
-[ -x ./convert ] || make clean
-./convert > /dev/null 
-[ $? -ne 0 ] && make clean all
-
-exit
+[ -x ./convert ] || make 
 
 [ "${verbose}" -gt 0 ] && echo "${bin}: remaping source/targets to numbers"
 ./map.pl --direction=forward --map="${nodes}" --input="${edges}" > "${mapped}" 2>/dev/null
