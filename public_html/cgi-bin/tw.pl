@@ -67,10 +67,10 @@ my @css      = (
                 $inc_url . "css/dataTables.css",
                 $inc_url . "css/d3.tooltips.css",
                );
-my @js       = (
+my @js       = (   # note that changing anything here requires an edit further down.  plus, order of the js files counts.
                 $inc_url . "js/jquery-1.10.0.js",
-                $inc_url . "js/d3.tooltip.js",
                 $inc_url . "js/d3.v3.min.js",
+                $inc_url . "js/d3.tooltip.js",
                 $inc_url . "js/DataTables-1.9.4/jquery.dataTables.js",
                );
 
