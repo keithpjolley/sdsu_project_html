@@ -60,10 +60,10 @@ my @css      = (
                 $inc_url . "css/jquery.qtip.min.css",
                );
 my @js       = (
+                $inc_url . "js/jquery.js",
                 $inc_url . "js/d3.v3.min.js",
                 $inc_url . "js/jquery.qtip.min.js",
-                $inc_url . "js/DataTables-1.9.4/media/js/jquery.js",
-                $inc_url . "js/DataTables-1.9.4/media/js/jquery.dataTables.js",
+                $inc_url . "js/DataTables-1.9.4/jquery.dataTables.js",
                );
 
 if (! -d $jdir) {
