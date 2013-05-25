@@ -65,10 +65,12 @@ $inc_url    .= "include/";
 my @css      = (
                 $inc_url . "css/style.css",
                 $inc_url . "css/dataTables.css",
+                $inc_url . "css/d3.tooltips.css",
                );
 my @js       = (
                 $inc_url . "js/jquery-1.10.0.js",
                 $inc_url . "js/d3.v3.min.js",
+                $inc_url . "js/d3.tooltip.js",
                 $inc_url . "js/DataTables-1.9.4/jquery.dataTables.js",
                );
 
@@ -111,7 +113,7 @@ print
   start_html(
     -title =>$title . ' Community Network',
     -style => {-type=>"text/css", -src=>[@css]},
-    -script=> [ { -language=>'javascript', -charset=>"utf-8",  -src=>$js[0]},  # not sure why i can't use @js like above.
+    -script=> [ { -language=>'javascript', -charset=>"utf-8",  -src=>$js[0]},  # not sure why i can't use @js like @css above.
                 { -language=>'javascript', -charset=>"utf-8",  -src=>$js[1]},
                 { -language=>'javascript', -charset=>"utf-8",  -src=>$js[2]},
                 { -language=>'javascript', -charset=>"utf-8", -code=>$tablejs},
