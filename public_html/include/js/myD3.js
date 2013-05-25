@@ -21,6 +21,9 @@
     var svg = d3.select("body").append("svg")
           .attr("width",  width)
           .attr("height", height);
+    var div = d3.select("body").append("div")
+          .attr("class", "tooltip")
+          .style("opacity", 0);
     
     d3.json("__JSON_FILE__", function(error, graph) {
         force
@@ -43,13 +46,28 @@
           .style("stroke", function(d) { return ((d.isperson==1) ? "white" : "grey")}) 
           .style("stroke-width", function(d) { return Math.max(d.radius/10,1)}) 
           .call(force.drag);
-      node.append("title")
-          .text(function(d) { return (
-              d.name + "\n" +
-              "   community: " + d.community + "\n" +
-              "   page.rank: " + d.pr        + "\n" +
-              " eigenvector: " + d.evcent);
-          });
+          .on("mouseover", function(d) {
+              div.transition()
+                 .duration(200)
+                 .style("opacity", 0.9);
+              div.html(function(d) { return (
+                     d.name + "<br/>" +
+                     "   community: " + d.community + "<br/>" +
+                     "   page.rank: " + d.pr        + "<br/>" +
+                     " eigenvector: " + d.evcent);
+              });
+          .on("mouseout", function(d) {
+              div.transition()
+                 .duration(500)
+                 .style("opacity", 0);
+              });
+//           node.append("title")
+//             .text(function(d) { return (
+//              d.name + "\n" +
+//              "   community: " + d.community + "\n" +
+//              "   page.rank: " + d.pr        + "\n" +
+//              " eigenvector: " + d.evcent);
+//          });
       force.on("tick", function () {
         var q = d3.geom.quadtree(graph.nodes);
         var i = 0;
