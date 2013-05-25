@@ -49,13 +49,13 @@
           .on("mouseover", function(d) {
               div.transition()
                  .duration(200)
-                 .style("opacity", 0.9);
-              div.html(function(d) { return (
+                 .html(function(d) { return (
                      d.name + "<br/>" +
                      "   community: " + d.community + "<br/>" +
                      "   page.rank: " + d.pr        + "<br/>" +
                      " eigenvector: " + d.evcent);
-              })
+                  })
+                 .style("opacity", 0.9)
                  .style("left", (d3.event.pageX - 0)  + "px")
                  .style("top",  (d3,event.pageY - 28) + "px");
           })
