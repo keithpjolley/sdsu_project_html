@@ -46,10 +46,10 @@
           .style("stroke", function(d) { return ((d.isperson==1) ? "white" : "grey")}) 
           .style("stroke-width", function(d) { return Math.max(d.radius/10,1)}) 
           .attr( "mytext", function(d) { return (
-                     graph.node.name + "<br/>" +
-                     "   community: " + graph.node.community + "<br/>" +
-                     "   page.rank: " + graph.node.pr        + "<br/>" +
-                     " eigenvector: " + graph.node.evcent);
+                     d.name + "<br/>" +
+                     "   community: " + d.community + "<br/>" +
+                     "   page.rank: " + d.pr        + "<br/>" +
+                     " eigenvector: " + d.evcent);
            })
           .call(force.drag)
           .on("mouseover", function(d) {
