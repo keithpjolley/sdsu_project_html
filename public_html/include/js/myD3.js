@@ -55,7 +55,7 @@
           .on("mouseover", function(d) {
               div.transition()
                  .duration(200);
-              div.html(function(d) { return (node.mytext) })
+              div.html(function(d) { return (">" + node.mytext + "<") })
                  .style("opacity", 0.9)
                  .style("left", (d3.event.pageX - 0)  + "px")
                  .style("top",  (d3,event.pageY - 28) + "px");
@@ -116,16 +116,15 @@
             || x2 < nx1
             || y1 > ny2
             || y2 < ny1;
-      };
-    }
+      }
+    ;}
 
     // resize the nodes, not the screen
     function resize() {
       radtype = myradius();
       d3.selectAll(".node").transition()
         .duration(750)
-        .attr( "r", function(d) { return (radtype ? d.pr_rad : d.evc_rad)})
-        .attr("cx", function(d) { return d.x+0.1;})
-    ;}
+        .attr( "r", function(d) { return (radtype ? d.pr_rad : d.evc_rad)});
+    }
 
   </script>
