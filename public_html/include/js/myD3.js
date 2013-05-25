@@ -53,7 +53,8 @@
 //              " eigenvector: " + d.evcent);
 //          });
           .call(d3.helper.tooltip()
-             // .attr({class: function(d, i) { return d + ' ' + i +  ' A'; }})
+              .attr({class: function(d, i) { return d + ' ' + i +  ' A'; }})
+              .style({color: d.fill})
               .text(function(d, i){
                   mystr =  '<strong>name: ' + d.name + '</strong><br/>';
                   return (mystr)})
