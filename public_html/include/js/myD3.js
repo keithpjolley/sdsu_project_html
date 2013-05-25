@@ -124,8 +124,8 @@
       radtype = myradius();
       d3.selectAll(".node").transition()
         .duration(750)
-        .attr( "r", function(d) { return (radtype ? d.pr_rad : d.evc_rad)});
-        .attr("cy", function(d) { return d.y;});
-    }
+        .attr( "r", function(d) { return (radtype ? d.pr_rad : d.evc_rad)})
+        .attr("cy", function(d) { return d.y;})
+    ;}
 
   </script>
