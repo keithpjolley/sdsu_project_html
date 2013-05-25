@@ -51,22 +51,6 @@
                      "   page.rank: " + d.pr        + "<br/>" +
                      " eigenvector: " + d.evcent);
            })
-          .call(force.drag)
-          .on("mouseover", function(d) {
-              div.transition()
-                 .duration(200);
-              div.html(function(d) { return (
-                  "<" + node.name + ">" +
-                  "(" + d.name + ")" ) })
-                 .style("opacity", 0.9)
-                 .style("left", (d3.event.pageX - 0)  + "px")
-                 .style("top",  (d3,event.pageY - 28) + "px");
-          })
-          .on("mouseout", function(d) {
-              div.transition()
-                 .duration(500)
-                 .style("opacity", 0);
-          });
 //           node.append("title")
 //             .text(function(d) { return (
 //              d.name + "\n" +
@@ -74,6 +58,12 @@
 //              "   page.rank: " + d.pr        + "\n" +
 //              " eigenvector: " + d.evcent);
 //          });
+          .call(d3.helper.tooltip()
+              .attr({class: function(d, i) { return d + ' ' + i +  ' A'; }})
+              .style({color: 'blue'})
+              .text(function(d, i){ return 'name: ' + d.name; })
+          )
+          .call(force.drag);
       force.on("tick", function () {
         var q = d3.geom.quadtree(graph.nodes);
         var i = 0;
