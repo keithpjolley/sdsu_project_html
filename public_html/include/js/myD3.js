@@ -55,7 +55,7 @@
           .on("mouseover", function(d) {
               div.transition()
                  .duration(200);
-              div.html(function(d) { return (">" + node.mytext + "<") })
+              div.html(function(d) { return ("<" + node.name + "> (" + d.name + ")" ) })
                  .style("opacity", 0.9)
                  .style("left", (d3.event.pageX - 0)  + "px")
                  .style("top",  (d3,event.pageY - 28) + "px");
