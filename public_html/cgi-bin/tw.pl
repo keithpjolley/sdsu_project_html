@@ -69,8 +69,8 @@ my @css      = (
                );
 my @js       = (
                 $inc_url . "js/jquery-1.10.0.js",
-                $inc_url . "js/d3.v3.min.js",
                 $inc_url . "js/d3.tooltip.js",
+                $inc_url . "js/d3.v3.min.js",
                 $inc_url . "js/DataTables-1.9.4/jquery.dataTables.js",
                );
 
