@@ -48,8 +48,8 @@
           .call(force.drag)
           .on("mouseover", function(d) {
               div.transition()
-                 .duration(200)
-                 .html(function(d) { return (
+                 .duration(200);
+              div.html(function(d) { return (
                      d.name + "<br/>" +
                      "   community: " + d.community + "<br/>" +
                      "   page.rank: " + d.pr        + "<br/>" +
