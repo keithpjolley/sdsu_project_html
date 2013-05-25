@@ -61,7 +61,12 @@
           .call(d3.helper.tooltip()
               .attr({class: function(d, i) { return d + ' ' + i +  ' A'; }})
               .style({color: 'blue'})
-              .text(function(d, i){ return 'name: ' + d.name; })
+              .text(function(d, i){ return (
+                  '<strong>name: ' + d.name + '</strong><br/>' +
+                  'community: ' + d.community + '<br/>' +
+                  'page.rank: ' + d.pr        + '<br/>" +
+                  'eigenvector: ' + d.evcent);
+              ;)})
           )
           .call(force.drag);
       force.on("tick", function () {
