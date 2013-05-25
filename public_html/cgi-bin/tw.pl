@@ -50,19 +50,25 @@ my $mychecker= "$include/js/myChecker.js";
 my $jdir     = "../__cache__/JSON";
 
 # url paths
+# note that i put all the js files local. i don't use cdn's because i am on a VERY high latency network at home
+# and sometimes code while i have no internet access. feel free to change these to the cdn's if you like.
+# jquery    -> <script src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
+# DataTable ->
+#    <link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css">
+#    <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
+# D3        -> <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+#    
 my $inc_url  = url(-base=>1) . dirname (dirname (url(-absolute=>1)));
 $inc_url    .= "/" unless (hostname eq 'volta');  # this is really httpd == (apache | python)
 $inc_url    .= "include/";
 
 my @css      = (
                 $inc_url . "css/style.css",
-                $inc_url . "css/demo_table.css",
-                $inc_url . "css/jquery.qtip.min.css",
+                $inc_url . "css/dataTables.css",
                );
 my @js       = (
-                $inc_url . "js/jquery.js",
+                $inc_url . "js/jquery-1.10.0.js",
                 $inc_url . "js/d3.v3.min.js",
-                $inc_url . "js/jquery.qtip.min.js",
                 $inc_url . "js/DataTables-1.9.4/jquery.dataTables.js",
                );
 
