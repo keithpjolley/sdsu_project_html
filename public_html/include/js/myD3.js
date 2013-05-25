@@ -55,7 +55,8 @@
                      "   community: " + d.community + "<br/>" +
                      "   page.rank: " + d.pr        + "<br/>" +
                      " eigenvector: " + d.evcent);
-              });
+              })
+          });
           .on("mouseout", function(d) {
               div.transition()
                  .duration(500)
