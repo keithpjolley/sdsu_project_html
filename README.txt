@@ -13,7 +13,7 @@
 #
 #
 #
-# you probably need to:
+# if you are running under apache you must do this (and probably should even if you running under python):
 cd public_html/cgi-bin/community
 make clean all
 cd ../..
