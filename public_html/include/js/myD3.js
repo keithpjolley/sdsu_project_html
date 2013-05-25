@@ -125,7 +125,7 @@
       d3.selectAll(".node").transition()
         .duration(750)
         .attr( "r", function(d) { return (radtype ? d.pr_rad : d.evc_rad)})
-        .attr("cy", function(d) { return d.y;})
+        .visit(collide(node))
     ;}
 
   </script>
