@@ -125,7 +125,7 @@
       d3.selectAll(".node").transition()
         .duration(750)
         .attr( "r", function(d) { return (radtype ? d.pr_rad : d.evc_rad)})
-        .node.attr("cx", function(d) { return d.x;})
+        .attr("cx", function(d) { return d.x+0.1;})
     ;}
 
   </script>
