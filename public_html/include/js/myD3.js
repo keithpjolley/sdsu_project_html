@@ -66,7 +66,7 @@
                   'community: ' + d.community + '<br/>' +
                   'page.rank: ' + d.pr        + '<br/>" +
                   'eigenvector: ' + d.evcent);
-              ;)})
+              })
           )
           .call(force.drag);
       force.on("tick", function () {
