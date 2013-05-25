@@ -45,16 +45,17 @@
           .style("fill",   function(d) { return color(d.community)})
           .style("stroke", function(d) { return ((d.isperson==1) ? "white" : "grey")}) 
           .style("stroke-width", function(d) { return Math.max(d.radius/10,1)}) 
-          .call(force.drag)
-          .on("mouseover", function(d) {
-              div.transition()
-                 .duration(200);
-              div.html(function(d) { return (
+          .attr( "mytext", function(d) { return (
                      graph.node.name + "<br/>" +
                      "   community: " + graph.node.community + "<br/>" +
                      "   page.rank: " + graph.node.pr        + "<br/>" +
                      " eigenvector: " + graph.node.evcent);
-                  })
+           })
+          .call(force.drag)
+          .on("mouseover", function(d) {
+              div.transition()
+                 .duration(200);
+              div.html(function(d) { return (d.mytext) })
                  .style("opacity", 0.9)
                  .style("left", (d3.event.pageX - 0)  + "px")
                  .style("top",  (d3,event.pageY - 28) + "px");
