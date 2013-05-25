@@ -8,6 +8,8 @@
 bin=`basename "${0}"`
 cd `dirname "${0}"`
 
+pwd 1>&2
+
 nodes="$1"
 edges="$2"
 output="$3"
@@ -31,9 +33,11 @@ function clean () {
 trap clean 0 1 2 6 15
 
 [ "${verbose}" -gt 0 ] && echo "${bin}: making sure i have the right binaries"
-[ -x ./convert ] || make clean all >/dev/null 2>&1
-./convert > /dev/null 2>&1
-[ $? -ne 0 ] && make clean all >/dev/null 2>&1
+[ -x ./convert ] || make clean
+./convert > /dev/null 
+[ $? -ne 0 ] && make clean all
+
+exit
 
 [ "${verbose}" -gt 0 ] && echo "${bin}: remaping source/targets to numbers"
 ./map.pl --direction=forward --map="${nodes}" --input="${edges}" > "${mapped}" 2>/dev/null
