@@ -50,10 +50,10 @@
               div.transition()
                  .duration(200);
               div.html(function(d) { return (
-                     d.node.name + "<br/>" +
-                     "   community: " + d.node.community + "<br/>" +
-                     "   page.rank: " + d.node.pr        + "<br/>" +
-                     " eigenvector: " + d.node.evcent);
+                     d.name + "<br/>" +
+                     "   community: " + d.community + "<br/>" +
+                     "   page.rank: " + d.pr        + "<br/>" +
+                     " eigenvector: " + d.evcent);
                   })
                  .style("opacity", 0.9)
                  .style("left", (d3.event.pageX - 0)  + "px")
