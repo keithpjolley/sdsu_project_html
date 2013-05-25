@@ -24,13 +24,14 @@ mapped="${tmp}/mapped.txt"
 map_data="${tmp}/map_data.txt"
 
 function clean () {
-  [ "${verbose}" -gt 1    ] && echo "cleaning tmp files"
+  [ "${verbose}" -gt 1 ] && echo "cleaning tmp files"
   [ -d "${tmp}" ] && rm -rf "${tmp}"
 }
 
 trap clean 0 1 2 6 15
 
 [ "${verbose}" -gt 0 ] && echo "${bin}: making sure i have the right binaries"
+[ -x ./convert ] || make clean all >/dev/null 2>&1
 ./convert > /dev/null 2>&1
 [ $? -ne 0 ] && make clean all >/dev/null 2>&1
 
