@@ -55,7 +55,9 @@
           .call(d3.helper.tooltip()
               .attr({class: function(d, i) { return d + ' ' + i +  ' A'; }})
               .style({color: 'blue'})
-              .text(function(d, i){ return ('<strong>name: ' + d.name + '</strong><br/>')})
+              .text(function(d, i){
+                  mystr =  '<strong>name: ' + d.name + '</strong><br/>';
+                  return (mystr)})
           )
           .call(force.drag);
       force.on("tick", function () {
