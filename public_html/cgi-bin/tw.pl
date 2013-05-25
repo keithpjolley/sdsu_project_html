@@ -113,7 +113,6 @@ print
   start_html(
     -title =>$title . ' Community Network',
     -style => {-type=>"text/css", -src=>[@css]},
-    -style => {[@css]},
     -script=> [ 
                 { -language=>'javascript', -charset=>"utf-8",  -src=>$js[0]},  # not sure why i can't use @js like @css above.
                 { -language=>'javascript', -charset=>"utf-8",  -src=>$js[1]},
