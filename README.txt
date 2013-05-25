@@ -11,6 +11,8 @@
 # to upload edits to github:
 # git push origin master
 #
+#
+#
 # you probably need to:
 cd public_html/cgi-bin/community
 make clean all

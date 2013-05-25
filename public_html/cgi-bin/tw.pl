@@ -45,19 +45,26 @@ my $maillist = "$input/mailing-lists";
 my $topicpop = "$input/interesting_topic.html";
 my $mlistpop = "$input/interesting_list.html";
 my $emailpop = "$input/interesting_people.html";
-my $d3js     = "$include/myD3.js";  
-my $mychecker= "$include/myChecker.js";  
+my $d3js     = "$include/js/myD3.js";  
+my $mychecker= "$include/js/myChecker.js";  
 my $jdir     = "../__cache__/JSON";
 
 # url paths
 my $inc_url  = url(-base=>1) . dirname (dirname (url(-absolute=>1)));
-$inc_url .= "/" unless (hostname eq 'volta');
+$inc_url    .= "/" unless (hostname eq 'volta');  # this is really httpd == (apache | python)
+$inc_url    .= "include/";
 
-my @css      = ($inc_url . "include/css/style.css",
-                $inc_url . "include/css/demo_table.css",);
-my @js       = ($inc_url . "include/d3.v3.min.js",
-                $inc_url . "include/DataTables-1.9.4/media/js/jquery.js",
-                $inc_url . "include/DataTables-1.9.4/media/js/jquery.dataTables.js",);
+my @css      = (
+                $inc_url . "css/style.css",
+                $inc_url . "css/demo_table.css",
+                $inc_url . "css/jquery.qtip.min.css",
+               );
+my @js       = (
+                $inc_url . "js/d3.v3.min.js",
+                $inc_url . "js/jquery.qtip.min.js",
+                $inc_url . "js/DataTables-1.9.4/media/js/jquery.js",
+                $inc_url . "js/DataTables-1.9.4/media/js/jquery.dataTables.js",
+               );
 
 if (! -d $jdir) {
   warn "MESSAGE: $bin: creating JSON dir: $jdir";
