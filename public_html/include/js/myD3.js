@@ -45,7 +45,7 @@
           .style("fill",   function(d) { return color(d.community)})
           .style("stroke", function(d) { return ((d.isperson==1) ? "white" : "grey")}) 
           .style("stroke-width", function(d) { return Math.max(d.radius/10,1)}) 
-          .call(force.drag);
+          .call(force.drag)
           .on("mouseover", function(d) {
               div.transition()
                  .duration(200)
