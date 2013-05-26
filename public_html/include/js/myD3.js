@@ -56,7 +56,8 @@
                d3.select("#tooltip")
                  .style("left", xPosition + "px")
                  .style("top",  yPosition + "px")
-                 .style("background-color", d3.select(this).attr("fill"))
+                 .style("background-color", "orange")
+//                 .style("background-color", d3.select(this).attr("fill"))
                  .select("#value")
                  .text("bogus");
             })
