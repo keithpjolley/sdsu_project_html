@@ -48,8 +48,8 @@
           .call(force.drag)
           .on("mouseover", function(d) {
                //Get this bar's x/y values, then augment for the tooltip
-               var xPosition = parseFloat(d3.select(this).attr("x")) + xScale.rangeBand() / 2;
-               var yPosition = parseFloat(d3.select(this).attr("y")) / 2 + h / 2;
+               var xPosition = parseFloat(d3.select(this).attr("x")) + 0;
+               var yPosition = parseFloat(d3.select(this).attr("y")) + 0;
                //Update the tooltip position and value
                d3.select("#tooltip")
                  .style("left", xPosition + "px")
