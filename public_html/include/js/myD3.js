@@ -3,7 +3,7 @@
       return !isNaN(parseFloat(n)) && isFinite(n);
     }
 
-    function format_number(pnumber, decimals){
+    function fmt(pnumber, decimals){
       if (!isNumber(pnumber)) { return ''};
       if (pnumber=='')        { return ''};
       var snum = new String(pnumber);
