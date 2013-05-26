@@ -66,8 +66,8 @@ div.full {
 
 #tooltip {
   position:absolute;
-  width:                 200px;
-  height:                100px;
+  width:                 auto;
+  height:                auto;
   padding:               10px;
   color:                 black;
   -webkit-border-radius: 10px;
@@ -79,7 +79,7 @@ div.full {
   box-shadow:            4px 4px 10px rgba(0, 0, 0, 0.4);
   pointer-events:        none;
   z-index:               9999999;
-  opacity:               0.50;
+  opacity:               0.750;
 }
       
 #tooltip.hidden {
