@@ -117,7 +117,7 @@ print
                 { -language=>'javascript', -charset=>"utf-8",  -src=>$js[0]},  # not sure why i can't use @js like @css above.
                 { -language=>'javascript', -charset=>"utf-8",  -src=>$js[1]},
                 { -language=>'javascript', -charset=>"utf-8",  -src=>$js[2]},
-#               { -language=>'javascript', -charset=>"utf-8",  -src=>$js[3]},
+                { -language=>'javascript', -charset=>"utf-8",  -src=>$js[3]},
                 { -language=>'javascript', -charset=>"utf-8", -code=>$tablejs},
               ],
   ),
