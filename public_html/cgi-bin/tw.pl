@@ -119,6 +119,7 @@ print
                 { -language=>'javascript', -charset=>"utf-8", -code=>$tablejs},
               ],
   ),
+  '<div id="tooltip" class="hidden"><p><strong>Important Label Heading</strong></p><p><span id="value">100</span>%</p></div>',
   mydiv('left'),
   start_form,
   table({-id=>"tokens"},
@@ -379,7 +380,6 @@ sub json2table {
   #     charge
   #     connectivity_vertex
   #     radius
-
   my @linkattribs = qw(
         source
         target
@@ -389,7 +389,6 @@ sub json2table {
   #     width
   #     linkStrength  # these are just "weight" mapped
   #     linkDistance
-
   # delete the "isperson" column if we don't have any mail-lists to check against
   @nodeattribs = grep {$_ ne 'isperson'} @nodeattribs unless $maillist;
   my $json_text;
@@ -409,11 +408,13 @@ sub json2table {
   }
   for my $key (keys %{$ps}) {
     my $attribfile = "$include/attributes/$key";
-    printtable  ($key, $ps, {},         $attribfile, @nodeattribs) if ($key eq 'nodes');
-    printtable  ($key, $ps, \%temphash, $attribfile, @linkattribs) if ($key eq 'links');
+    if ($key eq 'nodes') {
+      printtable  ($key, $ps, {},         $attribfile, @nodeattribs);
+    } elsif ($key eq 'links') {
+      printtable  ($key, $ps, \%temphash, $attribfile, @linkattribs);
+    }
   }
 }
-
 
 sub printtable {
   my ($key, $href, $hash, $attribfile, @attriblist) = @_;
@@ -445,7 +446,6 @@ sub printtable {
   print '    </tr>' . "\n";
   print '  </thead>' . "\n";
   print '  <tbody>' . "\n";
-
   for my $foo (@{$href->{$key}}) {
     print '    <tr>' . "\n";
     for my $attr (@attriblist) {
