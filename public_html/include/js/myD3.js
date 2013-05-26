@@ -5,7 +5,7 @@
 
     function fmt(pnumber, decimals){
       if (!isNumber(pnumber))      { return ''};
-      if (pnumber==''||pnumber==0) { return '0.0'};
+      if (pnumber==''||pnumber==0) { return fmt(0.0, decimals)};
       var snum = new String(pnumber);
       var sec = snum.split('.');
       var whole = parseFloat(sec[0]);
