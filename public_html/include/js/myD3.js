@@ -77,8 +77,6 @@
                  .style("left", xPosition + "px")
                  .style("top",  yPosition + "px")
                  // these need to match those in function cgi-bin/tw.pl:tooltipper
-                 .select("#name")
-                 .text(d.name)
                  .select("#pagerank")
                  .text(d.pr)
                  .select("#evcent")
@@ -86,7 +84,9 @@
                  .select("#degree")
                  .text(d.degree)
                  .select("#community")
-                 .text(d.community);
+                 .text(d.community)
+                 .select("#name")
+                 .text(d.name);
             })
           .on("mouseout", function() {
               //Hide the tooltip
