@@ -4,8 +4,8 @@
     }
 
     function fmt(pnumber, decimals){
-      if (!isNumber(pnumber)) { return ''};
-      if (pnumber=='')        { return ''};
+      if (!isNumber(pnumber)) { return 'A'};
+      if (pnumber=='')        { return 'B'};
       var snum = new String(pnumber);
       var sec = snum.split('.');
       var whole = parseFloat(sec[0]);
