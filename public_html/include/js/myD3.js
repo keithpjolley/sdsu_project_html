@@ -73,20 +73,18 @@
                var yPosition = parseFloat(d3.select(this).attr("cy")) + 0;
                //Update the tooltip position and value
                d3.select("#tooltip")
-                 .style("background-color", color(d.community))
+                 .style("background-color", shadecolor(color(d.community), 80))
                  .style("left", xPosition + "px")
                  .style("top",  yPosition + "px")
                  // these need to match those in function cgi-bin/tw.pl:tooltipper
-                 .select("#pagerank")
-                 .text(d.pr)
-                 .select("#evcent")
-                 .text(d.evcent)
-                 .select("#degree")
-                 .text(d.degree)
-                 .select("#community")
-                 .text(d.community)
-                 .select("#name")
-                 .text(d.name);
+                 .select("#tip")
+                 .text('<strong>'  +
+                    '                  Name: ' + d.name      + '</strong><br/>' +
+                    '              PageRank: ' + d.pr        + '<br/>' +
+                    'Eigenvector Centrality: ' + d.evcent    + '<br/>' +
+                    '                Degree: ' + d.degree    + '<br/>' +
+                    '             Community: ' + d.community + '<br/>'
+                 );
             })
           .on("mouseout", function() {
               //Hide the tooltip
