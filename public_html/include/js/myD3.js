@@ -73,7 +73,7 @@
                var yPosition = parseFloat(d3.select(this).attr("cy")) + 0;
                //Update the tooltip position and value
                d3.select("#tooltip")
-                 .style("background-color", function(d) { return color(d.community)})
+                 .style("background-color", color(d.community))
                  .style("left", xPosition + "px")
                  .style("top",  yPosition + "px")
                  // these need to match those in function cgi-bin/tw.pl:tooltipper
