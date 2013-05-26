@@ -70,7 +70,7 @@ div.full {
   height:                100px;
   padding:               10px;
   background-color:      black;
-  font-color:            blue;
+  color:                 blue;
   -webkit-border-radius: 10px;
   -moz-border-radius:    10px;
   border-radius:         10px;
