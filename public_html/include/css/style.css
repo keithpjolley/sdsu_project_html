@@ -60,23 +60,26 @@ div.right {
 }
 
 div.full {
-  width:100%;
-  border:3px yellow;
+  width: 100%;
+  border: 3px yellow;
 }
 
 #tooltip {
-  position: absolute;
-  width: 200px;
-  height: auto;
-  padding: 10px;
-  background-color: white;
+  position:absolute;
+  width:                 200px;
+  height:                100px;
+  padding:               10px;
+  background-color:      black;
+  font-color:            blue;
   -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  border-radius: 10px;
-  -webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
-  -moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
-  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
-  pointer-events: none;
+  -moz-border-radius:    10px;
+  border-radius:         10px;
+  border:                10px red;
+  -webkit-box-shadow:    4px 4px 10px rgba(0, 0, 0, 0.4);
+  -moz-box-shadow:       4px 4px 10px rgba(0, 0, 0, 0.4);
+  box-shadow:            4px 4px 10px rgba(0, 0, 0, 0.4);
+  pointer-events:        none;
+  z-index:               9999999;
 }
       
 #tooltip.hidden {
