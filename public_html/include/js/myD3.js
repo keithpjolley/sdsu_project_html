@@ -46,13 +46,15 @@
           .style("stroke", function(d) { return ((d.isperson==1) ? "white" : "grey")}) 
           .style("stroke-width", function(d) { return Math.max(d.radius/10,1)}) 
           .append("title")
-          .call(force.drag)
-          .text(function(d) { return (
+          .call(force.drag);
+
+      node.text(function(d) { return (
               d.name + "\n" +
               "   community: " + d.community + "\n" +
               "   page.rank: " + d.pr        + "\n" +
               " eigenvector: " + d.evcent)
-          });
+      });
+
       force.on("tick", function () {
         var q = d3.geom.quadtree(graph.nodes);
         var i = 0;
