@@ -162,15 +162,9 @@ print
          ]),
       ]),
   ),
-  p,
   end_form,
-  p,
   mydiv('close'),
-  p,
-  mychecker,
-  p,
-  tooltipper,
-  p;
+  mychecker;
 
 if (param) {
   mydiv('left');
@@ -178,6 +172,7 @@ if (param) {
   mydiv('close');
   json2table($json);
   metrics($mfile);
+  tooltipper;
 }
 
 print footer, end_html . "\n";
@@ -532,7 +527,6 @@ sub mychecker {
 # these span id values need to match those in include/js/myD3.js:node.on(mouseover)
 sub tooltipper {
   print<<'EOF3';
-  <!--
   <div id="tooltip" class="hidden">
     <p>                  <strong>Name: <span id="name"     >0</span></strong></p>
             <p>              PageRank: <span id="pagerank" >0</span></p>
@@ -540,7 +534,6 @@ sub tooltipper {
             <p>                Degree: <span id="degree"   >0</span></p>
             <p>             Community: <span id="community">0</span></p>
   </div>
-  -->
 EOF3
   return;
 }
