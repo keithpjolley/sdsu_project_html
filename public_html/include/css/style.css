@@ -69,8 +69,7 @@ div.full {
   width:                 200px;
   height:                100px;
   padding:               10px;
-  background-color:      black;
-  color:                 blue;
+  color:                 black;
   -webkit-border-radius: 10px;
   -moz-border-radius:    10px;
   border-radius:         10px;
@@ -80,6 +79,7 @@ div.full {
   box-shadow:            4px 4px 10px rgba(0, 0, 0, 0.4);
   pointer-events:        none;
   z-index:               9999999;
+  opacity:               0.50;
 }
       
 #tooltip.hidden {
@@ -88,7 +88,7 @@ div.full {
       
 #tooltip p {
  margin: 0;
- font-family: sans-serif;
+ font-family: courier, monospace;
  font-size: 16px;
  line-height: 20px;
 }
