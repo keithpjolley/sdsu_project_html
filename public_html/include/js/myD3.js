@@ -108,7 +108,7 @@
         .attr( "r", function(d) { return (radtype ? d.pr_rad : d.evc_rad)});
     }
 
-    $('svg circle').tipsy({ 
+    $('node').tipsy({ 
       gravity: 'w', 
       html: true, 
       title: function() {
