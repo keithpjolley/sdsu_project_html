@@ -24,6 +24,6 @@ weight;display_name;Edge Weight
 weight;order;3
 weight;popup_text;Number of emails sent (on this search topic)
 #
-betweenness_edge;display_name;Betweenness
-betweenness_edge;order;4
-betweenness_edge;popup_text;The vertex and edge betweenness are (roughly) defined by the number of geodesics (shortest paths) going through a vertex or an edge.
+#betweenness_edge;display_name;Betweenness
+#betweenness_edge;order;4
+#betweenness_edge;popup_text;The vertex and edge betweenness are (roughly) defined by the number of geodesics (shortest paths) going through a vertex or an edge.

@@ -52,11 +52,11 @@ graph_strength_out;display_name;Strength Out
 graph_strength_out;order;10
 graph_strength_out;popup_text;Total outbound edges
 #
-isperson;display_name;Person?
-isperson;order;11
-isperson;popup_text;Is this a person or a mailing list?
-#
 lcc;display_name;Local Clustering Coefficient
-lcc;order;12
+lcc;order;11
 lcc;popup_text;Transitivity measures the probability that the adjacent vertices of a vertex are connected. This is sometimes also called the clustering coefficient.
 #
+#
+isperson;display_name;Person?
+isperson;order;12
+isperson;popup_text;Is this a person or a mailing list?
