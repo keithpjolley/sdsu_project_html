@@ -1,4 +1,25 @@
   <script type="text/javascript">
+    // found at: http://css-tricks.com/snippets/javascript/lighten-darken-color/
+    // i don't know why, it's not a css trick at all.
+    function LightenDarkenColor(col, amt) {
+      var usePound = false;
+      if (col[0] == "#") {
+        col = col.slice(1);
+        usePound = true;
+      }
+      var num = parseInt(col, 16);
+      var r = (num >> 16) + amt;
+      if (r > 255) r = 255;
+      else if  (r < 0) r = 0; 
+      var b = ((num >> 8) & 0x00FF) + amt;
+      if (b > 255) b = 255;
+      else if  (b < 0) b = 0;
+      var g = (num & 0x0000FF) + amt;
+      if (g > 255) g = 255;
+      else if (g < 0) g = 0;
+      return (usePound?"#":"") + (g | (b << 8) | (r << 16)).toString(16);
+    }
+
     function myradius() {
       var myradios = document.getElementsByName('whichradius');
       var theradius;
@@ -56,9 +77,18 @@
                d3.select("#tooltip")
                  .style("left", xPosition + "px")
                  .style("top",  yPosition + "px")
-                 .style("background-color", color(d.community))
-                 .select("#value")
-                 .text("bogus");
+                 .style("background-color", LightenDarkenColor(color(d.community), 50))
+                 // these need to match those in function cgi-bin/tw.pl:tooltipper
+                 .select("#name")
+                 .text(d.name);
+                 .select("#pagerank")
+                 .text(d.pr);
+                 .select("#evcent")
+                 .text(d.evcent);
+                 .select("#degree")
+                 .text(d.degree);
+                 .select("#community")
+                 .text(d.community);
             })
           .on("mouseout", function() {
               //Hide the tooltip

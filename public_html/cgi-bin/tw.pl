@@ -96,6 +96,7 @@ sub netword;
 sub printtable;
 sub search;
 sub showgraph;
+sub tooltipper;
 sub wanted;
 
 my $tablejs = <<'EOF';
@@ -163,11 +164,13 @@ print
   ),
   p,
   end_form,
+  p,
   mydiv('close'),
   p,
-  '<div id="tooltip" class="hidden"><p><strong>Important Label Heading</strong></p><p><span id="value">100</span>%</p></div>',
+  mychecker,
   p,
-  mychecker;
+  tooltipper,
+  p;
 
 if (param) {
   mydiv('left');
@@ -258,31 +261,15 @@ sub search {
   open (NET, ">", $net)
       or die "ERROR: $bin: 3. Can't open $net: $!\n";
 
-#  warn "\$all: $all";
-#  warn "\$topic: $topic";
-#  warn "\$mlist: $mlist";
-#  warn "\$email: $email";
-
-#  my $warn = 0;
   for (@lines) {
     my $n = 0;
     my ($source, $target, $list, $subject) = split /\t/;
-#   if ($warn < 5 && ($list eq "skilling-j")) {
-#     warn "\$list: $list  ---------  \$mlist: $mlist";
-#     warn "list is defined" if defined $list;
-#     warn "list eq mlist" if ($list eq "skilling-j");
-#     warn "list match mlist" if ($list =~ /$mlist/i);
-#     warn "";
-#     $warn++;
-#   }
-    # each match gets a +1 weight
     $n++ if (($all   ne "") && (/$all/i));
     $n++ if (($topic ne "") && defined($subject) && ($subject  =~ /$topic/i));
     $n++ if (($mlist ne "") && defined($list)    && ($list     =~ /$mlist/i));
     $n++ if (($email ne "") && defined($source)  && ($source   =~ /$email/i));
     $n++ if (($email ne "") && defined($target)  && ($target   =~ /$email/i));
     print NET "$source\t$target\t$n\n" if $n;
-#   warn "$source\t$target\t$n\n" if ($n && $warn++ < 10);
     $edges++;
   }
   close (NET)
@@ -540,4 +527,18 @@ sub mychecker {
     close (FILE) or return;
   }
   return @lines;
+}
+
+# these span id values need to match those in include/js/myD3.js:node.on(mouseover)
+sub tooltipper {
+  print<<EOF3
+  <div id="tooltip" class="hidden">
+    <p>                  <strong>Name: <span id="name"     >0</span></strong></p>
+            <p>              PageRank: <span id="pagerank" >0</span></p>
+            <p>Eigenvector Centrality: <span id="evcent"   >0</span></p>
+            <p>                Degree: <span id="degree"   >0</span></p>
+            <p>             Community: <span id="community">0</span></p>
+  </div>'
+EOF3
+  return;
 }
