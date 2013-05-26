@@ -62,8 +62,8 @@
                  .select("#tip")
                  .html('<strong>'  +
                     '                  Name: ' + d.name              + '</strong><br/>' +
-                    '              PageRank: ' + d.pr.toFixed(6)     + '<br/>' +
-                    'Eigenvector Centrality: ' + d.evcent.toFixed(6) + '<br/>' +
+                    '              PageRank: ' + d.pr.toFixed(4)     + '<br/>' +
+                    'Eigenvector Centrality: ' + d.evcent.toFixed(4) + '<br/>' +
                     '                Degree: ' + d.degree            + '<br/>' +
                     '             Community: ' + d.community         + '<br/>'
                  );

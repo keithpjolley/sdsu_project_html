@@ -157,7 +157,7 @@ print
           td( {-colspan=>($maillist ? "4" : "3")}, (submit . '&nbsp run "goodword.pl" to enable suggestions')),
         ),
         td([
-            ('Using ' . $title . ' data.  Size by: <form id="radius" class="radius">'), 
+            ('Using <strong>' . $title . '</strong> data. &nbsp;&nbsp;&nbsp; Size by: <form id="radius" class="radius">'), 
             ('<input type="radio" name="whichradius" id="evc" value="evc" onClick="resize()">Eigenvector Centrality'),
             ('<input type="radio" name="whichradius" id="pr"  value="pr"  onClick="resize()">PageRank' . '</form>'),
          ]),

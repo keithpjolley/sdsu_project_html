@@ -12,6 +12,18 @@
 # key: display_name: string  -- the column header text to display
 # key:   popup_text: string  -- text to put in a little popup display. less is more.
 #
+name;display_name;Name
+name;order;1
+name;popup_text;The name of the node - typically the person's email address.
+#
+pr;display_name;PageRank
+pr;order;2
+pr;popup_text;PageRank is a measure of influence in a network. A higher PageRank says that people are reaching out more to that person on that particular topic. If all roads lead to Rome, then Rome must be important. PageRank shows where all roads lead to.
+#
+evcent;display_name;Eigenvector Centrality
+evcent;order;3
+evcent;popup_text;Eigenvector Centrality shows the influence of a node in a network by assigning a higher value to those nodes closely connected to highly connected nodes than to those that are only connected to poorly connected nodes. It's closely related to the PageRank. Tom, in the Godfather, would have low connection count but a high Eigenvector Centrality score because he did not have a lot of connections but those he did have were very powerful.
+#
 betweenness_vertex;display_name;Betweenness
 betweenness_vertex;order;4
 betweenness_vertex;popup_text;Vertex Betweenness shows how many times a node is on the shortest path between other nodes. A high Betweenness score indicates that this person connects a lot of people.
@@ -32,10 +44,6 @@ degree;display_name;Degree
 degree;order;8
 degree;popup_text;Degree is the total number of edges (connections) this node has within this network. The quality of those connections is not a factored.
 #
-evcent;display_name;Eigenvector Centrality
-evcent;order;3
-evcent;popup_text;Eigenvector Centrality shows the influence of a node in a network by assigning a higher value to those nodes closely connected to highly connected nodes than to those that are only connected to poorly connected nodes. It's closely related to the PageRank. Tom, in the Godfather, would have low connection count but a high Eigenvector Centrality score because he did not have a lot of connections but those he did have were very powerful.
-#
 graph_strength_in;display_name;Strength In
 graph_strength_in;order;9
 graph_strength_in;popup_text;Total incoming edges.
@@ -48,11 +56,7 @@ isperson;display_name;Person?
 isperson;order;11
 isperson;popup_text;Is this a person or a mailing list?
 #
-name;display_name;Name
-name;order;1
-name;popup_text;The name of the node - typically the person's email address.
-#
-pr;display_name;PageRank
-pr;order;2
-pr;popup_text;PageRank is a measure of influence in a network. A higher PageRank says that people are reaching out more to that person on that particular topic. If all roads lead to Rome, then Rome must be important. PageRank shows where all roads lead to.
+lcc;display_name;Local Clustering Coefficient
+lcc;order;12
+lcc;popup_text;Transitivity measures the probability that the adjacent vertices of a vertex are connected. This is sometimes also called the clustering coefficient.
 #

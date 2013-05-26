@@ -7,13 +7,13 @@
 metric <- function(g_local, mfile) {
   if (interactive()) cat("R: metric.R: Calculating metrics. This can take a while on large networks...)\n")
 
-  cat(paste("edges", length(E(g_local)$weight), "\n", sep=":"), file=mfile, append=FALSE)
-  cat(paste("vertices", length(V(g_local)), "\n", sep=":"), file=mfile, append=TRUE)
+  cat(paste("Edges", length(E(g_local)$weight), "\n", sep=":"), file=mfile, append=FALSE)
+  cat(paste("Vertices", length(V(g_local)), "\n", sep=":"), file=mfile, append=TRUE)
 
   if (interactive())   cat("R: metric.R: calculating transitivity...)\n")
   V(g_local)$lcc <- transitivity(g_local, type="local")
   mean_lcc <- mean(na.omit(V(g_local)$lcc))
-  cat(paste("mean local clustering coefficient", mean_lcc, "\n", sep=":"), file=mfile, append=TRUE)
+  cat(paste("Mean Local Clustering Coefficient", mean_lcc, "\n", sep=":"), file=mfile, append=TRUE)
 
   if (interactive())   cat("R: metric.R: calculating vertex betweenness...)\n")
   V(g_local)$betweenness_vertex <- betweenness(g_local)
@@ -36,11 +36,11 @@ metric <- function(g_local, mfile) {
 
   if (interactive())   cat("R: metric.R: calculating network diameter (longest shortest path!)...)\n")
   diameter_local <- diameter(g_local)
-  cat(paste("diameter", diameter_local, "\n", sep=":"), file=mfile, append=TRUE)
+  cat(paste("Diameter", diameter_local, "\n", sep=":"), file=mfile, append=TRUE)
 
   if (interactive())   cat("R: metric.R: average shortest path... )\n")
   average_shortest_path_local <- average.path.length(g_local)
-  cat(paste("average shortest path", average_shortest_path_local, "\n", sep=":"), file=mfile, append=TRUE)
+  cat(paste("Average Shortest Path", average_shortest_path_local, "\n", sep=":"), file=mfile, append=TRUE)
 
   if (interactive())   cat("R: metric.R: calculating graph strength (in) ...)\n")
   V(g_local)$graph_strength_in  <- graph.strength(g_local, mode="in")
@@ -49,14 +49,14 @@ metric <- function(g_local, mfile) {
   if (interactive())   cat("R: metric.R: calculating graph strength (total) ...)\n")
   V(g_local)$graph_strength_tot <- V(g_local)$graph.strength.out + V(g_local)$graph.strength.in
 
-  if (interactive())   cat("R: metric.R: calculating edge connectivity...)\n")
+#  if (interactive())   cat("R: metric.R: calculating edge connectivity...)\n")
 # E(g_local)$connectivity_edge   <- edge.connectivity(g_local)
-  if (interactive())   cat("R: metric.R: calculating vertex connectivity...)\n")
+#  if (interactive())   cat("R: metric.R: calculating vertex connectivity...)\n")
 # V(g_local)$connectivity_vertex <- vertex.connectivity(g_local)
 
   if (interactive())   cat("R: metric.R: calculating graph density...)\n")
   density_local <- graph.density(g_local, loops=FALSE)
-  cat(paste("density", density_local, "\n", sep=":"), file=mfile, append=TRUE)
+  cat(paste("Density", density_local, "\n", sep=":"), file=mfile, append=TRUE)
 
   return(g_local)
 }
