@@ -119,7 +119,6 @@ print
                 { -language=>'javascript', -charset=>"utf-8", -code=>$tablejs},
               ],
   ),
-  '<div id="tooltip" class="hidden"><p><strong>Important Label Heading</strong></p><p><span id="value">100</span>%</p></div>',
   mydiv('left'),
   start_form,
   table({-id=>"tokens"},
@@ -165,6 +164,9 @@ print
   p,
   end_form,
   mydiv('close'),
+  p,
+  '<div id="tooltip" class="hidden"><p><strong>Important Label Heading</strong></p><p><span id="name">100</span>%</p></div>',
+  p,
   mychecker;
 
 if (param) {

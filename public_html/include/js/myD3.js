@@ -24,7 +24,7 @@
     var div = d3.select("body").append("div")
           .attr("class", "tooltip")
           .style("opacity", 0);
-    
+
     d3.json("__JSON_FILE__", function(error, graph) {
         force
           .nodes(graph.nodes)
@@ -34,7 +34,7 @@
           .data(graph.links)
           .enter().append("line")
           .attr("class", "link")
-          .style("stroke", "grey") 
+          .style("stroke", "grey")
           .style("stroke-width",   function(d) { return (d.width); })
           .style("stroke-opacity", function(d) { return (d.linkStrength/2); });
       var node = svg.selectAll(".node")
@@ -43,8 +43,8 @@
           .attr( "class", "node")
           .attr( "r",      function(d) { return radtype ? d.pr_rad : d.evc_rad; })
           .style("fill",   function(d) { return color(d.community)})
-          .style("stroke", function(d) { return ((d.isperson==1) ? "white" : "grey")}) 
-          .style("stroke-width", function(d) { return Math.max(d.radius/10,1)}) 
+          .style("stroke", function(d) { return ((d.isperson==1) ? "white" : "grey")})
+          .style("stroke-width", function(d) { return Math.max(d.radius/10,1)})
           .call(force.drag)
           .on("mouseover", function(d) {
                //Get this bar's x/y values, then augment for the tooltip
@@ -53,8 +53,8 @@
                //Update the tooltip position and value
                d3.select("#tooltip")
                  .style("left", xPosition + "px")
-                 .style("top", yPosition + "px")           
-                 .select("#value")
+                 .style("top",  yPosition + "px")
+                 .select("#name")
                  .text(d);
                //Show the tooltip
                d3.select("#tooltip").classed("hidden", false);
@@ -83,7 +83,7 @@
     });
 
     // https://github.com/mbostock/d3/blob/gh-pages/talk/20111018/collision.html#L76-101
-    // i really dislike this code. i hope nobody ever looks here. 
+    // i really dislike this code. i hope nobody ever looks here.
     function collide(node) {
       var r1  = 2 + (radtype ? node.pr_rad : node.evc_rad);
       var nx1 = node.x - r1;
