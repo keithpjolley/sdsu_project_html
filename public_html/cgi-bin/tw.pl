@@ -531,7 +531,7 @@ sub mychecker {
 
 # these span id values need to match those in include/js/myD3.js:node.on(mouseover)
 sub tooltipper {
-  print<<EOF3;
+  print<<'EOF3';
   <div id="tooltip" class="hidden">
     <p>                  <strong>Name: <span id="name"     >0</span></strong></p>
             <p>              PageRank: <span id="pagerank" >0</span></p>
