@@ -4,8 +4,8 @@
     }
 
     function fmt(pnumber, decimals){
-      if (!isNumber(pnumber)) { return 'NaN'};
-      if (pnumber=='')        { return '0.0'};
+      if (!isNumber(pnumber))      { return ''};
+      if (pnumber==''||pnumber==0) { return '0.0'};
       var snum = new String(pnumber);
       var sec = snum.split('.');
       var whole = parseFloat(sec[0]);
