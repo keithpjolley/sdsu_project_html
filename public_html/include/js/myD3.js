@@ -55,7 +55,9 @@
           .call(d3.helper.tooltip()
               .attr({class: function(d, i) { return d + ' ' + i +  ' A'; }})
               .style("color", function(d){ return d.fill })
-              .style("background", 'orange')
+              .style("background", "orange")
+              .style("border", "10px")
+              .style("font", "32px")
               .text(function(d, i){
                   mystr =  '<strong>name: ' + d.name + '</strong><br/>';
                   return (mystr)})
