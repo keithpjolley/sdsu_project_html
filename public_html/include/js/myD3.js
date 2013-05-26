@@ -1,5 +1,42 @@
   <script type="text/javascript">
 
+    // https://github.com/mbostock/d3/blob/gh-pages/talk/20111018/collision.html#L76-101
+    // i really dislike this code. i hope nobody ever looks here. but it works. and that's hard to argue with.
+    function collide(node) {
+      var r1  = 2 + (radtype ? node.pr_rad : node.evc_rad);
+      var nx1 = node.x - r1;
+      var nx2 = node.x + r1;
+      var ny1 = node.y - r1;
+      var ny2 = node.y + r1;
+      return function(quad, x1, y1, x2, y2) {
+        if (quad.point && (quad.point !== node)) {
+          var x = node.x - quad.point.x;
+          var y = node.y - quad.point.y;
+          var l = Math.sqrt(x * x + y * y);
+          var r = radtype ? (node.pr_rad + quad.point.pr_rad) : (node.evc_rad + quad.point.evc_rad);
+          if (l < r) {
+            l = (l - r) / l * .5;
+            node.x -= x *= l;
+            node.y -= y *= l;
+            quad.point.x += x;
+            quad.point.y += y;
+          }
+        }
+        return x1 > nx2
+            || x2 < nx1
+            || y1 > ny2
+            || y2 < ny1;
+      }
+    ;}
+
+    // resize the nodes, not the screen
+    function resize() {
+      radtype = myradius();
+      d3.selectAll(".node").transition()
+        .duration(750)
+        .attr( "r", function(d) { return (radtype ? d.pr_rad : d.evc_rad)});
+    }
+
     // http://java-scripts.net/javascripts/Format-Number.phtml
     function fmt(pnumber, decimals){
       if (isNaN(parseFloat(pnumber))){ return ''};
@@ -89,12 +126,15 @@
                  .style("left", xPosition + "px")
                  .style("top",  yPosition + "px")
                  // these need to match those in function cgi-bin/tw.pl:tooltipper
+                 // fmt numbers that 'may' be floats. let ints go through as is
                  .select("#tip")
                  .html('<pre><strong>'  +
                     '                  Name: ' + d.name           + '</strong><br/>' +
                     '              PageRank: ' + fmt(d.pr, 4)     + '<br/>'          +
                     'Eigenvector Centrality: ' + fmt(d.evcent, 4) + '<br/>'          +
                     '                Degree: ' + d.degree         + '<br/>'          +
+                    '           Strength In: ' + d.strength_in    + '<br/>'          +
+                    '          Strength Out: ' + d.strength_out   + '<br/>'          +
                     'Clustering Coefficient: ' + fmt(d.lcc, 4)    + '<br/>'          +
                     '             Community: ' + d.community      + '<br/></pre>'
                  );
@@ -122,43 +162,8 @@
           .attr("cx", function(d) { return d.x;})
           .attr("cy", function(d) { return d.y;});
       });
+
+
     });
-
-    // https://github.com/mbostock/d3/blob/gh-pages/talk/20111018/collision.html#L76-101
-    // i really dislike this code. i hope nobody ever looks here.
-    function collide(node) {
-      var r1  = 2 + (radtype ? node.pr_rad : node.evc_rad);
-      var nx1 = node.x - r1;
-      var nx2 = node.x + r1;
-      var ny1 = node.y - r1;
-      var ny2 = node.y + r1;
-      return function(quad, x1, y1, x2, y2) {
-        if (quad.point && (quad.point !== node)) {
-          var x = node.x - quad.point.x;
-          var y = node.y - quad.point.y;
-          var l = Math.sqrt(x * x + y * y);
-          var r = radtype ? (node.pr_rad + quad.point.pr_rad) : (node.evc_rad + quad.point.evc_rad);
-          if (l < r) {
-            l = (l - r) / l * .5;
-            node.x -= x *= l;
-            node.y -= y *= l;
-            quad.point.x += x;
-            quad.point.y += y;
-          }
-        }
-        return x1 > nx2
-            || x2 < nx1
-            || y1 > ny2
-            || y2 < ny1;
-      }
-    ;}
-
-    // resize the nodes, not the screen
-    function resize() {
-      radtype = myradius();
-      d3.selectAll(".node").transition()
-        .duration(750)
-        .attr( "r", function(d) { return (radtype ? d.pr_rad : d.evc_rad)});
-    }
 
   </script>
