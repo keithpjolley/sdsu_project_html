@@ -5,12 +5,12 @@
 
     function fmt(pnumber, decimals){
       if (!isNumber(pnumber))      { return ''};
-      if (pnumber=='') { return fmt(0.0, decimals)};
+      if (pnumber==''||pnumber==0) { return 0.0};
       var snum = new String(pnumber);
       var sec = snum.split('.');
       var whole = parseFloat(sec[0]);
       var result = '';
-      if(sec.length > 1){
+      if (sec.length > 1) {
         var dec = new String(sec[1]);
         dec = String(parseFloat(sec[1])/Math.pow(10,(dec.length - decimals)));
         dec = String(whole + Math.round(parseFloat(dec))/Math.pow(10,decimals));
@@ -19,14 +19,14 @@
           dec += '.';
           dot = dec.indexOf('.');
         }
-        while(dec.length <= dot + decimals) { dec += '0'; }
+        while (dec.length <= dot + decimals) { dec += '0'; }
         result = dec;
-      } else{
+      } else {
         var dot;
         var dec = new String(whole);
         dec += '.';
         dot = dec.indexOf('.');
-        while(dec.length <= dot + decimals) { dec += '0'; }
+        while (dec.length <= dot + decimals) { dec += '0'; }
         result = dec;
       }
       return result;
