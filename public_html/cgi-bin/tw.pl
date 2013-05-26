@@ -528,11 +528,11 @@ sub mychecker {
 sub tooltipper {
   print<<'EOF3';
   <div id="tooltip" class="hidden">
-    <p>                  <strong>Name: <span id="name"     >0</span></strong></p>
-            <p>              PageRank: <span id="pagerank" >0</span></p>
-            <p>Eigenvector Centrality: <span id="evcent"   >0</span></p>
-            <p>                Degree: <span id="degree"   >0</span></p>
-            <p>             Community: <span id="community">0</span></p>
+    <p>                  <strong>Name: <span id="name"     >X</span></strong></p>
+            <p>              PageRank: <span id="pagerank" >X</span></p>
+            <p>Eigenvector Centrality: <span id="evcent"   >X</span></p>
+            <p>                Degree: <span id="degree"   >X</span></p>
+            <p>             Community: <span id="community">X</span></p>
   </div>
 EOF3
   return;
