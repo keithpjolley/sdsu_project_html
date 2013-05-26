@@ -63,7 +63,7 @@
                     '              PageRank: ' + d.pr.toFixed(4)     + '<br/>' +
                     'Eigenvector Centrality: ' + d.evcent.toFixed(4) + '<br/>' +
                     '                Degree: ' + d.degree            + '<br/>' +
-                    'Clustering Coefficient: ' + d.lcc.toFixed(4)    + '<br/>' +
+                    'Clustering Coefficient: ' + d.lcc.toFixed(4) | '0' + '<br/>' +
                     '             Community: ' + d.community         + '<br/></pre>'
                  );
                //Show the tooltip
