@@ -48,8 +48,6 @@
           .style("stroke-width", function(d) { return Math.max(d.radius/10,1)})
           .call(force.drag)
           .on("mouseover", function(d) {
-               //Show the tooltip
-               d3.select("#tooltip").classed("hidden", false);
                //Get this bar's x/y values, then augment for the tooltip
                var xPosition = parseFloat(d3.select(this).attr("cx")) + 30;
                var yPosition = parseFloat(d3.select(this).attr("cy")) - 70;
@@ -68,6 +66,8 @@
                     'Clustering Coefficient: ' + d.lcc.toFixed(4)    + '<br/>' +
                     '             Community: ' + d.community         + '<br/></pre>'
                  );
+               //Show the tooltip
+               d3.select("#tooltip").classed("hidden", false);
             })
           .on("mouseout", function() {
               //Hide the tooltip
