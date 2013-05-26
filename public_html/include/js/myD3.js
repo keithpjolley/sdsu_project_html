@@ -45,13 +45,13 @@
           .style("fill",   function(d) { return color(d.community)})
           .style("stroke", function(d) { return ((d.isperson==1) ? "white" : "grey")}) 
           .style("stroke-width", function(d) { return Math.max(d.radius/10,1)}) 
-//           node.append("title")
-//             .text(function(d) { return (
-//              d.name + "\n" +
-//              "   community: " + d.community + "\n" +
-//              "   page.rank: " + d.pr        + "\n" +
-//              " eigenvector: " + d.evcent);
-//          });
+          .append("title")
+             .text(function(d) { return (
+              d.name + "\n" +
+              "   community: " + d.community + "\n" +
+              "   page.rank: " + d.pr        + "\n" +
+              " eigenvector: " + d.evcent);
+          })
           .call(force.drag);
       force.on("tick", function () {
         var q = d3.geom.quadtree(graph.nodes);
@@ -108,12 +108,5 @@
         .attr( "r", function(d) { return (radtype ? d.pr_rad : d.evc_rad)});
     }
 
-    $('node').tipsy({ 
-      gravity: 'w', 
-      html: true, 
-      title: function() {
-        var d = this.__data__, c = colors(d.i);
-        return 'Hi there! My color is <span style="color:' + c + '">' + c + '</span>'; 
-      }
     });
   </script>

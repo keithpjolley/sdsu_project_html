@@ -65,12 +65,10 @@ $inc_url    .= "include/";
 my @css      = (
                 $inc_url . "css/style.css",
                 $inc_url . "css/dataTables.css",
-                $inc_url . "css/tipsy.css",
                );
 my @js       = (   # note that changing anything here requires an edit further down.  plus, order of the js files counts.
                 $inc_url . "js/jquery-1.10.0.js",
                 $inc_url . "js/d3.v3.min.js",
-                $inc_url . "js/jquery.tipsy.js",
                 $inc_url . "js/DataTables-1.9.4/jquery.dataTables.js",
                );
 
@@ -117,7 +115,7 @@ print
                 { -language=>'javascript', -charset=>"utf-8",  -src=>$js[0]},  # not sure why i can't use @js like @css above.
                 { -language=>'javascript', -charset=>"utf-8",  -src=>$js[1]},
                 { -language=>'javascript', -charset=>"utf-8",  -src=>$js[2]},
-                { -language=>'javascript', -charset=>"utf-8",  -src=>$js[3]},
+#               { -language=>'javascript', -charset=>"utf-8",  -src=>$js[3]},
                 { -language=>'javascript', -charset=>"utf-8", -code=>$tablejs},
               ],
   ),
