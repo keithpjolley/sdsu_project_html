@@ -55,7 +55,7 @@
                  .style("left", xPosition + "px")
                  .style("top",  yPosition + "px")
                  .select("#name")
-                 .text(d);
+                 .text(d.name);
                //Show the tooltip
                d3.select("#tooltip").classed("hidden", false);
             })
