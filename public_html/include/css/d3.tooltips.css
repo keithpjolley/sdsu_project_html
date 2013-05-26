@@ -1,10 +1,10 @@
-.tooltip {   
+.tooltipDiv {   
   position: absolute;           
   text-align: center;           
   width: 60px;                  
   height: 28px;                 
   padding: 2px;             
-  font: 12px sans-serif;        
+  font: 24px sans-serif;        
   background: lightsteelblue;   
   border: 0px;      
   border-radius: 8px;           
