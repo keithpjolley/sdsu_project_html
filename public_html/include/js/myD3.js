@@ -60,13 +60,13 @@
                  .style("top",  yPosition + "px")
                  // these need to match those in function cgi-bin/tw.pl:tooltipper
                  .select("#tip")
-                 .html('<strong>'  +
+                 .html('<pre><strong>'  +
                     '                  Name: ' + d.name              + '</strong><br/>' +
                     '              PageRank: ' + d.pr.toFixed(4)     + '<br/>' +
                     'Eigenvector Centrality: ' + d.evcent.toFixed(4) + '<br/>' +
                     '                Degree: ' + d.degree            + '<br/>' +
                     'Clustering Coefficient: ' + d.lcc.toFixed(4)    + '<br/>' +
-                    '             Community: ' + d.community         + '<br/>'
+                    '             Community: ' + d.community         + '<br/></pre>'
                  );
             })
           .on("mouseout", function() {
