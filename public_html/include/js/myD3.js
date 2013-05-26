@@ -1,24 +1,22 @@
   <script type="text/javascript">
-    // found at: http://css-tricks.com/snippets/javascript/lighten-darken-color/
-    // i don't know why, it's not a css trick at all.
-    function LightenDarkenColor(col, amt) {
-      var usePound = false;
-      if (col[0] == "#") {
-        col = col.slice(1);
-        usePound = true;
-      }
-      var num = parseInt(col, 16);
-      var r = (num >> 16) + amt;
-      if (r > 255) r = 255;
-      else if  (r < 0) r = 0; 
-      var b = ((num >> 8) & 0x00FF) + amt;
-      if (b > 255) b = 255;
-      else if  (b < 0) b = 0;
-      var g = (num & 0x0000FF) + amt;
-      if (g > 255) g = 255;
-      else if (g < 0) g = 0;
-      return (usePound?"#":"") + (g | (b << 8) | (r << 16)).toString(16);
-    }
+    // shame. i found this on stackoverflow.
+    // http://stackoverflow.com/questions/5560248/programmatically-lighten-or-darken-a-hex-color
+    function shadecolor(color, pcnt) {
+      var R = parseInt(color.substring(1,3),16)
+      var G = parseInt(color.substring(3,5),16)
+      var B = parseInt(color.substring(5,7),16);
+      R = parseInt(R * (100 + pcnt) / 100);
+      G = parseInt(G * (100 + pcnt) / 100);
+      B = parseInt(B * (100 + pcnt) / 100);
+      R = (R<255)?R:255;  
+      G = (G<255)?G:255;  
+      B = (B<255)?B:255;  
+      var RR  = ((R.toString(16).length==1)?"0"+R.toString(16):R.toString(16));
+      var GG  = ((G.toString(16).length==1)?"0"+G.toString(16):G.toString(16));
+      var BB  = ((B.toString(16).length==1)?"0"+B.toString(16):B.toString(16));
+      var RGB = "#"+RR+GG+BB;
+      return RGB;
+    } 
 
     function myradius() {
       var myradios = document.getElementsByName('whichradius');
@@ -88,7 +86,7 @@
                  .text(d.degree)
                  .select("#community")
                  .text(d.community)
-                 .style("background-color", LightenDarkenColor(color(d.community), -50));
+                 .style("background-color", shadecolor(color(d.community), -50));
             })
           .on("mouseout", function() {
               //Hide the tooltip
