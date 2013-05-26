@@ -2,7 +2,7 @@
 # kjolley
 # Thu May 23 17:41:45 PDT 2013
 # 
-# to git this:
+# to git this:  (ssh is my preference. need to import ~/.ssh/id_rsa.pub to github for each new machine though)
 #   ssh: 
 #     git clone git@github.com:keithpjolley/sdsu_project_html.git
 #  http:
@@ -14,7 +14,8 @@
 # to upload edits to github:
 # git push origin master
 #
-#
+# to sync changes from github to local without doing an 'rm -r'
+# git pull
 #
 # if you are running under apache you must do this (and probably should even if you running under python):
 cd public_html/cgi-bin/community
