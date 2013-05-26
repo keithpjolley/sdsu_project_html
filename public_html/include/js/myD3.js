@@ -77,18 +77,18 @@
                d3.select("#tooltip")
                  .style("left", xPosition + "px")
                  .style("top",  yPosition + "px")
-                 .style("background-color", LightenDarkenColor(color(d.community), 50))
                  // these need to match those in function cgi-bin/tw.pl:tooltipper
                  .select("#name")
-                 .text(d.name);
+                 .text(d.name)
                  .select("#pagerank")
-                 .text(d.pr);
+                 .text(d.pr)
                  .select("#evcent")
-                 .text(d.evcent);
+                 .text(d.evcent)
                  .select("#degree")
-                 .text(d.degree);
+                 .text(d.degree)
                  .select("#community")
-                 .text(d.community);
+                 .text(d.community)
+                 .style("background-color", LightenDarkenColor(color(d.community), 50));
             })
           .on("mouseout", function() {
               //Hide the tooltip
