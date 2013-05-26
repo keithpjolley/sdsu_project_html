@@ -128,15 +128,15 @@
                  // fmt numbers that 'may' be floats. let ints go through as is
                  .select("#tip")
                  .html('<pre><strong>'  +
-                    '                  Name: ' + d.name               + '</strong><br/>' +
-                    '              PageRank: ' + fmt(d.pr, 4)         + '<br/>'          +
-                    'Eigenvector Centrality: ' + fmt(d.evcent, 4)     + '<br/>'          +
-                    '                Degree: ' + d.degree             + '<br/>'          +
-                    '       <img alt="" src="../include/images/incoming_edge.png" />'    +
-                              ' Strength In: ' + d.graph_strength_in  + '<br/>'          +
-                    '      <img alt="" src="../include/images/outgoing_edge.png" />'     +
-                             ' Strength Out: ' + d.graph_strength_out + '<br/>'          +
-                    'Clustering Coefficient: ' + fmt(d.lcc, 4)        + '<br/>'          +
+                    '                  Name: ' + d.name               + '</strong><br/>'           +
+                    '              PageRank: ' + fmt(d.pr, 4)         + '<br/>'                    +
+                    'Eigenvector Centrality: ' + fmt(d.evcent, 4)     + '<br/>'                    +
+                    '                Degree: ' + d.degree             + '<br/>'                    +
+                    '       <img alt="          " src="../include/images/incoming_edge.png" />'    +
+                              ' Strength In: ' + d.graph_strength_in  + '<br/>'                    +
+                    '      <img alt="          " src="../include/images/outgoing_edge.png" />'     +
+                             ' Strength Out: ' + d.graph_strength_out + '<br/>'                    +
+                    'Clustering Coefficient: ' + fmt(d.lcc, 4)        + '<br/>'                    +
                     '             Community: ' + d.community          + '<br/></pre>'
                  );
                //Show the tooltip
