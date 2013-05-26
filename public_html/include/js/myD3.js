@@ -52,17 +52,6 @@
 //              "   page.rank: " + d.pr        + "\n" +
 //              " eigenvector: " + d.evcent);
 //          });
-          .call(d3.helper.tooltip()
-              .attr({class: function(d, i) { return d + ' ' + i +  ' A'; }})
-              .style("color", function(d){ return d.fill })
-              .style("font-color", "red")
-              .style("background", "orange")
-              .style("border", "10px")
-              .style("font", "32px")
-              .text(function(d, i){
-                  mystr =  '<strong>name: ' + d.name + '</strong><br/>';
-                  return (mystr)})
-          )
           .call(force.drag);
       force.on("tick", function () {
         var q = d3.geom.quadtree(graph.nodes);
@@ -118,5 +107,14 @@
         .duration(750)
         .attr( "r", function(d) { return (radtype ? d.pr_rad : d.evc_rad)});
     }
+
+    $('svg circle').tipsy({
+      gravity: 'w',
+      html: true,
+      title: function() {
+        var d = this.__data__, c = colors(d.i);
+        return 'asdfadsf.  <span tyle="color:' + c + '">' + c '</span>';
+      }
+    });
 
   </script>
