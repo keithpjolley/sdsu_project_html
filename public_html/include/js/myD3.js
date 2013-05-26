@@ -86,7 +86,7 @@
                  .text(d.degree)
                  .select("#community")
                  .text(d.community)
-                 .style("background-color", color(shadecolor(color(d.community), -50)));
+                 .style("background-color", shadecolor(color(d.community), 50));
             })
           .on("mouseout", function() {
               //Hide the tooltip
