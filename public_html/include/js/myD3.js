@@ -52,7 +52,7 @@
                d3.select("#tooltip").classed("hidden", false);
                //Get this bar's x/y values, then augment for the tooltip
                var xPosition = parseFloat(d3.select(this).attr("cx")) + 30;
-               var yPosition = parseFloat(d3.select(this).attr("cy")) + 70;
+               var yPosition = parseFloat(d3.select(this).attr("cy")) - 70;
                //Update the tooltip position and value
                d3.select("#tooltip")
                  .style("background-color", tinycolor.lighten(color(d.community), 10))
