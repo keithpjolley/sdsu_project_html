@@ -1,4 +1,36 @@
   <script type="text/javascript">
+    function isNumber(n) {
+      return !isNaN(parseFloat(n)) && isFinite(n);
+    }
+
+    function format_number(pnumber, decimals){
+      if (!isNumber(pnumber)) { return ''};
+      if (pnumber=='')        { return ''};
+      var snum = new String(pnumber);
+      var sec = snum.split('.');
+      var whole = parseFloat(sec[0]);
+      var result = '';
+      if(sec.length > 1){
+        var dec = new String(sec[1]);
+        dec = String(parseFloat(sec[1])/Math.pow(10,(dec.length - decimals)));
+        dec = String(whole + Math.round(parseFloat(dec))/Math.pow(10,decimals));
+        var dot = dec.indexOf('.');
+        if(dot == -1){
+          dec += '.';
+          dot = dec.indexOf('.');
+        }
+        while(dec.length <= dot + decimals) { dec += '0'; }
+        result = dec;
+      } else{
+        var dot;
+        var dec = new String(whole);
+        dec += '.';
+        dot = dec.indexOf('.');
+        while(dec.length <= dot + decimals) { dec += '0'; }
+        result = dec;
+      }
+      return result;
+    }
 
     function myradius() {
       var myradios = document.getElementsByName('whichradius');
@@ -59,12 +91,12 @@
                  // these need to match those in function cgi-bin/tw.pl:tooltipper
                  .select("#tip")
                  .html('<pre><strong>'  +
-                    '                  Name: ' + d.name              + '</strong><br/>' +
-                    '              PageRank: ' + d.pr.toFixed(4)     + '<br/>' +
-                    'Eigenvector Centrality: ' + d.evcent.toFixed(4) + '<br/>' +
-                    '                Degree: ' + d.degree            + '<br/>' +
-                    'Clustering Coefficient: ' + d.lcc.toFixed(4) | '0' + '<br/>' +
-                    '             Community: ' + d.community         + '<br/></pre>'
+                    '                  Name: ' + d.name           + '</strong><br/>' +
+                    '              PageRank: ' + fmt(d.pr, 4)     + '<br/>'          +
+                    'Eigenvector Centrality: ' + fmt(d.evcent, 4) + '<br/>'          +
+                    '                Degree: ' + d.degree         + '<br/>'          +
+                    'Clustering Coefficient: ' + fmt(d.lcc, 4)    + '<br/>'          +
+                    '             Community: ' + d.community      + '<br/></pre>'
                  );
                //Show the tooltip
                d3.select("#tooltip").classed("hidden", false);
