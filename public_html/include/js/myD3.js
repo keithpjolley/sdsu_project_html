@@ -132,8 +132,8 @@
                     '              PageRank: ' + fmt(d.pr, 4)         + '<br/>'          +
                     'Eigenvector Centrality: ' + fmt(d.evcent, 4)     + '<br/>'          +
                     '                Degree: ' + d.degree             + '<br/>'          +
-                    '           Strength In: ' + d.graph_strength_in  + '<br/>'          +
-                    '          Strength Out: ' + d.graph_strength_out + '<br/>'          +
+                    '           Strength In: ' + d.graph_strength_in  + '  <img alt="" src="../images/incoming_edge.png" style="float:right;" /><br/>'          +
+                    '          Strength Out: ' + d.graph_strength_out + '  <img alt="" src="../images/outgoing_edge.png" style="float:right;" /><br/>'          +
                     'Clustering Coefficient: ' + fmt(d.lcc, 4)        + '<br/>'          +
                     '             Community: ' + d.community          + '<br/></pre>'
                  );
