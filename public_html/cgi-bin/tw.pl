@@ -70,6 +70,7 @@ my @js       = (   # note that changing anything here requires an edit further d
                 $inc_url . "js/jquery-1.10.0.js",
                 $inc_url . "js/d3.v3.min.js",
                 $inc_url . "js/DataTables-1.9.4/jquery.dataTables.js",
+                $inc_url . "js/tinycolor.js",
                );
 
 if (! -d $jdir) {
@@ -527,13 +528,7 @@ sub mychecker {
 # these span id values need to match those in include/js/myD3.js:node.on(mouseover)
 sub tooltipper {
   print<<'EOF3';
-  <div id="tooltip" class="hidden">
-    <p>                  <strong>Name: <span id="name"     >X</span></strong></p>
-            <p>              PageRank: <span id="pagerank" >X</span></p>
-            <p>Eigenvector Centrality: <span id="evcent"   >X</span></p>
-            <p>                Degree: <span id="degree"   >X</span></p>
-            <p>             Community: <span id="community">X</span></p>
-  </div>
+  <div id="tooltip" class="hidden"><span id="tip">X</span></div>
 EOF3
   return;
 }
