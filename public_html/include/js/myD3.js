@@ -48,14 +48,14 @@
           .call(force.drag)
           .on("mouseover", function(d) {
                //Get this bar's x/y values, then augment for the tooltip
-               var xPosition = parseFloat(d3.select(this).attr("x")) + 0;
-               var yPosition = parseFloat(d3.select(this).attr("y")) + 0;
+               var xPosition = parseFloat(d3.select(this).attr("cx")) + 0;
+               var yPosition = parseFloat(d3.select(this).attr("cy")) + 0;
                //Update the tooltip position and value
                d3.select("#tooltip")
                  .style("left", xPosition + "px")
                  .style("top",  yPosition + "px")
-                 .select("#name")
-                 .text(d.name);
+                 .select("#value")
+                 .text("bogus");
                //Show the tooltip
                d3.select("#tooltip").classed("hidden", false);
             })
