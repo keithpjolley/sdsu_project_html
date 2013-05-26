@@ -135,18 +135,18 @@ print
               ),
            ]),
         td([
-            textfield(-name=>'all', -size=>45),
-            textfield(-name=>'topic'),
+            textfield(-name=>'all',   -size=>45),
+            textfield(-name=>'topic', -size=>30),
             ($maillist
-              ? (textfield(-name=>'mlist'), textfield(-name=>'email'))
-              :  textfield(-name=>'email')
+              ? (textfield(-name=>'mlist', -size=>30), textfield(-name=>'email', -size=>30))
+              :  textfield(-name=>'email', -size=>30)
              ),
            ]),
         (
           ($topicpop or $mlistpop or $emailpop)
           ?
           td([
-              (submit . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; suggested queries:"),
+              (submit . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Suggested queries:"),
               $topicpop ? a({-href=>"$topicpop", -target=>"_blank"}, "topics")          : "(none)",
               ($maillist
                 ? (($mlistpop ? a({-href=>"$mlistpop", -target=>"_blank"}, "mail lists")      : "(none)"),
