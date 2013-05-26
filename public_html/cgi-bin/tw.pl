@@ -538,7 +538,7 @@ sub tooltipper {
             <p>Eigenvector Centrality: <span id="evcent"   >0</span></p>
             <p>                Degree: <span id="degree"   >0</span></p>
             <p>             Community: <span id="community">0</span></p>
-  </div>'
+  </div>
 EOF3
   return;
 }
