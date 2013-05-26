@@ -47,6 +47,8 @@
           .style("stroke-width", function(d) { return Math.max(d.radius/10,1)})
           .call(force.drag)
           .on("mouseover", function(d) {
+               //Show the tooltip
+               d3.select("#tooltip").classed("hidden", false);
                //Get this bar's x/y values, then augment for the tooltip
                var xPosition = parseFloat(d3.select(this).attr("cx")) + 0;
                var yPosition = parseFloat(d3.select(this).attr("cy")) + 0;
@@ -56,8 +58,6 @@
                  .style("top",  yPosition + "px")
                  .select("#value")
                  .text("bogus");
-               //Show the tooltip
-               d3.select("#tooltip").classed("hidden", false);
             })
           .on("mouseout", function() {
               //Hide the tooltip
