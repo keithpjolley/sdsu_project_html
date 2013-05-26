@@ -76,7 +76,7 @@ div.full {
   border:                 1px;
   pointer-events:        none;
   z-index:               9999;
-  opacity:               0.85;
+  opacity:               0.90;
   -webkit-box-shadow:     4px 4px 10px rgba(0, 0, 0, 0.4);
   -moz-box-shadow:        4px 4px 10px rgba(0, 0, 0, 0.4);
   box-shadow:             4px 4px 10px rgba(0, 0, 0, 0.4);
