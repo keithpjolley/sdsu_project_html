@@ -1,11 +1,11 @@
   <script type="text/javascript">
-    function isNumber(n) {
-      return !isNaN(parseFloat(n)) && isFinite(n);
-    }
 
+    // http://java-scripts.net/javascripts/Format-Number.phtml
     function fmt(pnumber, decimals){
-      if (!isNumber(pnumber))      { return ''};
-      if (pnumber==''||pnumber==0) { return 0.0};
+      if (isNaN(parseFloat(pnumber))){ return ''};
+      if (!isFinite(pnumber))        { return ''};
+      if (pnumber=='')               { return ''};
+      if (pnumber==0)                { return 0};
       var snum = new String(pnumber);
       var sec = snum.split('.');
       var whole = parseFloat(sec[0]);
