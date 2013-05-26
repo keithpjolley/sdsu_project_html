@@ -108,13 +108,12 @@
         .attr( "r", function(d) { return (radtype ? d.pr_rad : d.evc_rad)});
     }
 
-    $('svg circle').tipsy({
-      gravity: 'w',
-      html: true,
+    $('svg circle').tipsy({ 
+      gravity: 'w', 
+      html: true, 
       title: function() {
         var d = this.__data__, c = colors(d.i);
-        return 'asdfadsf.  <span tyle="color:' + c + '">' + c '</span>';
+        return 'Hi there! My color is <span style="color:' + c + '">' + c + '</span>'; 
       }
     });
-
   </script>
