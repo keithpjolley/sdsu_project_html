@@ -45,26 +45,24 @@
           .style("fill",   function(d) { return color(d.community)})
           .style("stroke", function(d) { return ((d.isperson==1) ? "white" : "grey")}) 
           .style("stroke-width", function(d) { return Math.max(d.radius/10,1)}) 
-          .append("title")
+          .call(force.drag)
           .on("mouseover", function(d) {
-             //Get this bar's x/y values, then augment for the tooltip
-             var xPosition = parseFloat(d3.select(this).attr("x")) + xScale.rangeBand() / 2;
-             var yPosition = parseFloat(d3.select(this).attr("y")) / 2 + h / 2;
-             //Update the tooltip position and value
-             d3.select("#tooltip")
-               .style("left", xPosition + "px")
-               .style("top", yPosition + "px")           
-               .select("#value")
-               .text(d);
-             //Show the tooltip
-             d3.select("#tooltip").classed("hidden", false);
-          })
+               //Get this bar's x/y values, then augment for the tooltip
+               var xPosition = parseFloat(d3.select(this).attr("x")) + xScale.rangeBand() / 2;
+               var yPosition = parseFloat(d3.select(this).attr("y")) / 2 + h / 2;
+               //Update the tooltip position and value
+               d3.select("#tooltip")
+                 .style("left", xPosition + "px")
+                 .style("top", yPosition + "px")           
+                 .select("#value")
+                 .text(d);
+               //Show the tooltip
+               d3.select("#tooltip").classed("hidden", false);
+            })
           .on("mouseout", function() {
-            //Hide the tooltip
-            d3.select("#tooltip").classed("hidden", true);
-          })
-
-          .call(force.drag);
+              //Hide the tooltip
+              d3.select("#tooltip").classed("hidden", true);
+            });
 
       force.on("tick", function () {
         var q = d3.geom.quadtree(graph.nodes);
