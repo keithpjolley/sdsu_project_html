@@ -69,17 +69,17 @@ div.full {
   width:                 auto;
   height:                auto;
   padding:               10px;
-  color:                 black;
+  color:                black;
   -webkit-border-radius: 10px;
   -moz-border-radius:    10px;
   border-radius:         10px;
-  border:                10px red;
-  -webkit-box-shadow:    4px 4px 10px rgba(0, 0, 0, 0.4);
-  -moz-box-shadow:       4px 4px 10px rgba(0, 0, 0, 0.4);
-  box-shadow:            4px 4px 10px rgba(0, 0, 0, 0.4);
+  border:                 1px;
   pointer-events:        none;
-  z-index:               9999999;
-  opacity:               0.750;
+  z-index:               9999;
+  opacity:               0.85;
+  -webkit-box-shadow:     4px 4px 10px rgba(0, 0, 0, 0.4);
+  -moz-box-shadow:        4px 4px 10px rgba(0, 0, 0, 0.4);
+  box-shadow:             4px 4px 10px rgba(0, 0, 0, 0.4);
 }
       
 #tooltip.hidden {
