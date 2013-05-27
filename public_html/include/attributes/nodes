@@ -15,28 +15,28 @@
 # on the screen in the same order as they are listed here.
 #
 name;display_name;Name
-name;popup_text;The name of the node - typically the person's email address.
+name;popup_text;The name of the vertex - typically the person's email address.
 #
 pr;display_name;PageRank
 pr;popup_text;PageRank is a measure of influence in a network. A higher PageRank says that people are reaching out more to that person on that particular topic. If all roads lead to Rome, then Rome must be important. PageRank shows where all roads lead to.
 #
 evcent;display_name;Eigenvector Centrality
-evcent;popup_text;Eigenvector Centrality shows the influence of a node in a network by assigning a higher value to those nodes closely connected to highly connected nodes than to those that are only connected to poorly connected nodes. It's closely related to the PageRank. Tom, in the Godfather, would have low connection count but a high Eigenvector Centrality score because he did not have a lot of connections but those he did have were very powerful.
+evcent;popup_text;Eigenvector Centrality shows the influence of a vertex in a network by assigning a higher value to those vertices closely connected to highly connected vertices than to those that are only connected to poorly connected vertices. It's closely related to the PageRank. Tom, in the Godfather, would have low connection count but a high Eigenvector Centrality score because he did not have a lot of connections but those he did have were very powerful.
 #
 betweenness_vertex;display_name;Betweenness
-betweenness_vertex;popup_text;Vertex Betweenness shows how many times a node is on the shortest path between other nodes. A high Betweenness score indicates that this person connects a lot of people.
+betweenness_vertex;popup_text;Vertex Betweenness shows how many times a vertex is on the shortest path between other vertices. A high Betweenness score indicates that this person connects a lot of people.
 #
 closeness_in;display_name;Closeness In
-closeness_in;popup_text;Closeness In is the average distance between this node FROM all other nodes. A node with a HIGHER score will receive information more quickly than others in this network.
+closeness_in;popup_text;Closeness In is the average distance between this vertex FROM all other vertices. A vertex with a HIGHER score will receive information more quickly than others in this network.
 #
 closeness_out;display_name;Closeness Out
-closeness_out;popup_text;A HIGH Closeness Out score means that this node will disseminate information within this network more quickly than those with a low score.
+closeness_out;popup_text;A HIGH Closeness Out score means that this vertex will disseminate information within this network more quickly than those with a low score.
 #
 community;display_name;Community
-community;popup_text;The Community shows groups of nodes that regularly communicate within the group. We use the algorithm shown in the "Fast unfolding of communities in large networks" paper to determine the communities. A community shows that there is more communication among those within a community than to those outside.
+community;popup_text;The Community shows groups of vertices that regularly communicate within the group. We use the algorithm shown in the "Fast unfolding of communities in large networks" paper to determine the communities. A community shows that there is more communication among those within a community than to those outside.
 #
 degree;display_name;Degree
-degree;popup_text;Degree is the total number of edges (connections) this node has within this network. The quality of those connections is not a factored.
+degree;popup_text;Number of vertices this vertex is connected to, regardless of direction or weight.
 #
 graph_strength_in;display_name;Strength In
 graph_strength_in;popup_text;Total incoming edges.
@@ -44,8 +44,8 @@ graph_strength_in;popup_text;Total incoming edges.
 graph_strength_out;display_name;Strength Out
 graph_strength_out;popup_text;Total outbound edges
 #
-graph_strength_out;display_name;Strength Out
-graph_strength_out;popup_text;Total outbound edges
+graph_strength_tot;display_name;Total Strength
+graph_strength_tot;popup_text;Total number of inbound and outbound edges
 #
 lcc;display_name;Local Clustering Coefficient
 lcc;popup_text;Transitivity measures the probability that the adjacent vertices of a vertex are connected. This is sometimes also called the clustering coefficient.
