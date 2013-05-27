@@ -47,7 +47,8 @@ my $mlistpop = "$input/interesting_list.html";
 my $emailpop = "$input/interesting_people.html";
 my $d3js     = "$include/js/myD3.js";  
 my $mychecker= "$include/js/myChecker.js";  
-my $jdir     = "../__cache__/JSON";
+my $jsondir  = "../__cache__/JSON";
+my $attribdir= "$include/attributes";
 
 # url paths
 # note that i put all the js files local. i don't use cdn's because i am on a VERY high latency network at home
@@ -73,11 +74,11 @@ my @js       = (   # note that changing anything here requires an edit further d
                 $inc_url . "js/tinycolor.js",
                );
 
-if (! -d $jdir) {
-  warn "MESSAGE: $bin: creating JSON dir: $jdir";
+if (! -d $jsondir) {
+  warn "MESSAGE: $bin: creating JSON dir: $jsondir";
   warn "MESSAGE: $bin: cwd: " . getcwd;
-  mkdir ($jdir)
-    or die "ERROR: $bin: no JSON dir: $jdir: $!";
+  mkdir ($jsondir)
+    or die "ERROR: $bin: no JSON dir: $jsondir: $!";
 }
 
 $maillist = 0 if (! -d $maillist);
@@ -198,7 +199,7 @@ sub footer {
 
 sub dograph {
   # prints the D3 script, returns the location of the $json and $mfile files
-  die "ERROR: $bin: 16. no json dir $jdir" unless -d $jdir;
+  die "ERROR: $bin: 16. no json dir $jsondir" unless -d $jsondir;
   die "ERROR: $bin: 17. can't read input list $thelist" unless -r $thelist;
   my $topic = param('topic') || "";  # make sure that the query variables are set to something
   my $mlist = param('mlist') || "";
@@ -220,7 +221,7 @@ sub dograph {
   my $tmpdir = tempdir(CLEANUP => 0)
     or die "ERROR: $bin: 18. couldn't create tempdir: $!";
   my $net  = "$tmpdir/$qfile.net";
-  my $json = "$jdir/$qfile.json";
+  my $json = "$jsondir/$qfile.json";
   my $mfile = "";
   if ($topic eq "" && $mlist eq "" && $email eq "" && $email eq "" && $all eq "") {
     print "<h2>empty search</h2>\n";
@@ -359,6 +360,7 @@ sub json2table {
         degree
         graph_strength_in
         graph_strength_out
+        graph_strength_tot
         isperson
   );
   #     don't display these node attributes
@@ -392,7 +394,7 @@ sub json2table {
     $temphash{$foo->{'index'}} = $name;
   }
   for my $key (keys %{$ps}) {
-    my $attribfile = "$include/attributes/$key";
+    my $attribfile = "$attribdir/$key";
     if ($key eq 'nodes') {
       printtable  ($key, $ps, {},         $attribfile, @nodeattribs);
     } elsif ($key eq 'links') {
@@ -504,12 +506,14 @@ sub getattrhash {
     @lines = <FILE>;
     close (FILE) or return 0;
   }
+  my $order = 0;
   for (@lines) {
-    next if /^#/;
+    next if /^#/; # allow comments, but don't mangle descriptions that may have a '#' in them.
     chomp;
     my ($attrib, $key, $value) = split (/;/);
-    next unless (defined($attrib) and defined ($key) and defined ($value));
+    next unless (defined ($attrib) and defined ($key) and defined ($value));
     $hashref->{$attrib}->{$key} = $value;
+    $hashref->{$attrib}->{'order'} = $order++; # eh, so i count by twos, or more. oh well.
   }
   return $hashref;
 }

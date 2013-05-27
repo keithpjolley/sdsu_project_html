@@ -8,22 +8,17 @@
 # third column is the value
 # columns separated by ";"
 #
-# key:       order : int     -- which column number to display this value in?
 # key: display_name: string  -- the column header text to display
 # key:   popup_text: string  -- text to put in a little popup display. less is more.
 #
 source;display_name;From:
-source;order;1
 source;popup_text;Email Sender
 #
 target;display_name;To:
-target;order;2
 target;popup_text;Email Recipient
 #
 weight;display_name;Edge Weight
-weight;order;3
 weight;popup_text;Number of emails sent (on this search topic)
 #
 #betweenness_edge;display_name;Betweenness
-#betweenness_edge;order;4
 #betweenness_edge;popup_text;The vertex and edge betweenness are (roughly) defined by the number of geodesics (shortest paths) going through a vertex or an edge.
