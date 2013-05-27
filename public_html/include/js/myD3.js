@@ -40,9 +40,10 @@
     // http://java-scripts.net/javascripts/Format-Number.phtml
     function fmt(pnumber, decimals){
       if (isNaN(parseFloat(pnumber))){ return ''};
-      if (!isFinite(pnumber))        { return ''};
       if (pnumber=='')               { return ''};
+      if (!isFinite(pnumber))        { return ''};
       if (pnumber==0)                { return 0};
+      pnumber = Number(pnumber);
       var snum = new String(pnumber);
       var sec = snum.split('.');
       var whole = parseFloat(sec[0]);

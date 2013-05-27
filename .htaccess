@@ -1,5 +1,6 @@
 ##
 #
+# this file is needed if you are running under apache
 #
 Options +ExecCGI
 AddHandler cgi-script pl 
