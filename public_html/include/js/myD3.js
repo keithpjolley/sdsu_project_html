@@ -40,7 +40,7 @@
     function mymin(dec) {
       if (dec < 1) { return 0; }
       var ret = 1;
-      while (dec > 1) {
+      while (dec>0) {
         ret /= 10;
         dec--;
       }
