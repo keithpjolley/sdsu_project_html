@@ -54,7 +54,7 @@
       if (!isFinite(pnumber))        { return ''};
       if (pnumber==0)                { return 0};
       
-      if (pnumber < mymin(decimal)/2) { return 0};      
+      if (pnumber < mymin(decimals)/2) { return 0};      
 
       var snum = new String(pnumber);
       var sec = snum.split('.');
