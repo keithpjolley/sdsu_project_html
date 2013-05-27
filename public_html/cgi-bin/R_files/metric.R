@@ -47,7 +47,7 @@ metric <- function(g_local, mfile) {
   if (interactive())   cat("R: metric.R: calculating graph strength (out) ...)\n")
   V(g_local)$graph_strength_out <- graph.strength(g_local, mode="out")
   if (interactive())   cat("R: metric.R: calculating graph strength (total) ...)\n")
-  V(g_local)$graph_strength_tot <- V(g_local)$graph.strength.out + V(g_local)$graph.strength.in
+  V(g_local)$graph_strength_tot <- V(g_local)$graph_strength_out + V(g_local)$graph_strength_in
 
 #  if (interactive())   cat("R: metric.R: calculating edge connectivity...)\n")
 # E(g_local)$connectivity_edge   <- edge.connectivity(g_local)
