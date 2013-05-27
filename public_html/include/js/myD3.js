@@ -50,9 +50,9 @@
     // http://java-scripts.net/javascripts/Format-Number.phtml
     function fmt(pnumber, decimals){
       if (isNaN(parseFloat(pnumber))){ return ''};
+      if (pnumber==0)                { return 0};
       if (pnumber=='')               { return ''};
       if (!isFinite(pnumber))        { return ''};
-      if (pnumber==0)                { return 0};
       
       if (pnumber < mymin(decimals)/2) { return 0};      
 
