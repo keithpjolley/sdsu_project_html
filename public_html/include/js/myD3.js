@@ -133,9 +133,11 @@
                     'Eigenvector Centrality: ' + fmt(d.evcent, 4)     + '<br />'          +
                     'Clustering Coefficient: ' + fmt(d.lcc, 4)        + '<br />'          +
                     '                Degree: ' + d.degree             + '<br />'          +
+                    '             Community: ' + d.community          + '<br />'          +
                     '           Strength In: ' + d.graph_strength_in  + '   <img alt="" src="../include/images/incoming_edge.png" /><br />' +
                     '          Strength Out: ' + d.graph_strength_out + '   <img alt="" src="../include/images/outgoing_edge.png" /><br />' +
-                    '             Community: ' + d.community          + '</pre>'
+                    '        Strength Total: ' + d.graph_strength_tot + '<br />'          +
+                    '</pre>'
                  );
                //Show the tooltip
                d3.select("#tooltip").classed("hidden", false);
