@@ -39,7 +39,7 @@
 
     function mymin(dec) {  // i do realize this would be the time to demonstrate my knowledge of recursion and unreadable code.
       if (dec < 1) { return 0; }
-      var ret = 1;
+      var ret = 1/2;
       while (dec>0) {
         ret /= 10;
         dec--;
@@ -49,12 +49,12 @@
 
     // http://java-scripts.net/javascripts/Format-Number.phtml
     function fmt(pnumber, decimals){
-      if (isNaN(parseFloat(pnumber))){ return ''};
-      if (pnumber==0)                { return 0};
-      if (pnumber=='')               { return ''};
-      if (!isFinite(pnumber))        { return ''};
+      if (isNaN(parseFloat(pnumber)))  { return ''};
+      if (pnumber==0)                  { return 0};
+      if (pnumber=='')                 { return ''};
+      if (!isFinite(pnumber))          { return ''};
       
-      if (pnumber < mymin(decimals)/2) { return 0};      
+      if (pnumber < mymin(decimals)/2) { return 0.0};
 
       var snum = new String(pnumber);
       var sec = snum.split('.');
