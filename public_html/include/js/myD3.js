@@ -37,13 +37,25 @@
         .attr( "r", function(d) { return (radtype ? d.pr_rad : d.evc_rad)});
     }
 
+    function mymin(dec) {
+      if (dec < 1) { return 0; }
+      var ret = 1;
+      while (dec > 1) {
+        ret /= 10;
+        dec--;
+      }
+      return 0;
+    }
+
     // http://java-scripts.net/javascripts/Format-Number.phtml
     function fmt(pnumber, decimals){
       if (isNaN(parseFloat(pnumber))){ return ''};
       if (pnumber=='')               { return ''};
       if (!isFinite(pnumber))        { return ''};
       if (pnumber==0)                { return 0};
-      pnumber = Number(pnumber);
+      
+      if (pnumber < mymin(decimal)/2) { return 0};      
+
       var snum = new String(pnumber);
       var sec = snum.split('.');
       var whole = parseFloat(sec[0]);
