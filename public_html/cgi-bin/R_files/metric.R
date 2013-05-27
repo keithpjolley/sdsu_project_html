@@ -54,6 +54,10 @@ metric <- function(g_local, mfile) {
 #  if (interactive())   cat("R: metric.R: calculating vertex connectivity...)\n")
 # V(g_local)$connectivity_vertex <- vertex.connectivity(g_local)
 
+  if (interactive())   cat("R: metric.R: finding number of communities...)\n")
+  numcomm <- length(unique(V(g_local)$community))
+  cat(paste("Number of Communities", numcomm, "\n", sep=":"), file=mfile, append=TRUE)
+
   if (interactive())   cat("R: metric.R: calculating graph density...)\n")
   density_local <- graph.density(g_local, loops=FALSE)
   cat(paste("Density", density_local, "\n", sep=":"), file=mfile, append=TRUE)
