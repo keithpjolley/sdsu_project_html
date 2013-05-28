@@ -218,7 +218,7 @@ sub dograph {
   $email = join('|', split(' ', $email));
   $all   = join('|', split(' ', $all));
 
-  my $tmpdir = tempdir(CLEANUP => 0)
+  my $tmpdir = tempdir(CLEANUP => 1)
     or die "ERROR: $bin: 18. couldn't create tempdir: $!";
   my $net  = "$tmpdir/$qfile.net";
   my $json = "$jsondir/$qfile.json";
