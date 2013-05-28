@@ -1,6 +1,6 @@
 #
 # kjolley - 18 may 2013
-# 
+#
 # this file helps define the html tables
 #
 # first column is attribute name as created in the metrics.R file and placed in the JSON file
@@ -37,6 +37,9 @@ community;popup_text;The Community shows groups of vertices that regularly commu
 #
 degree;display_name;Degree
 degree;popup_text;Number of vertices this vertex is connected to, regardless of direction or weight.
+#
+dpd;display_name;Degree Probability
+dpd;popup_text;Ratio of nodes with this many incident edges
 #
 graph_strength_in;display_name;Strength In
 graph_strength_in;popup_text;Total incoming edges.

@@ -23,6 +23,9 @@ metric <- function(g_local, mfile) {
   if (interactive())   cat("R: metric.R: calculating vertex degree...)\n")
   V(g_local)$degree <- degree(g_local)
 
+  if (interactive())   cat("R: metric.R: calculating degree probability density...)\n")
+  V(g_local)$dpd <- V(g_local)$degree/sum(V(g_local)$degree)
+
   if (interactive())   cat("R: metric.R: calculating vertex closeness centrality (in) ...)\n")
   V(g_local)$closeness_in  <- closeness(g_local, mode="in")
   if (interactive())   cat("R: metric.R: calculating vertex closeness centrality (out) ...)\n")
