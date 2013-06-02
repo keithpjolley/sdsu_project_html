@@ -74,6 +74,8 @@ my @js       = (   # note that changing anything here requires an edit further d
                 $inc_url . "js/tinycolor.js",
                );
 
+my $favicon  = $inc_url . "images/favicon.ico";
+
 if (! -d $jsondir) {
   warn "MESSAGE: $bin: creating JSON dir: $jsondir";
   warn "MESSAGE: $bin: cwd: " . getcwd;
@@ -113,6 +115,7 @@ print
   header,
   start_html(
     -title =>$title . ' Community Network',
+    -head  => [Link({-rel=>'icon',         -type=>'image/png',-href=>$favicon})],
     -style => {-type=>"text/css", -src=>[@css]},
     -script=> [ 
                 { -language=>'javascript', -charset=>"utf-8",  -src=>$js[0]},  # not sure why i can't use @js like @css above.
