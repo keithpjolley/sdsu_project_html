@@ -32,7 +32,7 @@ metric <- function(g_local, mfile) {
   V(g_local)$closeness_out <- closeness(g_local, mode="out")
 
   if (interactive())   cat("R: metric.R: calculating page.rank...)\n")
-  V(g_local)$pr     <- page.rank(g)$vector
+  V(g_local)$pr     <- page.rank(g, d=0.85)$vector
 
   if (interactive())   cat("R: metric.R: calculating eigenvector centrality...)\n")
   V(g_local)$evcent <- evcent(g_local)$vector
