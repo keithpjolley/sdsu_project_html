@@ -46,7 +46,7 @@ my $topicpop = "$input/interesting_topic.html";
 my $mlistpop = "$input/interesting_list.html";
 my $emailpop = "$input/interesting_people.html";
 my $d3js     = "$include/js/myD3.js";  
-my $mychecker= "$include/js/myChecker.js";  
+#my $mychecker= "$include/js/myChecker.js";  
 my $jsondir  = "../__cache__/JSON";
 my $attribdir= "$include/attributes";
 
@@ -94,7 +94,7 @@ sub fmt;
 sub footer;
 sub json2table;
 sub metrics;
-sub mychecker;
+#sub mychecker;
 sub mydiv;
 sub netword;
 sub printtable;
@@ -168,8 +168,8 @@ print
       ]),
   ),
   end_form,
-  mydiv('close'),
-  mychecker;
+  mydiv('close');
+#  mychecker;
 
 if (param) {
   mydiv('left');
@@ -522,16 +522,16 @@ sub getattrhash {
   return $hashref;
 }
 
-sub mychecker {
-  my @lines;
-  {
-    local($\);
-    open (FILE, "<", $mychecker) or return;
-    @lines = <FILE>;
-    close (FILE) or return;
-  }
-  return @lines;
-}
+#sub mychecker {
+#  my @lines;
+#  {
+#    local($\);
+#    open (FILE, "<", $mychecker) or return;
+#    @lines = <FILE>;
+#    close (FILE) or return;
+#  }
+#  return @lines;
+#}
 
 # these span id values need to match those in include/js/myD3.js:node.on(mouseover)
 sub tooltipper {
