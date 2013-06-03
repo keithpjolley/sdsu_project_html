@@ -5,39 +5,40 @@
 #
 #
 metric <- function(g_local, mfile) {
-  if (interactive()) cat("R: metric.R: Calculating metrics. This can take a while on large networks...)\n")
+  if (interactive()) cat("R: metric.R: Calculating metrics. This can take a while on large networks...\n")
 
   cat(paste("Edges", length(E(g_local)$weight), "\n", sep=":"), file=mfile, append=FALSE)
   cat(paste("Vertices", length(V(g_local)), "\n", sep=":"), file=mfile, append=TRUE)
 
-  if (interactive())   cat("R: metric.R: calculating transitivity...)\n")
+  if (interactive())   cat("R: metric.R: calculating transitivity...\n")
   V(g_local)$lcc <- transitivity(g_local, type="local")
   mean_lcc <- mean(na.omit(V(g_local)$lcc))
   cat(paste("Mean Local Clustering Coefficient", mean_lcc, "\n", sep=":"), file=mfile, append=TRUE)
 
-  if (interactive())   cat("R: metric.R: calculating vertex betweenness...)\n")
+  if (interactive())   cat("R: metric.R: calculating vertex betweenness...\n")
   V(g_local)$betweenness_vertex <- betweenness(g_local)
-  if (interactive())   cat("R: metric.R: calculating edge betweenness...)\n")
+  if (interactive())   cat("R: metric.R: calculating edge betweenness...\n")
   E(g_local)$betweenness_edge   <- edge.betweenness(g_local)
 
-  if (interactive())   cat("R: metric.R: calculating vertex degree...)\n")
+  if (interactive())   cat("R: metric.R: calculating vertex degree...\n")
   V(g_local)$degree <- degree(g_local)
 
-  if (interactive())   cat("R: metric.R: calculating degree probability density...)\n")
+  if (interactive())   cat("R: metric.R: calculating degree probability density...\n")
   V(g_local)$dpd <- V(g_local)$degree/sum(V(g_local)$degree)
 
-  if (interactive())   cat("R: metric.R: calculating vertex closeness centrality (in) ...)\n")
+  if (interactive())   cat("R: metric.R: calculating vertex closeness centrality (in) ...\n")
   V(g_local)$closeness_in  <- closeness(g_local, mode="in")
-  if (interactive())   cat("R: metric.R: calculating vertex closeness centrality (out) ...)\n")
+  if (interactive())   cat("R: metric.R: calculating vertex closeness centrality (out) ...\n")
   V(g_local)$closeness_out <- closeness(g_local, mode="out")
 
-  if (interactive())   cat("R: metric.R: calculating page.rank...)\n")
-  V(g_local)$pr     <- page.rank(g, d=0.85)$vector
+  if (!exists("damping")) damping=0.85
+  if (interactive())   cat("R: metric.R: calculating page.rank...\n")
+  V(g_local)$pr     <- page.rank(g, damping=damping)$vector
 
-  if (interactive())   cat("R: metric.R: calculating eigenvector centrality...)\n")
+  if (interactive())   cat("R: metric.R: calculating eigenvector centrality...\n")
   V(g_local)$evcent <- evcent(g_local)$vector
 
-  if (interactive())   cat("R: metric.R: calculating network diameter (longest shortest path!)...)\n")
+  if (interactive())   cat("R: metric.R: calculating network diameter (longest shortest path!)...\n")
   diameter_local <- diameter(g_local)
   cat(paste("Diameter", diameter_local, "\n", sep=":"), file=mfile, append=TRUE)
 
