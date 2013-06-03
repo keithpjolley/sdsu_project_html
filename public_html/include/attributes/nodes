@@ -32,9 +32,6 @@ closeness_in;popup_text;Closeness In is the average distance between this vertex
 closeness_out;display_name;Closeness Out
 closeness_out;popup_text;A HIGH Closeness Out score means that this vertex will disseminate information within this network more quickly than those with a low score.
 #
-community;display_name;Community
-community;popup_text;The Community shows groups of vertices that regularly communicate within the group. We use the algorithm shown in the "Fast unfolding of communities in large networks" paper to determine the communities. A community shows that there is more communication among those within a community than to those outside.
-#
 degree;display_name;Degree
 degree;popup_text;Number of vertices this vertex is connected to, regardless of direction or weight.
 #
@@ -52,6 +49,9 @@ graph_strength_tot;popup_text;Total number of inbound and outbound edges
 #
 lcc;display_name;Local Clustering Coefficient
 lcc;popup_text;Transitivity measures the probability that the adjacent vertices of a vertex are connected. This is sometimes also called the clustering coefficient.
+#
+community;display_name;Community
+community;popup_text;The Community shows groups of vertices that regularly communicate within the group. We use the algorithm shown in the "Fast unfolding of communities in large networks" paper to determine the communities. A community shows that there is more communication among those within a community than to those outside.
 #
 isperson;display_name;Person?
 isperson;popup_text;Is this a person or a mailing list?
