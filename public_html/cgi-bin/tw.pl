@@ -128,8 +128,7 @@ print
   mydiv('left'),
   start_form,
   table({-id=>"tokens"},
-    Tr(
-      [
+    Tr([
         th([
               "All Fields",
               "Topic",
@@ -139,11 +138,11 @@ print
               ),
            ]),
         td([
-            textfield(-name=>'all',   -size=>45),
-            textfield(-name=>'topic', -size=>30),
+            textfield(-name=>'all',   -size=>50),
+            textfield(-name=>'topic', -size=>28),
             ($maillist
-              ? (textfield(-name=>'mlist', -size=>30), textfield(-name=>'email', -size=>30))
-              :  textfield(-name=>'email', -size=>30)
+              ? (textfield(-name=>'mlist', -size=>28), textfield(-name=>'email', -size=>28))
+              :  textfield(-name=>'email', -size=>28)
              ),
            ]),
         (
@@ -160,11 +159,12 @@ print
           :
           td( {-colspan=>($maillist ? "4" : "3")}, (submit . '&nbsp run "goodword.pl" to enable suggestions')),
         ),
-        td([
-            ('Using <strong>' . $title . '</strong> data. &nbsp;&nbsp;&nbsp; Size by: <form id="radius" class="radius">'), 
-            ('<input type="radio" name="whichradius" id="evc" value="evc" onClick="resize()">Eigenvector Centrality'),
-            ('<input type="radio" name="whichradius" id="pr"  value="pr"  onClick="resize()">PageRank' . '</form>'),
-         ]),
+        td( {-colspan=>($maillist ? "4" : "3")},
+          ('Using <strong>' . $title . '</strong> data.'), 
+#            ('Using <strong>' . $title . '</strong> data. &nbsp;&nbsp;&nbsp; Size by: <form id="radius" class="radius">'), 
+#            ('<input type="radio" name="whichradius" id="evc" value="evc" onClick="resize()">Eigenvector Centrality'),
+#            ('<input type="radio" name="whichradius" id="pr"  value="pr"  onClick="resize()">PageRank' . '</form>'),
+        ),
       ]),
   ),
   end_form,
