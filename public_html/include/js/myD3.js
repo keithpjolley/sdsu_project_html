@@ -30,12 +30,12 @@
     ;}
 
     // resize the nodes, not the screen
-    function resize() {
-      radtype = myradius();
-      d3.selectAll(".node").transition()
-        .duration(750)
-        .attr( "r", function(d) { return (radtype ? d.pr_rad : d.evc_rad)});
-    }
+//    function resize() {
+//      radtype = myradius();
+//      d3.selectAll(".node").transition()
+//        .duration(750)
+//        .attr( "r", function(d) { return (radtype ? d.pr_rad : d.evc_rad)});
+//    }
 
     function mymin(dec) {  // i do realize this would be the time to demonstrate my knowledge of recursion and unreadable code.
       if (dec < 1) { return 0; }
@@ -82,16 +82,16 @@
       return result;
     }
 
-    function myradius() {
-      var myradios = document.getElementsByName('whichradius');
-      var theradius;
-      for (var i = 0, length = myradios.length; i < length; i++) {
-        if (myradios[i].checked) { theradius = myradios[i].value; }
-      };
-      return (theradius.match('pr'));
-    };
+//    function myradius() {
+//      var myradios = document.getElementsByName('whichradius');
+//      var theradius;
+//      for (var i = 0, length = myradios.length; i < length; i++) {
+//        if (myradios[i].checked) { theradius = myradios[i].value; }
+//      };
+//      return (theradius.match('pr'));
+//    };
 
-    var radtype = myradius();
+//    var radtype = myradius();
     var width   = 900,  // i think these are moon units
         height  = 900;
     var color   = d3.scale.category20();
@@ -124,9 +124,11 @@
           .data(graph.nodes)
           .enter().append("circle")
           .attr( "class", "node")
-          .attr( "r",      function(d) { return radtype ? d.pr_rad : d.evc_rad; })
+//        .attr( "r",      function(d) { return radtype ? d.pr_rad : d.evc_rad; })
+          .attr( "r",      function(d) { return d.radius; })
           .style("fill",   function(d) { return color(d.community)})
           .style("stroke", function(d) { return ((d.isperson==1) ? "white" : "grey")})
+//        .style("stroke-width", function(d) { return Math.max(d.radius/10,1)})
           .style("stroke-width", function(d) { return Math.max(d.radius/10,1)})
           .call(force.drag)
           .on("mouseover", function(d) {

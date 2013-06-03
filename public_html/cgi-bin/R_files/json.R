@@ -56,6 +56,7 @@ graphToJSON <- function(g_local) {
 # create some parameters for plotting
   vertices_local$evc_rad   <-  map(vertices_local$evcent, 5, 30) # radius of vertices in pixels
   vertices_local$pr_rad    <-  map(vertices_local$pr,     5, 30) # radius of vertices in pixels
+  vertices_local$radius    <-  (vertices_local$evc_rad + vertices_local$pr_rad)/2.0
   gravity                  <-  exp(-50/nrow(vertices_local))/2 + 0.25  # this is a scalar.
   vertices_local$gravity   <-  0.51 # overload the dataframe out of convenience
   vertices_local$charge    <- -map(vertices_local$betweenness_vertex, 20, 50) # strength of edge
