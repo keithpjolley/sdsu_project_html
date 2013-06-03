@@ -3,7 +3,8 @@
     // https://github.com/mbostock/d3/blob/gh-pages/talk/20111018/collision.html#L76-101
     // i really dislike this code. i hope nobody ever looks here. but it works. and that's hard to argue with.
     function collide(node) {
-      var r1  = 2 + (radtype ? node.pr_rad : node.evc_rad);
+//    var r1  = 2 + (radtype ? node.pr_rad : node.evc_rad);
+      var r1  = 1 + node.radius
       var nx1 = node.x - r1;
       var nx2 = node.x + r1;
       var ny1 = node.y - r1;
@@ -13,7 +14,8 @@
           var x = node.x - quad.point.x;
           var y = node.y - quad.point.y;
           var l = Math.sqrt(x * x + y * y);
-          var r = radtype ? (node.pr_rad + quad.point.pr_rad) : (node.evc_rad + quad.point.evc_rad);
+//        var r = radtype ? (node.pr_rad + quad.point.pr_rad) : (node.evc_rad + quad.point.evc_rad);
+          var r = node.radius + quad.point.radius;
           if (l < r) {
             l = (l - r) / l * .5;
             node.x -= x *= l;

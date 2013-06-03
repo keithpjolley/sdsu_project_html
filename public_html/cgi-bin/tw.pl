@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!/usr/bin/perl
 #!/usr/local/bin/perl5.16.3 -w
 
 # kjolley
@@ -487,6 +487,7 @@ sub metrics {
 
 sub fmt {
   my $in = shift;
+  return unless defined($in);
   if ( $in =~ /^\d+\z/ )      { return $in; }
   if ( $in =~ /^-?\d+\z/ )    { return $in; }
   if ( $in =~ /^[+-]?\d+\z/ ) { return $in; }
