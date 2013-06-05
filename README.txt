@@ -23,6 +23,12 @@ make clean all
 cd ../..
 #
 #
+# the following commands should run without errors and be in your path:
+perl -MCGI -MCwd -MData::Dumper -MDate::Parse -MEmail::Address -MFile::Basename -MFile::Temp -MGetopt::Long -MJSON::PP -MMail::MboxParser -MPod::Usage -MSys::Hostname -Mv5.10 -MSys::Hostname -e 'say "ok";'
+#
+echo 'library(ggplot2);library(data.table);print("ok")' | R --slave --no-save
+#
+#
 # see if you are comfortable with these permissions.
 # if you are running the python server then they can be locked down "700".
 # if you are running apache then delete "JSON" and make __cache__ "777" and
