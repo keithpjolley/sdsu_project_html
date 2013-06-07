@@ -10,10 +10,11 @@ metric <- function(g_local, mfile) {
   cat(paste("Edges", length(E(g_local)$weight), "\n", sep=":"), file=mfile, append=FALSE)
   cat(paste("Vertices", length(V(g_local)), "\n", sep=":"), file=mfile, append=TRUE)
 
-  if (interactive())   cat("R: metric.R: calculating transitivity...\n")
+  if (interactive())   cat("R: metric.R: calculating local transitivity...\n")
   V(g_local)$lcc <- transitivity(g_local, type="local")
-  mean_lcc <- mean(na.omit(V(g_local)$lcc))
-  cat(paste("Mean Local Clustering Coefficient", mean_lcc, "\n", sep=":"), file=mfile, append=TRUE)
+  if (interactive())   cat("R: metric.R: calculating global transitivity...\n")
+  global_lcc     <- transitivity(g_local, type="global")
+  cat(paste("Mean Local Clustering Coefficient", global_lcc, "\n", sep=":"), file=mfile, append=TRUE)
 
   if (interactive())   cat("R: metric.R: calculating vertex betweenness...\n")
   V(g_local)$betweenness_vertex <- betweenness(g_local)
