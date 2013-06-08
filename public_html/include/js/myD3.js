@@ -99,9 +99,9 @@
     var color   = d3.scale.category20();
     var force   = d3.layout.force()
           .gravity(0.1)
-          .charge(      function(d) { return (d.charge);       })
-          .linkDistance(function(d) { return ((d.source.radius + d.target.radius)*2; })
-          .linkStrength(function(d) { return (d.linkStrength/4); })
+          .charge(      function(d) { return (d.charge)         })
+          .linkDistance(function(d) { return ((d.source.radius + d.target.radius)*2) })
+          .linkStrength(function(d) { return (d.linkStrength/4) })
           .size([width, height]);
     var svg = d3.select("body").append("svg")
           .attr("width",  width)
