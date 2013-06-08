@@ -32,9 +32,9 @@ open (MAP, "$map")
 while (<MAP>) {
   chomp;
   if ($forward) {
-    $h{$_}=$.;
+    $h{$_}="".$.;
   } else {
-    $h{$.}=$_;
+    $h{$.}="".$_;
   }
 }
 close (MAP)
