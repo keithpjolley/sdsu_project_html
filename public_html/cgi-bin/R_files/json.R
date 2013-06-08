@@ -59,12 +59,13 @@ graphToJSON <- function(g_local) {
   vertices_local$radius    <-  (vertices_local$evc_rad + vertices_local$pr_rad)/2.0
   gravity                  <-  exp(-50/nrow(vertices_local))/2 + 0.25  # this is a scalar.
   vertices_local$gravity   <-  0.51 # overload the dataframe out of convenience
-  vertices_local$charge    <- -map(vertices_local$betweenness_vertex, 20, 50) # strength of edge
+# vertices_local$charge    <- -map(vertices_local$betweenness_vertex, 20, 50) # strength of edge
 
   edges_local              <-  subset(edges_local, select=c(source, target, weight))
   edges_local$width        <-  map(edges_local$weight,    1,     5) # how many pixels wide to draw the edges
-  edges_local$linkStrength <-  map(edges_local$weight, 0.25,  0.95)
-  edges_local$linkDistance <-  map(edges_local$weight,  100,    50) # note the decreasing map
+# this is calculated in myD3.js now.
+# edges_local$linkStrength <-  map(edges_local$weight, 0.25,  0.95) # rigidity
+# edges_local$linkDistance <-  map(edges_local$weight,  100,    50) # note the decreasing map
 
 # remove anything we don't want passed to the output file
 # vertices_local           <-  subset(vertices_local, select=-c(index, pr))
