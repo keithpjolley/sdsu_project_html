@@ -101,7 +101,7 @@
           .gravity(0.1)
           .charge(      function(d) { return (d.charge);       })
           .linkDistance(function(d) { return (d.linkDistance); })
-          .linkStrength(function(d) { return (d.linkStrength/2); })
+          .linkStrength(function(d) { return (d.linkStrength/4); })
           .size([width, height]);
     var svg = d3.select("body").append("svg")
           .attr("width",  width)
