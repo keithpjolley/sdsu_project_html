@@ -102,7 +102,7 @@
           .charge(      function(d) { return -(d.radius)*5 })
           .linkDistance(function(d) { return (Math.max(d.source.radius, d.target.radius)*1.5 + Math.max(d.source.radius, d.target.radius)*2) })
 //        .linkStrength(function(d) { return (d.linkStrength/4) })
-          .linkStrength(0.01)
+          .linkStrength(0.05)
           .size([width, height]);
     var svg = d3.select("body").append("svg")
           .attr("width",  width)
