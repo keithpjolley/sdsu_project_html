@@ -30,8 +30,10 @@ V(g)$key <- evcent(g)$vector
 
 # get rid of some of the noise
 N <- 25
-if (interactive()) cat(paste("R: cutting out the bottom", N, "percent page.ranked nodes.  noise reduction\n"))
-g <- mibnodes(g, N)
+if (length(V(g)$key > 100+N) {
+  if (interactive()) cat(paste("R: cutting out the bottom", N, "percent page.ranked nodes.  noise reduction\n"))
+  g <- mibnodes(g, N)
+}
 if (interactive()) cat(paste("R: This graph has", length(E(g)$weight), "edges and", length(V(g)), "vertices\n"))
 
 # don't allow more than this many nodes on the screen at once
