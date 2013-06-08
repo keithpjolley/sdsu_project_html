@@ -101,7 +101,7 @@
           .gravity(0.1)
           .charge(      function(d) { return (d.charge);       })
           .linkDistance(function(d) { return (d.linkDistance); })
-          .linkStrength(function(d) { return (d.linkStrength); })
+          .linkStrength(function(d) { return (d.linkStrength/2); })
           .size([width, height]);
     var svg = d3.select("body").append("svg")
           .attr("width",  width)
@@ -119,7 +119,6 @@
           .data(graph.links)
           .enter().append("line")
           .attr("class", "link")
-//        .style("stroke", "grey")
           .style("stroke",         function(d) { return (color(d.source.community)) })
           .style("stroke-width",   function(d) { return (d.width); })
           .style("stroke-opacity", function(d) { return (d.linkStrength/2) });
