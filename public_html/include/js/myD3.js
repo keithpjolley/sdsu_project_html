@@ -119,9 +119,10 @@
           .data(graph.links)
           .enter().append("line")
           .attr("class", "link")
-          .style("stroke", "grey")
+//        .style("stroke", "grey")
+          .style("stroke",         function(d) { return (color(d.source.community)) })
           .style("stroke-width",   function(d) { return (d.width); })
-          .style("stroke-opacity", function(d) { return (d.linkStrength/2); });
+          .style("stroke-opacity", function(d) { return (d.linkStrength/2) });
       var node = svg.selectAll(".node")
           .data(graph.nodes)
           .enter().append("circle")
