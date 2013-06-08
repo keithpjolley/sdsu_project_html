@@ -30,7 +30,7 @@ V(g)$key <- evcent(g)$vector
 
 # get rid of some of the noise
 N <- 25
-if (length(V(g)$key > 100+N) {
+if (length(V(g)$key > 100+N)) {
   if (interactive()) cat(paste("R: cutting out the bottom", N, "percent page.ranked nodes.  noise reduction\n"))
   g <- mibnodes(g, N)
 }
