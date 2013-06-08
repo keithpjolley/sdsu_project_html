@@ -100,7 +100,7 @@
     var force   = d3.layout.force()
           .gravity(0.1)
           .charge(      function(d) { return (d.charge)         })
-          .linkDistance(function(d) { return (Math.max(d.source.radius,d.target.radius)*2) })
+          .linkDistance(function(d) { return (d.source.radius + d.target.radius) + Math.min(d.source.radius, d.target.radius)) })
           .linkStrength(function(d) { return (d.linkStrength/4) })
           .size([width, height]);
     var svg = d3.select("body").append("svg")
