@@ -9,7 +9,14 @@
 # modeled from map in processing except start1 and stop1 are embedded into "value"
 # http://processing.org/reference/map_.html
 map <- function(value, start2, stop2) {
-  (stop2-start2)*(value-min(value))/(max(value)-min(value))+start2
+  epsilon <- 1e-7
+  mx <- max(value)
+  mn <- min(value)
+  if ((mx-mn)<epsilon) {
+    value <- mean(mn,mx)
+  } else {
+    (stop2-start2)*(value-mn)/(mx-mn)+start2
+  }
 }
 
 # given an input file of lines and lines of raw edges, return a graph
