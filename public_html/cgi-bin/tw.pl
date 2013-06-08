@@ -152,7 +152,7 @@ print
            ]),
         (
           ($topicpop or $mlistpop or $emailpop)
-          ?
+        ?
           td([
               (submit . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Suggested queries:"),
               $topicpop ? a({-href=>"$topicpop", -target=>"_blank"}, "topics")          : "(none)",
@@ -161,7 +161,7 @@ print
                    ($emailpop ? a({-href=>"$emailpop", -target=>"_blank"}, "email addresses") : "(none)"))
                 :  ($emailpop ? a({-href=>"$emailpop", -target=>"_blank"}, "email addresses") : "(none)")
               ),])
-          :
+        :
           td( {-colspan=>($maillist ? "4" : "3")}, (submit . '&nbsp run "goodword.pl" to enable suggestions')),
         ),
         td( {-colspan=>($maillist ? "4" : "3")},
