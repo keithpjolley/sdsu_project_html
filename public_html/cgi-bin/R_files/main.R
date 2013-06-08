@@ -21,7 +21,7 @@ source("R_files/metric.R")
 # read in our table of unique edges
 if (interactive()) cat(paste("R: Reading input table:", rfile, "\n"))
 g <- getgraph(rfile)
-if (interactive()) cat(paste("R: This graph has", length(E(g)$weight), "edges and", length(V(g)), "vertices\n"))
+if (interactive()) cat(paste("R: Start: This graph has", length(E(g)$weight), "edges and", length(V(g)), "vertices\n"))
 
 # we use this KEY to filter out vertices.
 if (interactive()) cat("R: creating key metric for graph (eigenvector centrality).\n")
@@ -33,14 +33,14 @@ N <- 25
 if (length(V(g)$key > 100+N)) {
   if (interactive()) cat(paste("R: cutting out the bottom", N, "percent page.ranked nodes.  noise reduction\n"))
   g <- mibnodes(g, N)
+  if (interactive()) cat(paste("R: mibnodes: This graph has", length(E(g)$weight), "edges and", length(V(g)), "vertices\n"))
 }
-if (interactive()) cat(paste("R: This graph has", length(E(g)$weight), "edges and", length(V(g)), "vertices\n"))
 
 # don't allow more than this many nodes on the screen at once
 N <- 750
 if (interactive()) cat(paste("R: cutting out all but the top", N, "page.ranked nodes.  noise reduction\n"))
 g <- cutnodes(g, N)
-if (interactive()) cat(paste("R: This graph has", length(E(g)$weight), "edges and", length(V(g)), "vertices\n"))
+if (interactive()) cat(paste("R: cutnodes: This graph has", length(E(g)$weight), "edges and", length(V(g)), "vertices\n"))
 
 # community finding in R is SLOW. go outside.
 if (interactive()) cat("R: Running external community analysis.\n")
