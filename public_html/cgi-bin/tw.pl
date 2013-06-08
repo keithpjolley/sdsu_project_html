@@ -36,8 +36,13 @@ die "ERROR: $bin: must be invoked from directory 'cgi-bin'. Called from: " . $di
 
 # include is inside the cgi-bin directory. it contains all the js and css files
 # input is created during pre-processing. it contains, at minimum, the netlist
-my $input    = ($bin eq "tw-qcom.pl") ? "../input.qcom" : "../input.enron";
 my $include  = "../include";
+my $input    = "../input.enron";
+if ($bin eq "tw-qcom.pl") {
+   $input    = "../input.qcom";
+} elsif ($bin eq "tw-test.pl") {
+   $input    = "../input.test"
+}
 
 # filesystem paths
 my $thelist  = "$input/net.list";  
