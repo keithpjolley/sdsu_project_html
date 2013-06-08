@@ -9,11 +9,11 @@
 # modeled from map in processing except start1 and stop1 are embedded into "value"
 # http://processing.org/reference/map_.html
 map <- function(value, start2, stop2) {
-  epsilon <- 1e-7
+  epsilon <- 1e-7 # protect against /0
   mx <- max(value)
   mn <- min(value)
   if ((mx-mn)<epsilon) {
-    value <- mean(mn,mx)
+    rep((start2+stop2)/2,length(value))
   } else {
     (stop2-start2)*(value-mn)/(mx-mn)+start2
   }
