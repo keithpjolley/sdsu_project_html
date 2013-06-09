@@ -4,7 +4,7 @@
 # Sun Apr 28 03:40:23 PDT 2013
 #
 #
-metric <- function(g_local, mfile) {
+metric <- function(g_local, cdat, mfile) {
   if (interactive()) cat("R: metric.R: Calculating metrics. This can take a while on large networks...\n")
 
   cat(paste("Edges", length(E(g_local)$weight), "\n", sep=":"), file=mfile, append=FALSE)
@@ -66,6 +66,9 @@ metric <- function(g_local, mfile) {
   if (interactive())   cat("R: metric.R: calculating graph density...)\n")
   density_local <- graph.density(g_local, loops=FALSE)
   cat(paste("Density", density_local, "\n", sep=":"), file=mfile, append=TRUE)
+
+  if (interactive())   cat("R: metric.R: writting community modularity data...)\n")
+  cat(paste("Community Modularity", cdat$modularity, "\n", sep=":"), file=mfile, append=TRUE)
 
   return(g_local)
 }

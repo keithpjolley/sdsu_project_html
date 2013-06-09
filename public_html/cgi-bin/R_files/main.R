@@ -44,11 +44,11 @@ if (interactive()) cat(paste("R: cutnodes: This graph has", length(E(g)$weight),
 
 # community finding in R is SLOW. go outside.
 if (interactive()) cat("R: Running external community analysis.\n")
-g <- communitycenter(g, vfile, efile, cfile)
+(g, commdat) <- communitycenter(g, vfile, efile, cfile, xfile)
 
 # get some stats on this network
 if (interactive()) cat(paste("R: getting some stats on this network.\n"))
-g <- metric(g, mfile)
+g <- metric(g, commdat, mfile)
 
 if (interactive()) cat(paste("R: This graph has", length(E(g)$weight), "edges and", length(V(g)), "vertices\n"))
 

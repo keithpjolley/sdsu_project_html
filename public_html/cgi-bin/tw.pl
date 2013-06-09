@@ -301,6 +301,7 @@ sub netword {
   my $efile = "$tmpdir/$q.edges.txt";
   my $mfile = "$tmpdir/$q.metrics.txt";
   my $vfile = "$tmpdir/$q.vertices.txt";
+  my $xfile = "$tmpdir/$q.communitymodularity.txt";
 
   open (RFILE, ">", $rfile)
     or die "ERROR: $bin: 6. Can't open $rfile: $!\n";
@@ -311,6 +312,7 @@ efile <- "$efile"  # edge file
 cfile <- "$cfile"  # community file
 mfile <- "$mfile"  # metrics output
 jfile <- "$json"   # json output
+xfile <- "$xfile"  # community modlularity
 maillistdir <- "$maillist"
 source("R_files/main.R")
 EOF2

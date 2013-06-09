@@ -3,7 +3,7 @@
 # split from main.R
 # Sun Apr 21 18:18:01 PDT 2013
 #
-communitycenter <- function(g, vfile, efile, cfile) {
+communitycenter <- function(g, vfile, efile, cfile, xfile) {
 
   simplify(g)
   # create a nodes file with just the node names in it
@@ -15,7 +15,7 @@ communitycenter <- function(g, vfile, efile, cfile) {
     file=efile, col.names=F, row.names=F, quote=F)
 
   # run the community finder - it's much faster than R
-  system(paste("community/makecommunity.sh", vfile, efile, cfile))
+  system(paste("community/makecommunity.sh", vfile, efile, cfile, xfile))
 
   # i obviously missed something on how to merge info into the vertices oh well.
   vertices <- data.frame(read.delim(cfile, header=TRUE))
@@ -28,5 +28,8 @@ communitycenter <- function(g, vfile, efile, cfile) {
   edges <- get.data.frame(g, what="edges") # uh - i don't know why i did this
   g <- graph.data.frame(edges, directed=T, vertices=vertices)
 
-  return(g)
+  # read in the modularity
+  commdat <- data.frame(read.delim(xfile, header=TRUE))
+
+  return(g, commdat)
 }
