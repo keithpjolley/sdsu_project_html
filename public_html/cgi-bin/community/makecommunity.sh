@@ -8,8 +8,6 @@
 bin=`basename "${0}"`
 cd `dirname "${0}"`
 
-pwd 1>&2
-
 nodes="$1"
 edges="$2"
 output="$3"
