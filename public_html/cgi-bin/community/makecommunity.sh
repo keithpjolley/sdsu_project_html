@@ -11,6 +11,7 @@ cd `dirname "${0}"`
 nodes="$1"
 edges="$2"
 output="$3"
+xfile="$4"
 
 verbose=0
 
@@ -22,6 +23,7 @@ graph_weights="${tmp}/graph_weights.txt"
 graph_tree="${tmp}/graph_tree.txt"
 mapped="${tmp}/mapped.txt"
 map_data="${tmp}/map_data.txt"
+mod_data="${tmp}/modularity.txt"
 
 function clean () {
   [ "${verbose}" -gt 1 ] && echo "cleaning tmp files"
@@ -47,10 +49,16 @@ fi
 [ "${verbose}" -gt 0 ] && echo "${bin}: converting from ascii to bin"
 ./convert -i "${mapped}" -o "${graph_bin}" -w "${graph_weights}" > /dev/null 2>&1
 [ "${verbose}" -gt 0 ] && echo "${bin}: finding communities"
-./community "${graph_bin}" -l -1 -v -q 0.00125 -w "${graph_weights}" > "${graph_tree}" 2>/dev/null
+./community "${graph_bin}" -l -1 -v -q 0.00125 -w "${graph_weights}" > "${graph_tree}" 2> "${mod_data}"  # really?!
+stat=$?
 [ "${verbose}" -gt 0 ] && echo "${bin}: finding hierarchies"
 iteration=`./hierarchy "${graph_tree}" | awk '/^Number of levels: /{print $NF-1}'`
 [ "${verbose}" -gt 0 ] && echo "${bin}: extracting iteration ${iteration}"
 ./hierarchy "${graph_tree}" -l "${iteration}" > "${graph_tree}.iteration.${iteration}"  2>/dev/null
 [ "${verbose}" -gt 0 ] && echo "${bin}: remapping ${iteration} back to orginal node ids"
 ./map.pl --direction=reverse --map="${nodes}" --input="${graph_tree}.iteration.${iteration}" > "${output}" 2>/dev/null
+
+# well, this is kinda hackish
+modularity="ERROR"
+[ $stat -eq 0 ] && modularity=`cat "${mod_data}"`
+echo "modularity=${modularity}" > "${xfile}"
