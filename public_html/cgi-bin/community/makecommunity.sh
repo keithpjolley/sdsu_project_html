@@ -61,7 +61,7 @@ iteration=`./hierarchy "${graph_tree}" | awk '/^Number of levels: /{print $NF-1}
 # well, this is kinda hackish
 modularity="ERROR"
 [ $stat -eq 0 ] &&  modularity=`tail -1 "${mod_data}" | awk 'NF!=1{print "ERROR";exit}//'`
-echo "modularity=${modularity}" > "${xfile}"
+(echo "modularity";echo "${modularity}") > "${xfile}"
 
 echo "\$mod_data: $mod_data"  1>&2
 cat "${mod_data}" 1>&2
