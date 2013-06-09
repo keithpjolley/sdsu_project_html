@@ -114,7 +114,12 @@ my $tablejs = <<'EOF';
         } );
 EOF
 
-my $title = ($bin eq "tw-qcom.pl") ? "QUALCOMM" : "ENRON";
+my $title = "ENRON";
+if ($bin eq "tw-qcom.pl") {
+  $title = "QUALCOMM";
+} elsif ($bin eq "tw-test.pl") {
+  $title = "TEST-DATA";
+}
 
 print
   header,
