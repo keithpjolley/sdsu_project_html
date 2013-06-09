@@ -30,6 +30,7 @@ communitycenter <- function(g, vfile, efile, cfile, xfile) {
 
   # read in the modularity
   commdat <- data.frame(read.delim(xfile, header=TRUE))
+  g$modularity <- commdat$modularity
 
-  return(g, commdat)
+  return(g)
 }
