@@ -63,7 +63,7 @@ modularity="ERROR"
 [ $stat -eq 0 ] &&  modularity=`tail -1 "${mod_data}" | awk 'NF!=1{print "ERROR";exit}//'`
 (echo "modularity";echo "${modularity}") > "${xfile}"
 
-echo "\$mod_data: $mod_data"  1>&2
-cat "${mod_data}" 1>&2
-echo "\$xfile: $xfile:"  1>&2
-cat "${xfile}" 1>&2
+#echo "\$mod_data: $mod_data"  1>&2
+#cat "${mod_data}" 1>&2
+#echo "\$xfile: $xfile:"  1>&2
+#cat "${xfile}" 1>&2
