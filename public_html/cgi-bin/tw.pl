@@ -482,7 +482,7 @@ sub printtable {
         if ($attr eq 'name') {
           $tmp = uc($tmp) unless $foo->{'isperson'};
         } elsif ($attr eq 'community') {
-          my $shape = '<svg xmlns="http://www.w3.org/2000/svg" version="1.1"><circle cx="30" cy="0" r="8" style="fill:' . $foo->{'color'} . ';stroke:purple;stroke-width:1;"></svg>';
+          my $shape = '<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 20 20" style="width=100%;height=100%;position:absolute;top:0;left=0;z-index:-1;"><circle cx="10" cy="10" r="8" style="fill:' . $foo->{'color'} . ';stroke:purple;stroke-width:1;"></svg>';
           $tmp .= $shape;
         } else {
           $tmp = fmt($tmp);
