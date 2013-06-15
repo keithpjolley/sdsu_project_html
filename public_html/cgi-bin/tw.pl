@@ -485,7 +485,7 @@ sub printtable {
           my $shape = '
             <div>
               <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
-                <circle cx="12" cy="12" r="10" style="fill:' . $foo->{'color'} . ';stroke:purple;stroke-width:1;">
+                <circle cx="22" cy="10" r="8" style="fill:' . $foo->{'color'} . ';stroke:purple;stroke-width:1;">
               </svg>
             </div>';
           $tmp .= $shape;
