@@ -487,7 +487,7 @@ sub printtable {
     for my $attr (@attriblist) {
       if (($key eq 'links') and ($attr eq 'source' or $attr eq 'target')) {
         my ($name, $color, $isperson) = split($$namehash{$foo->{$attr}});
-        print '      <td>' . $name . '______'. '</td>' . "\n";
+        print '      <td>name:' . $name . ', color:'.$color.', isperson:'. $isperson . '</td>' . "\n";
       } elsif (($key eq 'nodes') and ($attr eq 'isperson')) {
         print '      <td>' . ($foo->{$attr} ? 'person' : 'list') . '</td>' . "\n";
       } else {
