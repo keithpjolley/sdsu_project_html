@@ -442,7 +442,7 @@ sub json2table {
 sub mysvg {
   my $color = shift;
   my $isperson = shift;
-  my $shape = '<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="17px" height="17px">'
+  my $shape = '<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="16px" height="16px">'
               . '<circle cx="8" cy="8" r="7" style="fill:' . $color
               .     ';stroke:' . ($isperson ? 'white' : 'grey')
               .     ';stroke-width:1;">'
