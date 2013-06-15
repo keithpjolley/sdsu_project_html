@@ -478,12 +478,13 @@ sub printtable {
         print '      <td>' . ($foo->{$attr} ? 'person' : 'list') . '</td>' . "\n";
       } else {
         my $tmp = $foo->{$attr};
-        if ($attr eq 'name' and not $foo->{'isperson'}) {
-          $tmp = uc($tmp);
+        if ($attr eq 'name') {
+          $tmp = uc($tmp) unless $foo->{'isperson'};
+          $tmp .= "(yyyyy)";
         } else {
           $tmp = fmt($tmp);
         }
-        print '      <td>' . " (yyyyy) " . $tmp . '</td>' . "\n";
+        print '      <td>' . $tmp . '</td>' . "\n";
       }
     }
     print '    </tr>' . "\n";

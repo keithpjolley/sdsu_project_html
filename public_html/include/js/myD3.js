@@ -139,9 +139,8 @@
                var yPosition = parseFloat(d3.select(this).attr("cy")) - 60;
                //Update the tooltip position and value
                d3.select("#tooltip")
-//               .style("background-color", tinycolor.lighten(color(d.community), 10))
-                 .style("background-color", d3.rgb(d.color))
 //               .style("background-color", d3.rgb(d.color).brighter(0.5))
+                 .style("background-color", d3.rgb(d.color)) // this works well enough. 'brighter' washes out light colors
                  .style("left", xPosition + "px")
                  .style("top",  yPosition + "px")
                  // fmt numbers that 'may' be floats. let ints go through as is
