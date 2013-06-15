@@ -234,7 +234,7 @@ sub dograph {
   $mlist =~ tr/[A-Za-z0-9_.^\$ -//dc;
   $email =~ tr/[A-Za-z0-9_.^\$ -//dc;
   $all   =~ tr/[A-Za-z0-9_.^\$ -//dc;
-  my $me =~ $bin;
+  my $me = $bin;
   $me =~ s/\./_/g;
   my $qfile =  $me . '_query_' . join('_', sort(split(' ', $topic)))  # make a name safe for the filesystem
                          . '_' . join('_', sort(split(' ', $mlist)))  # to store info about this query
