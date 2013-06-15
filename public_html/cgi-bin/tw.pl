@@ -426,7 +426,8 @@ sub json2table {
     my $name  = $foo->{'name'};
     my $color = $foo->{'color'};
     $name = uc($name) unless $foo->{'isperson'};
-    $namehash{$foo->{'index'}}  = ($name,$color);
+#$namehash{$foo->{'index'}}  = ($name,$color);
+    $namehash{$foo->{'index'}} = $name;
   }
   for my $key (keys %{$ps}) {
     my $attribfile = "$attribdir/$key";
@@ -474,9 +475,9 @@ sub printtable {
     print '    <tr>' . "\n";
     for my $attr (@attriblist) {
       if (($key eq 'links') and ($attr eq 'source' or $attr eq 'target')) {
-        my $name = $$namehash{$foo->{$attr}}[0] || $foo->{$attr};
+        my $name = $$namehash{$foo->{$attr}} || $foo->{$attr};
         my $color = "";
-        print '      <td>' . $name . '<'.$color . '>'. '</td>' . "\n";
+        print '      <td>' . $name . '______'. '</td>' . "\n";
       } elsif (($key eq 'nodes') and ($attr eq 'isperson')) {
         print '      <td>' . ($foo->{$attr} ? 'person' : 'list') . '</td>' . "\n";
       } else {
