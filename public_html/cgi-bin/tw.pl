@@ -105,9 +105,10 @@ sub fixnans;
 sub fmt;
 sub footer;
 sub json2table;
-sub metrics;
+sub mymetrics;
 sub mydiv;
 sub mysvg;
+sub mypng;
 sub netword;
 sub printtable;
 sub search;
@@ -194,12 +195,18 @@ if (param) {
   my ($json, $mfile, $png) = dograph();
   mydiv('close');
   json2table($json);
-  metrics($mfile, $png);
+  mymetrics($mfile);
   tooltipper;
+  mypng($png);
 }
 
 print footer, end_html . "\n";
 exit;
+
+sub mypng {
+  my $png = shift;
+  print '<img src="' . $png . '" alt="Distribution Plots" height="1600" width="1200">' . "\n";
+}
 
 sub mydiv {
   my $pos = shift;
@@ -510,9 +517,8 @@ sub printtable {
 }
 
 # the metrics are bit more freeform
-sub metrics {
+sub mymetrics {
   my $mfile = shift;
-  my $png = shift;
   my $n = 0;
   my $class;
   print mydiv('right');
@@ -529,9 +535,6 @@ sub metrics {
   }
   close (FILE)
       or warn "WARNING: $bin: Can't close $mfile: $!\n";
-# add a link to the distribution plot
-  $class = (++$n % 2) ? 'odd' : 'even';
-  print '<tr class="' . $class . '"><td><a href="' . $png . '">Distribution Plots</a></td><td></td></tr>' . "\n";
   print '</table>' . "\n" . mydiv('close');
   return;
 
@@ -573,17 +576,6 @@ sub getattrhash {
   }
   return $hashref;
 }
-
-#sub mychecker {
-#  my @lines;
-#  {
-#    local($\);
-#    open (FILE, "<", $mychecker) or return;
-#    @lines = <FILE>;
-#    close (FILE) or return;
-#  }
-#  return @lines;
-#}
 
 # these span id values need to match those in include/js/myD3.js:node.on(mouseover)
 sub tooltipper {
