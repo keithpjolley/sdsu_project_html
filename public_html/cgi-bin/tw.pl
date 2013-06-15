@@ -472,8 +472,9 @@ sub printtable {
     print '    <tr>' . "\n";
     for my $attr (@attriblist) {
       if (($key eq 'links') and ($attr eq 'source' or $attr eq 'target')) {
-        my $name = $$hash{$foo->{$attr}} || $foo->{$attr};
-        print '      <td>' . $$hash{$foo->{'color'}} . ' (xxxxx)  ' . $name . '</td>' . "\n";
+        my $name  = $$hash{$foo->{$attr}} || $foo->{$attr};
+        my $color = $$hash{$foo->{'color'}} || $foo->{'color'};
+        print '      <td> >' . $color . '< (color)  ' . $name . '</td>' . "\n";
       } elsif (($key eq 'nodes') and ($attr eq 'isperson')) {
         print '      <td>' . ($foo->{$attr} ? 'person' : 'list') . '</td>' . "\n";
       } else {
