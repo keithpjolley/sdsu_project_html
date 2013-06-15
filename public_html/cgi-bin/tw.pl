@@ -107,6 +107,7 @@ sub footer;
 sub json2table;
 sub metrics;
 sub mydiv;
+sub mysvg;
 sub netword;
 sub printtable;
 sub search;
@@ -423,10 +424,9 @@ sub json2table {
   # if my brain was bigger i'd know an easier way of doing this.
   my %namehash = ();
   for my $foo (@{$ps->{'nodes'}}) {
-    my $name  = $foo->{'name'};
-    my $color = $foo->{'color'};
+    my $name = $foo->{'name'};
     $name = uc($name) unless $foo->{'isperson'};
-    $namehash{$foo->{'index'}}  = [$name,$color];
+    $namehash{$foo->{'index'}}  = [$name, $foo->{'color'}, $foo->{'isperson'}];
     warn $color;
 #   $namehash{$foo->{'index'}} = $name;
   }
@@ -438,6 +438,17 @@ sub json2table {
       printtable  ($key, $ps, \%namehash, $attribfile, @linkattribs);
     }
   }
+}
+
+sub mysvg {
+  my $color = shift;
+  my $isperson = shift;
+  my $shape = '<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="17px" height="17px">'
+              . '<circle cx="8" cy="8" r="7" style="fill:' . $color
+              .     ';stroke:' . ($isperson ? 'white' : 'grey')
+              .     ';stroke-width:1;">'
+              . '</svg>';
+  return ($shape);
 }
 
 sub printtable {
@@ -476,8 +487,7 @@ sub printtable {
     print '    <tr>' . "\n";
     for my $attr (@attriblist) {
       if (($key eq 'links') and ($attr eq 'source' or $attr eq 'target')) {
-        my $name = ($$namehash{$foo->{$attr}}[0]) || $foo->{$attr};
-        my $color = "";
+        my ($name, $color, $isperson) = split($$namehash{$foo->{$attr}});
         print '      <td>' . $name . '______'. '</td>' . "\n";
       } elsif (($key eq 'nodes') and ($attr eq 'isperson')) {
         print '      <td>' . ($foo->{$attr} ? 'person' : 'list') . '</td>' . "\n";
@@ -486,13 +496,8 @@ sub printtable {
         if ($attr eq 'name') {
           $tmp = uc($tmp) unless $foo->{'isperson'};
         } elsif ($attr eq 'community') {
-          my $shape =
-            '<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="14px" height="14px">'
-            . '<circle cx="7" cy="8" r="7" style="fill:' . $foo->{'color'}
-            .     ';stroke:' . ($foo->{'isperson'} ? 'white' : 'grey')
-            .     ';stroke-width:1;">'
-            . '</svg>';
-          $tmp = $shape . " " . $tmp;
+          my $shape = mysvg($foo->{'color'}, $foo->{'isperson'});
+          $tmp = $shape . $tmp;
         } else {
           $tmp = fmt($tmp);
         }
