@@ -205,7 +205,7 @@ exit;
 
 sub mypng {
   my $png = shift;
-  print '<img src="' . $png . '" alt="Distribution Plots" height="1600" width="1200">' . "\n";
+  print '<div><p><img src="' . $png . '" alt="Distribution Plots" width="1600" height="1200"></p></div>' . "\n";
 }
 
 sub mydiv {
