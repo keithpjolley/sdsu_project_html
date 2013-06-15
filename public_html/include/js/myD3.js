@@ -140,7 +140,7 @@
                //Update the tooltip position and value
                d3.select("#tooltip")
 //               .style("background-color", tinycolor.lighten(color(d.community), 10))
-                 .style("background-color", function(d) { return d3.rgb(d.color).brighter })
+                 .style("background-color", d3.rgb(d.color).brighter)
                  .style("left", xPosition + "px")
                  .style("top",  yPosition + "px")
                  // fmt numbers that 'may' be floats. let ints go through as is
