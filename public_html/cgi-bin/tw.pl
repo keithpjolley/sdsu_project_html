@@ -194,7 +194,7 @@ if (param) {
   my ($json, $mfile, $png) = dograph();
   mydiv('close');
   json2table($json);
-  metrics($mfile);
+  metrics($mfile, $png);
   tooltipper;
 }
 
@@ -512,6 +512,7 @@ sub printtable {
 # the metrics are bit more freeform
 sub metrics {
   my $mfile = shift;
+  my $png = shift;
   my $n = 0;
   my $class;
   print mydiv('right');
