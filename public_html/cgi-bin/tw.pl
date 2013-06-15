@@ -480,7 +480,7 @@ sub printtable {
         my $tmp = $foo->{$attr};
         if ($attr eq 'name') {
           $tmp = uc($tmp) unless $foo->{'isperson'};
-          $tmp = $foo-.{'color'} . "<-color " . $tmp;
+          $tmp = $foo->{'color'} . "<-color " . $tmp;
         } else {
           $tmp = fmt($tmp);
         }
