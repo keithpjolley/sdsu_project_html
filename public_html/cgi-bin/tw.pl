@@ -234,10 +234,12 @@ sub dograph {
   $mlist =~ tr/[A-Za-z0-9_.^\$ -//dc;
   $email =~ tr/[A-Za-z0-9_.^\$ -//dc;
   $all   =~ tr/[A-Za-z0-9_.^\$ -//dc;
-  my $qfile = $bin . ".query." . join('.', sort(split(' ', $topic)))  # make a name safe for the filesystem
-                         . "." . join('.', sort(split(' ', $mlist)))  # to store info about this query
-                         . "." . join('.', sort(split(' ', $email)))
-                         . "." . join('.', sort(split(' ', $all)));
+  my $me =~ $bin;
+  $me =~ s/\./_/g;
+  my $qfile =  $me . '_query_' . join('_', sort(split(' ', $topic)))  # make a name safe for the filesystem
+                         . '_' . join('_', sort(split(' ', $mlist)))  # to store info about this query
+                         . '_' . join('_', sort(split(' ', $email)))
+                         . '_' . join('_', sort(split(' ', $all)));
   $topic = join('|', split(' ', $topic)); # our regex - make all searchs an "or"
   $mlist = join('|', split(' ', $mlist));
   $email = join('|', split(' ', $email));
