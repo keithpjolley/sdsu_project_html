@@ -51,8 +51,8 @@ my $topicpop = "$input/interesting_topic.html";
 my $mlistpop = "$input/interesting_list.html";
 my $emailpop = "$input/interesting_people.html";
 my $d3js     = "$include/js/myD3.js";  
-#my $mychecker= "$include/js/myChecker.js";  
 my $jsondir  = "../__cache__/JSON";
+my $pngdir   = "../__cache__/PNG";
 my $attribdir= "$include/attributes";
 
 # url paths
@@ -86,6 +86,13 @@ if (! -d $jsondir) {
   warn "MESSAGE: $bin: cwd: " . getcwd;
   mkdir ($jsondir)
     or die "ERROR: $bin: no JSON dir: $jsondir: $!";
+}
+
+if (! -d $pngdir) {
+  warn "MESSAGE: $bin: creating PNG dir: $pngdir";
+  warn "MESSAGE: $bin: cwd: " . getcwd;
+  mkdir ($pngdir)
+    or die "ERROR: $bin: no png dir: $pngdir: $!";
 }
 
 $maillist = 0 if (! -d $maillist);
@@ -303,6 +310,10 @@ sub netword {
   my $vfile = "$tmpdir/$q.vertices.txt";
   my $xfile = "$tmpdir/$q.communitymodularity.txt";
 
+  # use the same name for the png as the json, except w/ png suffix and pngdir
+  my $png = "$pngdir" . basename($json);
+  $png =~ s/json$/png/;
+
   open (RFILE, ">", $rfile)
     or die "ERROR: $bin: 6. Can't open $rfile: $!\n";
   print RFILE <<EOF2;
@@ -313,6 +324,8 @@ cfile <- "$cfile"  # community file
 mfile <- "$mfile"  # metrics output
 jfile <- "$json"   # json output
 xfile <- "$xfile"  # community modlularity
+afile <- "$attribdir/nodes"; # names of node attributes, links variable names to display names
+pfile <- "$png"; # names of node attributes, links variable names to display names
 maillistdir <- "$maillist"
 source("R_files/main.R")
 EOF2
@@ -320,7 +333,7 @@ EOF2
     or die "ERROR: $bin: 7. Can't close $rfile: $!\n";
 
 # handy for troubleshooting R issues
-# system("rsync", "-avP", "$tmpdir", "/tmp/tmp2/");
+system("rsync", "-avP", "$tmpdir/", "/tmp/tmp2/");
 
   my @Rargs = ("R", "-s", "-f", "$rfile");
 #  warn(@Rargs);
