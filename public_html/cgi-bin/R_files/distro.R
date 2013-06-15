@@ -22,9 +22,8 @@ distro<-function(g_local, pfile, afile, mypalette) {
     d<-d[!is.na(d)]
     d<-d[!is.infinite(d)]
     title<-as.character(t[t$name==i,]$desc)
-#    hist(d, breaks=seq(min(d), max(d), (max(d)-min(d))/20), main=title,
-#        xlab=NULL, probability=TRUE, col="grey", border="white")
-    hist(d, main=title, xlab=NULL, probability=TRUE, col="grey", border="white")
+    hist(d, breaks=seq(min(d), max(d), (max(d)-min(d))/50), main=title,
+        xlab=NULL, probability=TRUE, col="grey", border="white")
     dens<-density(d)
     lines(dens, col="red")
   }
