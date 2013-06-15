@@ -35,14 +35,14 @@ distro<-function(g_local, pfile, afile, mypalette) {
     cat(i,file="/dev/stderr")
     d<-df[[i]]
     names  <- NULL
-    colors <- 'grey'
+    colors <- NULL
     if (i == "community") {
       colors <- mypalette[(sort(unique(V(g_local)$community))-1)%%12+1]
     } else if (i == "isperson") {
       names <- c("List", "Person")
     }
     title<-as.character(t[t$name==i,]$desc)
-    barplot(table(d),  main=title, col="grey", border="white", names.arg=names)
+    barplot(table(d),  main=title, col="grey", border="white", names.arg=names, col=colors)
   }
   dev.off()
 }
