@@ -17,6 +17,9 @@ source("R_files/misc.R")
 source("R_files/metric.R")
 source("R_files/distro.R")
 
+# color scheme
+mypalette <- brewer.pal(12, "Paired")
+
 # maillistdir helps us figure out which targets are lists and which are people
 #maillistdir<-"mailing-lists"  # get this from the caller instead
 
@@ -55,9 +58,9 @@ if (interactive()) cat(paste("R: This graph has", length(E(g)$weight), "edges an
 
 # follow the naming convention of D3 
 if (interactive()) cat(paste("R: Saving JSON file:", jfile, "\n"))
-json <- graphToJSON(g)
+json <- graphToJSON(g, mypalette)
 cat(json, file=jfile, append=FALSE)
 
 # make the png distribution plot
 if (interactive()) cat(paste("R: Saving PNG file:", pfile, "\n"))
-distro(g, pfile, afile)
+distro(g, pfile, afile, mypalette)

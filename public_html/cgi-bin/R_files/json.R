@@ -24,12 +24,11 @@ dfToJSONarray <- function(name, dtf){
   return(objs)
 }   
 
-graphToJSON <- function(g_local) {
+graphToJSON <- function(g_local, mypalette) {
   g_local <- mysimplify(g_local)
   vertices_local <- get.data.frame(g_local, what="vertices")
   edges_local <- get.data.frame(g_local, what="edges")
   rm(g_local)
-  mypalette <- brewer.pal(12, "Paired")
 
   # get just the columns needed and name to what D3 is wanting
   # // that was nice during testing, but now i know it works, let's junk it up!

@@ -7,7 +7,7 @@
 # expects a graph, an output png file path, and a path to the vertex attribute file
 #
 #
-distro<-function(g_local, thepng, afile) {
+distro<-function(g_local, pfile, afile, mypalette) {
   t<-read.delim(afile, header=FALSE, comment.char="#", fill=F, sep=";")
   names(t) <- c("name", "attrib", "desc")
   t<-t[t$attrib=="display_name",]
@@ -15,7 +15,7 @@ distro<-function(g_local, thepng, afile) {
   df<-get.data.frame(g_local, what="vertices")
   attribs <-c( 'pr', 'evcent', 'betweenness_vertex', 'closeness_in', 'closeness_out',
             'degree', 'graph_strength_in', 'graph_strength_out', 'graph_strength_tot', 'lcc')
-  png(filename=thepng, bg="white", width=1600, height=1200)
+  png(filename=pfile, bg="white", width=1600, height=1200)
   par(mfrow=c(4,3))
   for (i in attribs ) {
     d<-df[[i]]
@@ -34,8 +34,13 @@ distro<-function(g_local, thepng, afile) {
   for (i in attribs) {
     cat(i,file="/dev/stderr")
     d<-df[[i]]
-    names <- NULL
-    if (i == "isperson") names <- c("List", "Person")
+    names  <- NULL
+    colors <- 'grey'
+    if (i == "community") {
+      colors <- mypalette[(sort(unique(V(g_local)$community))-1)%%12+1]
+    } else if (i == "isperson") {
+      names <- c("List", "Person")
+    }
     title<-as.character(t[t$name==i,]$desc)
     barplot(table(d),  main=title, col="grey", border="white", names.arg=names)
   }
