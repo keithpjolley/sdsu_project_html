@@ -421,24 +421,25 @@ sub json2table {
   }
   my $ps = decode_json($json_text);
   # if my brain was bigger i'd know an easier way of doing this.
-  my %temphash = ();
+  my %namehash = ();
   for my $foo (@{$ps->{'nodes'}}) {
-    my $name = $foo->{'name'};
+    my $name  = $foo->{'name'};
+    my $color = $foo->{'color'};
     $name = uc($name) unless $foo->{'isperson'};
-    $temphash{$foo->{'index'}} = $name;
+    $namehash{$foo->{'index'}}  = ($name,$color);
   }
   for my $key (keys %{$ps}) {
     my $attribfile = "$attribdir/$key";
     if ($key eq 'nodes') {
       printtable  ($key, $ps, {},         $attribfile, @nodeattribs);
     } elsif ($key eq 'links') {
-      printtable  ($key, $ps, \%temphash, $attribfile, @linkattribs);
+      printtable  ($key, $ps, \%namehash, $attribfile, @linkattribs);
     }
   }
 }
 
 sub printtable {
-  my ($key, $href, $hash, $attribfile, @attriblist) = @_;
+  my ($key, $href, $namehash, $attribfile, @attriblist) = @_;
   my $word = $key; 
   my $hashref = (-f $attribfile) ? getattrhash($attribfile) : 0;
   print mydiv('left');
@@ -473,8 +474,8 @@ sub printtable {
     print '    <tr>' . "\n";
     for my $attr (@attriblist) {
       if (($key eq 'links') and ($attr eq 'source' or $attr eq 'target')) {
-        my $name  = $$hash{$foo->{$attr}} || $foo->{$attr};
-        print '      <td>' . $name . '</td>' . "\n";
+        my ($name, $color) = split($$namehash{$foo->{$attr}}) || $foo->{$attr};
+        print '      <td>' . $name . '<'.$color . '>'. '</td>' . "\n";
       } elsif (($key eq 'nodes') and ($attr eq 'isperson')) {
         print '      <td>' . ($foo->{$attr} ? 'person' : 'list') . '</td>' . "\n";
       } else {
