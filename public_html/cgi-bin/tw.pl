@@ -482,8 +482,8 @@ sub printtable {
         if ($attr eq 'name') {
           $tmp = uc($tmp) unless $foo->{'isperson'};
         } elsif ($attr eq 'community') {
-          my $shape = '<svg xmlns="http://www.w3.org/2000/svg" version="1.1"><circle cx="10" cy="10" r="8" style="fill:' . $foo->{'color'} . ';stroke:purple;stroke-width:1;"></svg>';
-          $tmp .= $shape;
+          my $shape = '<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="20px" height="20px"><circle cx="10" cy="10" r="8" style="fill:' . $foo->{'color'} . ';stroke:purple;stroke-width:1;"></svg>';
+          $tmp .= $shape . "xxx";
         } else {
           $tmp = fmt($tmp);
         }
