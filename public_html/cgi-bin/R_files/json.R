@@ -29,6 +29,7 @@ graphToJSON <- function(g_local) {
   vertices_local <- get.data.frame(g_local, what="vertices")
   edges_local <- get.data.frame(g_local, what="edges")
   rm(g_local)
+  mypalette <- brewer.pal(12, "Paired")
 
   # get just the columns needed and name to what D3 is wanting
   # // that was nice during testing, but now i know it works, let's junk it up!
@@ -57,8 +58,9 @@ graphToJSON <- function(g_local) {
   vertices_local$evc_rad   <-  map(vertices_local$evcent, 5, 30) # radius of vertices in pixels
   vertices_local$pr_rad    <-  map(vertices_local$pr,     5, 30) # radius of vertices in pixels
   vertices_local$radius    <-  (vertices_local$evc_rad + vertices_local$pr_rad)/2.0
-  gravity                  <-  exp(-50/nrow(vertices_local))/2 + 0.25  # this is a scalar.
-  vertices_local$gravity   <-  0.51 # overload the dataframe out of convenience
+# gravity                  <-  exp(-50/nrow(vertices_local))/2 + 0.25  # this is a scalar.
+  vertices_local$gravity   <-  0.15 # overload the dataframe out of convenience
+  vertices_local$color     <-  mypalette[vertices_local$community%%12+1]  # use colorbrewer instead of D3 colors
 # vertices_local$charge    <- -map(vertices_local$betweenness_vertex, 20, 50) # strength of edge
 
   edges_local              <-  subset(edges_local, select=c(source, target, weight))

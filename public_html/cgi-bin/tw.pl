@@ -235,7 +235,7 @@ sub dograph {
   $email =~ tr/[A-Za-z0-9_.^\$ -//dc;
   $all   =~ tr/[A-Za-z0-9_.^\$ -//dc;
   my $me = $bin;
-  $me =~ s/\./_/g;
+  $me =~ s/\./_/g;  # apache httpd doesn't like a json file with a ".pl" in the middle of the path.
   my $qfile =  $me . '_query_' . join('_', sort(split(' ', $topic)))  # make a name safe for the filesystem
                          . '_' . join('_', sort(split(' ', $mlist)))  # to store info about this query
                          . '_' . join('_', sort(split(' ', $email)))
@@ -381,7 +381,6 @@ sub showgraph {
 # this is silly
 sub json2table {
   my $json = shift;
-#  warn "j2t: \$json $json: " . ((-r $json) ? "readable" : "nonsuch");
   my @nodeattribs = qw(
         name
         pr
@@ -400,6 +399,7 @@ sub json2table {
   #     charge
   #     connectivity_vertex
   #     radius
+  #     color
   my @linkattribs = qw(
         source
         target
