@@ -311,7 +311,7 @@ sub netword {
   my $xfile = "$tmpdir/$q.communitymodularity.txt";
 
   # use the same name for the png as the json, except w/ png suffix and pngdir
-  my $png = "$pngdir" . basename($json);
+  my $png = $pngdir . "/" . basename($json);
   $png =~ s/json$/png/;
 
   open (RFILE, ">", $rfile)
