@@ -60,7 +60,7 @@ graphToJSON <- function(g_local) {
   vertices_local$radius    <-  (vertices_local$evc_rad + vertices_local$pr_rad)/2.0
 # gravity                  <-  exp(-50/nrow(vertices_local))/2 + 0.25  # this is a scalar.
   vertices_local$gravity   <-  0.15 # overload the dataframe out of convenience
-  vertices_local$color     <-  mypalette[vertices_local$community%%12+1]  # use colorbrewer instead of D3 colors
+  vertices_local$color     <-  mypalette[(vertices_local$community-1)%%12+1]  # use colorbrewer instead of D3 colors
 # vertices_local$charge    <- -map(vertices_local$betweenness_vertex, 20, 50) # strength of edge
 
   edges_local              <-  subset(edges_local, select=c(source, target, weight))
