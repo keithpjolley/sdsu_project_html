@@ -196,16 +196,10 @@ if (param) {
   json2table($json);
   metrics($mfile);
   tooltipper;
-  showdistro($png);
 }
 
 print footer, end_html . "\n";
 exit;
-
-sub showdistro {
-  my $png = shift;
-  print '<div id="distro"><p><img src="' . $png . '" alt="distribution plots of key vertex metrics"></p></div>';
-}
 
 sub mydiv {
   my $pos = shift;
@@ -518,7 +512,8 @@ sub printtable {
 # the metrics are bit more freeform
 sub metrics {
   my $mfile = shift;
-  my $n=0;
+  my $n = 0;
+  my $class;
   print mydiv('right');
   print '<table class="metrics">';
   print '<tr><th colspan="2">Graph Properties</th></tr>';
@@ -527,12 +522,15 @@ sub metrics {
     return;
   }
   while (<FILE>) {
-    my $class = (++$n%2) ? 'odd' : 'even';
+    $class = (++$n % 2) ? 'odd' : 'even';
     my ($property, $value) = split ':';
     print '<tr class="'.$class.'"><td class="right">' . $property . '</td><td class="left">' . fmt($value) . '</td></tr>';
   }
   close (FILE)
       or warn "WARNING: $bin: Can't close $mfile: $!\n";
+# add a link to the distribution plot
+  $class = (++$n % 2) ? 'odd' : 'even';
+  print '<tr class="' . $class . '"><a href="' . $png . '"></tr>' . "\n";
   print '</table>' . "\n" . mydiv('close');
   return;
 
