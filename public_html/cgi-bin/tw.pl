@@ -489,7 +489,8 @@ sub printtable {
         my $name     = $$namehash{$foo->{$attr}}[0];
         my $color    = $$namehash{$foo->{$attr}}[1];
         my $isperson = $$namehash{$foo->{$attr}}[2];
-        print '      <td>name:' . $name . ', color:'.$color.', isperson:'. $isperson . '</td>' . "\n";
+        my $shape = mysvg($color, $isperson);
+        print '      <td>' . $shape . ' ' . $name . '</td>' . "\n";
       } elsif (($key eq 'nodes') and ($attr eq 'isperson')) {
         print '      <td>' . ($foo->{$attr} ? 'person' : 'list') . '</td>' . "\n";
       } else {
@@ -498,7 +499,7 @@ sub printtable {
           $tmp = uc($tmp) unless $foo->{'isperson'};
         } elsif ($attr eq 'community') {
           my $shape = mysvg($foo->{'color'}, $foo->{'isperson'});
-          $tmp = $shape . $tmp;
+          $tmp = $shape . ' ' . $tmp;
         } else {
           $tmp = fmt($tmp);
         }
