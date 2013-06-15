@@ -76,7 +76,7 @@ my @js       = (   # note that changing anything here requires an edit further d
                 $inc_url . "js/jquery-1.10.0.js",
                 $inc_url . "js/d3.v3.min.js",
                 $inc_url . "js/DataTables-1.9.4/jquery.dataTables.js",
-                $inc_url . "js/tinycolor.js",
+#                $inc_url . "js/tinycolor.js",
                );
 
 my $favicon  = $inc_url . "images/favicon.ico";
@@ -444,6 +444,7 @@ sub printtable {
   } elsif ($word eq 'links') {
     $word = "Connections";
   }
+  print '<p>' . "\n";
   print '<h2>' . $word . ':</h2>';
   print '<table cellpadding="0" border="0" style="width:900px" class="display dataTable" id="' . $key . '">' . "\n";
   print '  <thead>' . "\n";
@@ -461,9 +462,10 @@ sub printtable {
       print '      <th id="b">' . $attr . '</th>' . "\n";
     }
   }
-  print '    </tr>' . "\n";
+  print '    </tr>'  . "\n";
   print '  </thead>' . "\n";
-  print '  <tbody>' . "\n";
+  print '  <tbody>'  . "\n";
+  print '</p><p>'    . "\n";
   for my $foo (@{$href->{$key}}) {
     print '    <tr>' . "\n";
     for my $attr (@attriblist) {
@@ -486,6 +488,7 @@ sub printtable {
   }
   print '  </tbody>' . "\n";
   print '</table>' . "\n";
+  print '</p>' . "\n";
   print mydiv('close');
   return;
 }

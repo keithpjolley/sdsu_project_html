@@ -96,7 +96,7 @@
 //    var radtype = myradius();
     var width   = 900,  // i think these are moon units
         height  = 900;
-    var color   = d3.scale.category20();
+    var color   = d3.scale.category20();  // picks the ordinal colors
     var force   = d3.layout.force()
           .gravity(0.1)
           .charge(      function(d) { return -(d.radius)*5 })
@@ -140,7 +140,8 @@
                var yPosition = parseFloat(d3.select(this).attr("cy")) - 70;
                //Update the tooltip position and value
                d3.select("#tooltip")
-                 .style("background-color", tinycolor.lighten(color(d.community), 10))
+//               .style("background-color", tinycolor.lighten(color(d.community), 10))
+                 .style("background-color", color(d.community).brighter)
                  .style("left", xPosition + "px")
                  .style("top",  yPosition + "px")
                  // fmt numbers that 'may' be floats. let ints go through as is
