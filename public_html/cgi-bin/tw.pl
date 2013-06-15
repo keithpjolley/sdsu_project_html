@@ -484,11 +484,9 @@ sub printtable {
         } elsif ($attr eq 'community') {
           my $shape =
             '<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="14px" height="14px">'
-            . '<circle cx="7" cy="7" r="6" style="fill:'
-            . $foo->{'color'}
-            . ';stroke:'
-            . ($foo->{'isperson'} ? 'white' : 'grey')
-            . ';stroke-width:1;">'
+            . '<circle cx="7" cy="8" r="7" style="fill:' . $foo->{'color'}
+            .     ';stroke:' . ($foo->{'isperson'} ? 'white' : 'grey')
+            .     ';stroke-width:1;">'
             . '</svg>';
           $tmp = $shape . " " . $tmp;
         } else {
