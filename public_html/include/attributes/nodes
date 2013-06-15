@@ -17,6 +17,10 @@
 name;display_name;Name
 name;popup_text;The name of the vertex - typically the person's email address.
 #
+community;display_name;Community
+community;popup_text;The Community shows groups of vertices that regularly communicate within the group. We use the algorithm shown in the "Fast unfolding of communities in large networks" paper to determine the communities. A community shows that there is more communication among those within a community than to those outside.
+#
+#
 pr;display_name;PageRank
 pr;popup_text;PageRank is a measure of influence in a network. A higher PageRank says that people are reaching out more to that person on that particular topic. If all roads lead to Rome, then Rome must be important. PageRank shows where all roads lead to.
 #
@@ -49,9 +53,5 @@ graph_strength_tot;popup_text;Total number of inbound and outbound edges
 #
 lcc;display_name;Local Clustering Coefficient
 lcc;popup_text;Transitivity measures the probability that the adjacent vertices of a vertex are connected. This is sometimes also called the clustering coefficient.
-#
-community;display_name;Community
-community;popup_text;The Community shows groups of vertices that regularly communicate within the group. We use the algorithm shown in the "Fast unfolding of communities in large networks" paper to determine the communities. A community shows that there is more communication among those within a community than to those outside.
-#
 isperson;display_name;Person?
 isperson;popup_text;Is this a person or a mailing list?

@@ -384,12 +384,12 @@ sub json2table {
   my $json = shift;
   my @nodeattribs = qw(
         name
+        community
         pr
         evcent
         betweenness_vertex
         closeness_in
         closeness_out
-        community
         degree
         graph_strength_in
         graph_strength_out
@@ -483,7 +483,7 @@ sub printtable {
           $tmp = uc($tmp) unless $foo->{'isperson'};
         } elsif ($attr eq 'community') {
           my $shape = '<svg xmlns="http://www.w3.org/2000/svg" version="1.1">
-              <circle x="20" y="20" style="fill:' . $foo->{'color'} . ';stroke:purple;stroke-width:1;">
+              <circle x="20" y="20" r="10" style="fill:' . $foo->{'color'} . ';stroke:purple;stroke-width:1;">
             </svg>';
           $tmp = $shape . $tmp;
         } else {
