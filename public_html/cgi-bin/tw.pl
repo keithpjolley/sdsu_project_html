@@ -525,13 +525,13 @@ sub metrics {
   while (<FILE>) {
     $class = (++$n % 2) ? 'odd' : 'even';
     my ($property, $value) = split ':';
-    print '<tr class="'.$class.'"><td class="right">' . $property . '</td><td class="left">' . fmt($value) . '</td></tr>';
+    print '<tr class="'.$class.'"><td class="left">' . $property . '</td><td class="right">' . fmt($value) . '</td></tr>';
   }
   close (FILE)
       or warn "WARNING: $bin: Can't close $mfile: $!\n";
 # add a link to the distribution plot
   $class = (++$n % 2) ? 'odd' : 'even';
-  print '<tr class="' . $class . '"><a href="' . $png . '"></tr>' . "\n";
+  print '<tr class="' . $class . '"><td><a href="' . $png . '"></td><td></td></tr>' . "\n";
   print '</table>' . "\n" . mydiv('close');
   return;
 
