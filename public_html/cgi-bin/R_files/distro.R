@@ -32,17 +32,16 @@ distro<-function(g_local, pfile, afile, mypalette) {
   # plot "isperson" if there are people AND mailinglists
   if (length(unique(V(g_local)$isperson))>1) attribs <- c(attribs, 'isperson')
   for (i in attribs) {
-    cat(i,file="/dev/stderr")
     d<-df[[i]]
     names  <- NULL
-    colors <- NULL
+    colors <- "grey"
     if (i == "community") {
       colors <- mypalette[(sort(unique(V(g_local)$community))-1)%%12+1]
     } else if (i == "isperson") {
       names <- c("List", "Person")
     }
     title<-as.character(t[t$name==i,]$desc)
-    barplot(table(d),  main=title, col="grey", border="white", names.arg=names, col=colors)
+    barplot(table(d),  main=title, border="white", names.arg=names, col=colors)
   }
   dev.off()
 }
