@@ -531,7 +531,7 @@ sub metrics {
       or warn "WARNING: $bin: Can't close $mfile: $!\n";
 # add a link to the distribution plot
   $class = (++$n % 2) ? 'odd' : 'even';
-  print '<tr class="' . $class . '"><td><a href="' . $png . '"></td><td></td></tr>' . "\n";
+  print '<tr class="' . $class . '"><td><a href="' . $png . '">Distribution Plots</a></td><td></td></tr>' . "\n";
   print '</table>' . "\n" . mydiv('close');
   return;
 
