@@ -24,9 +24,9 @@ cd ../..
 #
 #
 # the following commands should run without errors and be in your path:
-perl -MCGI -MCwd -MData::Dumper -MDate::Parse -MEmail::Address -MFile::Basename -MFile::Temp -MGetopt::Long -MJSON::PP -MMail::MboxParser -MPod::Usage -MSys::Hostname -Mv5.10 -MSys::Hostname -e 'say "ok";'
+perl -MCGI -MCwd -MData::Dumper -MDate::Parse -MEmail::Address -MFile::Basename -MFile::Temp -MGetopt::Long -MJSON::PP -MMail::MboxParser -MPod::Usage -MSys::Hostname -Mv5.10 -MSys::Hostname -e 'say "Perl ok";'
 #
-echo 'library(ggplot2);library(data.table);print("ok")' | R --slave --no-save
+echo 'library(ggplot2);library(data.table);library(RColorBrewer);print("R ok")' | R --slave --no-save
 #
 #
 # see if you are comfortable with these permissions.

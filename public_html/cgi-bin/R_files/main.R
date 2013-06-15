@@ -7,9 +7,10 @@
 if (interactive()) cat("loading libraries\n")
 library(igraph)
 library(data.table)
-#library(RColorBrewer)
+library(RColorBrewer)
 
 # these have some functions in them
+if (interactive()) cat("sourcing my R files\n")
 source("R_files/community.R")
 source("R_files/json.R")
 source("R_files/misc.R")
