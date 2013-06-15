@@ -96,7 +96,6 @@
 //    var radtype = myradius();
     var width   = 900,  // i think these are moon units
         height  = 900;
-//    var color   = d3.scale.category20();  // picks the ordinal colors  -- use colorbrewer instead. 
     var force   = d3.layout.force()
           .gravity(0.1)
           .charge(      function(d) { return -(d.radius)*5 })
@@ -120,7 +119,6 @@
           .data(graph.links)
           .enter().append("line")
           .attr("class", "link")
-//        .style("stroke",         function(d) { return (color(d.source.community)) })
           .style("stroke",         function(d) { return (d3.rgb(d.source.color)) })
           .style("stroke-width",   function(d) { return (d.width); })
           .style("stroke-opacity", function(d) { return (d.width/10 + 0.25) });
@@ -130,8 +128,8 @@
           .attr( "class", "node")
 //        .attr( "r",      function(d) { return radtype ? d.pr_rad : d.evc_rad; })
           .attr( "r",      function(d) { return d.radius; })
-//        .style("fill",   function(d) { return color(d.community)})
-          .style("fill",   function(d) { return d3.rgb(d.color)})
+//          .style("fill",   function(d) { return d3.rgb(d.color)})
+          .style("fill",   d3.rgb(d.color))
           .style("stroke", function(d) { return ((d.isperson==1) ? "white" : "grey")})
 //        .style("stroke-width", function(d) { return Math.max(d.radius/10,1)})
           .style("stroke-width", function(d) { return Math.max(d.radius/10,1)})
