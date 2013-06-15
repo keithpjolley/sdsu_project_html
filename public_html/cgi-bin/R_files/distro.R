@@ -15,8 +15,8 @@ distro<-function(g_local, thepng, afile) {
   df<-get.data.frame(g_local, what="vertices")
   attribs <-c( 'pr', 'evcent', 'betweenness_vertex', 'closeness_in', 'closeness_out',
             'degree', 'graph_strength_in', 'graph_strength_out', 'graph_strength_tot', 'lcc')
-  png(filename=thepng, bg="white", width=800, height=1600)
-  par(mfrow=c(4,3))
+  png(filename=thepng, bg="white", width=1200, height=1600)
+  par(mfrow=c(3,4))
   for (i in attribs ) {
     d<-df[[i]]
     d<-d[!is.na(d)]
