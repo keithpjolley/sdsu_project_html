@@ -481,7 +481,7 @@ sub printtable {
         my $tmp = $foo->{$attr};
         if ($attr eq 'name') {
           my $shape = '<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="20" width="20">
-              <circle r="16" cx="10" cy="10" style="fill:'$foo->{'color'}';stroke:purple;stroke-width:1;">
+              <circle r="16" cx="10" cy="10" style="fill:' . $foo->{'color'} . ';stroke:purple;stroke-width:1;">
             </svg>';
           $tmp = uc($tmp) unless $foo->{'isperson'};
           $tmp = $shape . $tmp;
