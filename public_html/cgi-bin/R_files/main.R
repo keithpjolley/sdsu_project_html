@@ -14,6 +14,7 @@ source("R_files/community.R")
 source("R_files/json.R")
 source("R_files/misc.R")
 source("R_files/metric.R")
+source("R_files/distro.R")
 
 # maillistdir helps us figure out which targets are lists and which are people
 #maillistdir<-"mailing-lists"  # get this from the caller instead

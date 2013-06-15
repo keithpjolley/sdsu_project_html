@@ -106,11 +106,11 @@ sub fmt;
 sub footer;
 sub json2table;
 sub metrics;
-#sub mychecker;
 sub mydiv;
 sub netword;
 sub printtable;
 sub search;
+sub showdistro;
 sub showgraph;
 sub tooltipper;
 sub wanted;
@@ -190,15 +190,20 @@ print
 
 if (param) {
   mydiv('left');
-  my ($json, $mfile) = dograph();
+  my ($json, $mfile, $png) = dograph();
   mydiv('close');
   json2table($json);
   metrics($mfile);
   tooltipper;
+  showdistro($png);
 }
 
 print footer, end_html . "\n";
 exit;
+
+sub showdistro {
+  my $png = shift;
+}
 
 sub mydiv {
   my $pos = shift;
@@ -218,7 +223,7 @@ sub footer {
 }
 
 sub dograph {
-  # prints the D3 script, returns the location of the $json and $mfile files
+  # prints the D3 script, returns the location of the $json, $mfile, and $png files
   die "ERROR: $bin: 16. no json dir $jsondir" unless -d $jsondir;
   die "ERROR: $bin: 17. can't read input list $thelist" unless -r $thelist;
   my $topic = param('topic') || "";  # make sure that the query variables are set to something
@@ -229,10 +234,10 @@ sub dograph {
   $mlist =~ tr/[A-Za-z0-9_.^\$ -//dc;
   $email =~ tr/[A-Za-z0-9_.^\$ -//dc;
   $all   =~ tr/[A-Za-z0-9_.^\$ -//dc;
-  my $qfile = "query." . join('.', sort(split(' ', $topic)))  # make a name safe for the filesystem
-                 . "." . join('.', sort(split(' ', $mlist)))  # to store info about this query
-                 . "." . join('.', sort(split(' ', $email)))
-                 . "." . join('.', sort(split(' ', $all)));
+  my $qfile = $bin . ".query." . join('.', sort(split(' ', $topic)))  # make a name safe for the filesystem
+                         . "." . join('.', sort(split(' ', $mlist)))  # to store info about this query
+                         . "." . join('.', sort(split(' ', $email)))
+                         . "." . join('.', sort(split(' ', $all)));
   $topic = join('|', split(' ', $topic)); # our regex - make all searchs an "or"
   $mlist = join('|', split(' ', $mlist));
   $email = join('|', split(' ', $email));
@@ -242,6 +247,7 @@ sub dograph {
     or die "ERROR: $bin: 18. couldn't create tempdir: $!";
   my $net  = "$tmpdir/$qfile.net";
   my $json = "$jsondir/$qfile.json";
+  my $png  = "$pngdir/$qfile.png";
   my $mfile = "";
   if ($topic eq "" && $mlist eq "" && $email eq "" && $email eq "" && $all eq "") {
     print "<h2>empty search</h2>\n";
@@ -250,7 +256,7 @@ sub dograph {
     if ($edges==0) {
       print "Sorry. no search results found", p, "\n";
     } else {
-      $mfile = netword($mlist, $net, $tmpdir, $qfile, $json);
+      $mfile = netword($mlist, $net, $tmpdir, $qfile, $json, $png);
       # this test is wrong - json can still have a few lines and be "empty"
       if (-z $json) {
         print "Sorry. no search results found", p, "\n";
@@ -259,7 +265,7 @@ sub dograph {
       }
     }
   }
-  return ($json, $mfile);
+  return ($json, $mfile, $png);
 }
 
 sub search {
@@ -300,6 +306,7 @@ sub netword {
   my $tmpdir= shift;
   my $q     = shift;
   my $json  = shift;
+  my $png   = shift;
 
   # different files that the main R script needs to know about
   # make a temporary script that sets variables before calling the main R script
@@ -309,10 +316,6 @@ sub netword {
   my $mfile = "$tmpdir/$q.metrics.txt";
   my $vfile = "$tmpdir/$q.vertices.txt";
   my $xfile = "$tmpdir/$q.communitymodularity.txt";
-
-  # use the same name for the png as the json, except w/ png suffix and pngdir
-  my $png = $pngdir . "/" . basename($json);
-  $png =~ s/json$/png/;
 
   open (RFILE, ">", $rfile)
     or die "ERROR: $bin: 6. Can't open $rfile: $!\n";
