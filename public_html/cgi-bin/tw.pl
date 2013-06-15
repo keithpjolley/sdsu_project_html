@@ -426,7 +426,7 @@ sub json2table {
     my $name  = $foo->{'name'};
     my $color = $foo->{'color'};
     $name = uc($name) unless $foo->{'isperson'};
-    $namehash{$foo->{'index'}}  = ($name,$color);
+    $namehash{$foo->{'index'}}  = [$name,$color];
     warn $color;
 #   $namehash{$foo->{'index'}} = $name;
   }
