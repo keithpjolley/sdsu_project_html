@@ -128,8 +128,7 @@
           .attr( "class", "node")
 //        .attr( "r",      function(d) { return radtype ? d.pr_rad : d.evc_rad; })
           .attr( "r",      function(d) { return d.radius; })
-//          .style("fill",   function(d) { return d3.rgb(d.color)})
-          .style("fill",   d3.rgb(d.color))
+          .style("fill",   function(d) { return d3.rgb(d.color)})
           .style("stroke", function(d) { return ((d.isperson==1) ? "white" : "grey")})
 //        .style("stroke-width", function(d) { return Math.max(d.radius/10,1)})
           .style("stroke-width", function(d) { return Math.max(d.radius/10,1)})
@@ -137,11 +136,11 @@
           .on("mouseover", function(d) {
                //Get this bar's x/y values, then augment for the tooltip
                var xPosition = parseFloat(d3.select(this).attr("cx")) + 30;
-               var yPosition = parseFloat(d3.select(this).attr("cy")) - 70;
+               var yPosition = parseFloat(d3.select(this).attr("cy")) - 60;
                //Update the tooltip position and value
                d3.select("#tooltip")
 //               .style("background-color", tinycolor.lighten(color(d.community), 10))
-                 .style("background-color", d3.rgb(d.color).brighter)
+                 .style("background-color", function(d) { return d3.rgb(d.color).brighter })
                  .style("left", xPosition + "px")
                  .style("top",  yPosition + "px")
                  // fmt numbers that 'may' be floats. let ints go through as is
