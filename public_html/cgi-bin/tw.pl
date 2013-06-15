@@ -473,7 +473,7 @@ sub printtable {
     for my $attr (@attriblist) {
       if (($key eq 'links') and ($attr eq 'source' or $attr eq 'target')) {
         my $name = $$hash{$foo->{$attr}} || $foo->{$attr};
-        print '      <td>' . $name . '(xxxx)' . '</td>' . "\n";
+        print '      <td>' . ' (xxxxx)  ' . $name . '</td>' . "\n";
       } elsif (($key eq 'nodes') and ($attr eq 'isperson')) {
         print '      <td>' . ($foo->{$attr} ? 'person' : 'list') . '</td>' . "\n";
       } else {
@@ -483,7 +483,7 @@ sub printtable {
         } else {
           $tmp = fmt($tmp);
         }
-        print '      <td>' . $tmp . '</td>' . "\n";
+        print '      <td>' . " (yyyyy) " . $tmp . '</td>' . "\n";
       }
     }
     print '    </tr>' . "\n";
