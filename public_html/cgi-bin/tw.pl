@@ -487,7 +487,7 @@ sub printtable {
             . '<circle cx="7" cy="7" r="6" style="fill:'
             . $foo->{'color'}
             . ';stroke:'
-            . ($foo->{'isperson'} ? $foo->{'color'} : 'grey')
+            . ($foo->{'isperson'} ? 'white' : 'grey')
             . ';stroke-width:1;">'
             . '</svg>';
           $tmp = $shape . " " . $tmp;
