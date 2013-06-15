@@ -341,7 +341,7 @@ EOF2
     or die "ERROR: $bin: 7. Can't close $rfile: $!\n";
 
 # handy for troubleshooting R issues
-# system("rsync", "-avP", "$tmpdir/", "/tmp/tmp2/");
+system("rsync", "-avP", "$tmpdir/", "/tmp/tmp2/");
 
   my @Rargs = ("R", "-s", "-f", "$rfile");
 #  warn(@Rargs);
