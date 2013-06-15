@@ -51,10 +51,13 @@ g <- communitycenter(g, vfile, efile, cfile, xfile)
 # get some stats on this network
 if (interactive()) cat(paste("R: getting some stats on this network.\n"))
 g <- metric(g, mfile)
-
 if (interactive()) cat(paste("R: This graph has", length(E(g)$weight), "edges and", length(V(g)), "vertices\n"))
 
 # follow the naming convention of D3 
 if (interactive()) cat(paste("R: Saving JSON file:", jfile, "\n"))
 json <- graphToJSON(g)
 cat(json, file=jfile, append=FALSE)
+
+# make the png distribution plot
+if (interactive()) cat(paste("R: Saving PNG file:", pfile, "\n"))
+distro(g, pfile, afile)

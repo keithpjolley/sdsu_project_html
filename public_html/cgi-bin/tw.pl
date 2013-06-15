@@ -204,7 +204,7 @@ exit;
 
 sub showdistro {
   my $png = shift;
-  print '<div id="distro"><p><img src="' . $png . '" alt="distribution plots of key vertex metrics"></p></div>\n';
+  print '<div id="distro"><p><img src="' . $png . '" alt="distribution plots of key vertex metrics"></p></div>';
 }
 
 sub mydiv {
