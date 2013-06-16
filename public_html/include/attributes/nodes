@@ -35,7 +35,7 @@ evcent;xlab;(dimensionless)
 evcent;ylab;
 #
 betweenness_vertex;display_name;Betweenness
-betweenness_vertex;popup_text;Vertex Betweenness shows how many times a vertex is on the shortest path between other vertices. A high Betweenness score indicates that this person connects a lot of people.
+betweenness_vertex;popup_text;Vertex Betweenness shows how many times a vertex is on the shortest path between other vertices. A high Betweenness score indicates that this person connects a lot of people. A mailing list always has a score of 0 because there is no path "out of" a mailing list.
 betweenness_vertex;xlab;Paths
 betweenness_vertex;ylab;
 #
