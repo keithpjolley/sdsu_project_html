@@ -8,6 +8,8 @@
 #
 #
 distro<-function(g_local, pfile, afile, mypalette) {
+  df<-get.data.frame(g_local, what="vertices")
+
   t<-read.delim(afile, header=FALSE, comment.char="#", fill=F, sep=";")
   names(t) <- c("name", "attrib", "desc")
   dn<-t[t$attrib=="display_name",]
@@ -15,8 +17,7 @@ distro<-function(g_local, pfile, afile, mypalette) {
   xl<-t[t$attrib=="xlab",]
   xl$attrib<-NULL
   yl<-t[t$attrib=="ylab",]
-  xl$attrib<-NULL
-  df<-get.data.frame(g_local, what="vertices")
+  yl$attrib<-NULL
   attribs <-c( 'pr', 'evcent', 'betweenness_vertex', 'closeness_in', 'closeness_out',
             'degree', 'graph_strength_in', 'graph_strength_out', 'graph_strength_tot', 'lcc')
   png(filename=pfile, bg="white", width=1600, height=1200)
@@ -37,6 +38,9 @@ distro<-function(g_local, pfile, afile, mypalette) {
   if (length(unique(V(g_local)$isperson))>1) attribs <- c(attribs, 'isperson')
   for (i in attribs) {
     d<-df[[i]]
+    title<-as.character(dn[dn$name==i,]$desc)
+    xlab<-as.character(xl[xl$name==i,]$desc)
+    ylab<-as.character(yl[yl$name==i,]$desc)
     names  <- NULL
     colors <- "grey"
     if (i == "community") {
@@ -44,8 +48,7 @@ distro<-function(g_local, pfile, afile, mypalette) {
     } else if (i == "isperson") {
       names <- c("List", "Person")
     }
-    title<-as.character(t[t$name==i,]$desc)
-    barplot(table(d), main=title, border="white", ylab=yl[yl$name==i,]$desc, xlab=xl[xl$name==i,]$desc, names.arg=names, col=colors)
+    barplot(table(d), main=title, border="white", xlab=xlab, ylab=ylab, names.arg=names, col=colors)
   }
   dev.off()
 }
