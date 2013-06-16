@@ -10,8 +10,12 @@
 distro<-function(g_local, pfile, afile, mypalette) {
   t<-read.delim(afile, header=FALSE, comment.char="#", fill=F, sep=";")
   names(t) <- c("name", "attrib", "desc")
-  t<-t[t$attrib=="display_name",]
-  t$attrib<-NULL
+  dn<-t[t$attrib=="display_name",]
+  dn$attrib<-NULL
+  xl<-t[t$attrib=="xlab",]
+  xl$attrib<-NULL
+  yl<-t[t$attrib=="ylab",]
+  xl$attrib<-NULL
   df<-get.data.frame(g_local, what="vertices")
   attribs <-c( 'pr', 'evcent', 'betweenness_vertex', 'closeness_in', 'closeness_out',
             'degree', 'graph_strength_in', 'graph_strength_out', 'graph_strength_tot', 'lcc')
@@ -21,9 +25,9 @@ distro<-function(g_local, pfile, afile, mypalette) {
     d<-df[[i]]
     d<-d[!is.na(d)]
     d<-d[!is.infinite(d)]
-    title<-as.character(t[t$name==i,]$desc)
+    title<-as.character(dn[dn$name==i,]$desc)
     hist(d, breaks=seq(min(d), max(d), (max(d)-min(d))/50), main=title,
-        xlab=NULL, probability=TRUE, col="grey", border="white")
+        xlab=xl[xl$name==i,]$desc, probability=TRUE, col="grey", border="white")
     dens<-density(d)
     lines(dens, col="red")
   }
@@ -41,7 +45,7 @@ distro<-function(g_local, pfile, afile, mypalette) {
       names <- c("List", "Person")
     }
     title<-as.character(t[t$name==i,]$desc)
-    barplot(table(d),  main=title, border="white", names.arg=names, col=colors)
+    barplot(table(d), main=title, border="white", ylab=yl[yl$name==i,]$desc, xlab=xl[xl$name==i,]$desc, names.arg=names, col=colors)
   }
   dev.off()
 }

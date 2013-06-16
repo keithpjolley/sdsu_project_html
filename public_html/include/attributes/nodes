@@ -22,7 +22,7 @@ name;ylab;
 community;display_name;Community
 community;popup_text;The Community shows groups of vertices that regularly communicate within the group. We use the algorithm shown in the "Fast unfolding of communities in large networks" paper to determine the communities. A community shows that there is more communication among those within a community than to those outside.
 community;xlab;
-community;ylab;
+community;ylab;Vertices
 #
 pr;display_name;PageRank
 pr;popup_text;PageRank is a measure of influence in a network. A higher PageRank says that people are reaching out more to that person on that particular topic. If all roads lead to Rome, then Rome must be important. PageRank shows where all roads lead to.
@@ -79,7 +79,7 @@ lcc;popup_text;Transitivity measures the probability that the adjacent vertices 
 lcc;xlab;dimensionless
 lcc;ylab;
 #
-isperson;display_name;Person?
-isperson;popup_text;Is this a person or a mailing list?
+isperson;display_name;Type
+isperson;popup_text;Is this vertex a person or a mailing list?
 isperson;xlab;
-isperson;ylab;
+isperson;ylab;Vertices
