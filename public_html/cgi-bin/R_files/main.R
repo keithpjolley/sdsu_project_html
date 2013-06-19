@@ -63,5 +63,5 @@ json <- graphToJSON(g, mypalette)
 cat(json, file=jfile, append=FALSE)
 
 # make the png distribution plot
-if (interactive()) cat(paste("R: Saving PNG file:", pfile, "\n"))
-distro(g, pfile, afile, mypalette)
+#if (interactive()) cat(paste("R: Saving PNG file:", pfile, "\n"))
+#distro(g, pfile, afile, mypalette)
