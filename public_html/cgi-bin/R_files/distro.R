@@ -20,7 +20,7 @@ distro<-function(g_local, pfile, afile, mypalette) {
   yl$attrib<-NULL
   attribs <-c( 'pr', 'evcent', 'betweenness_vertex', 'closeness_in', 'closeness_out',
             'degree', 'graph_strength_in', 'graph_strength_out', 'graph_strength_tot', 'lcc')
-  png(filename=pfile, bg="white", width=1200, height=1600)
+  png(filename=pfile, bg="white", width=1400, height=1400)
   par(mfrow=c(4,3))
   for (i in attribs ) {
     d<-df[[i]]
