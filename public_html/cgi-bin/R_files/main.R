@@ -6,6 +6,7 @@
 ##
 if (interactive()) cat("loading libraries\n")
 library(igraph)
+library(ggplot2)
 library(data.table)
 library(RColorBrewer)
 

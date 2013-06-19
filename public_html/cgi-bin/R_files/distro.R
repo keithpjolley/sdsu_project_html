@@ -27,7 +27,7 @@ distro<-function(g_local, pfile, afile, mypalette) {
     d<-d[!is.na(d)]
     d<-d[!is.infinite(d)]
     title<-as.character(dn[dn$name==i,]$desc)
-    p<-sprintf("/tmp/foo/%s.pdf",i)
+#    p<-sprintf("/tmp/foo/%s.pdf",i)
 #    pdf(file=p, bg="white")
 #    hist(d, breaks=50, main=title, xlab=xl[xl$name==i,]$desc, ylab=yl[yl$name==i,]$desc,
 #        probability=FALSE, col="grey", border="white")
@@ -36,7 +36,6 @@ distro<-function(g_local, pfile, afile, mypalette) {
 #    Density is a material property defined as mass per unit volume, which obviously does not apply here. 
 #    dens<-density(d)
 #    lines(dens, col="red")
-
     p<-ggplot(as.data.frame(d))
     p<-p+geom_histogram(aes(x=d,y=..count../sum(..count..)), fill="grey",colour="darkgrey", binwidth=(max(d)-min(d))/50)
     p<-p+ggtitle(title)
