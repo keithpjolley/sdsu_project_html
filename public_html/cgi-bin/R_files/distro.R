@@ -29,7 +29,7 @@ distro<-function(g_local, pfile, afile, mypalette) {
     d<-d[!is.infinite(d)]
     title<-as.character(dn[dn$name==i,]$desc)
     hist(d, breaks=seq(min(d), max(d), (max(d)-min(d))/30), main=title,
-        xlab=xl[xl$name==i,]$desc, ylab=yl[yl$name==i,]$descZZ, probability=FALSE, col="grey", border="white")
+        xlab=xl[xl$name==i,]$desc, ylab=yl[yl$name==i,]$desc, probability=FALSE, col="grey", border="white")
 #    Density is a material property defined as mass per
 #    unit volume, which obviously does not apply here. 
 #    dens<-density(d)
