@@ -108,11 +108,10 @@ sub json2table;
 sub mymetrics;
 sub mydiv;
 sub mysvg;
-sub mypng;
+#sub mypng;
 sub netword;
 sub printtable;
 sub search;
-sub showdistro;
 sub showgraph;
 sub tooltipper;
 sub wanted;
@@ -197,16 +196,16 @@ if (param) {
   json2table($json);
   mymetrics($mfile);
   tooltipper;
-  mypng($png);
+#  mypng($png);
 }
 
 print footer, end_html . "\n";
 exit;
 
-sub mypng {
-  my $png = shift;
-  print '<div><p><img src="' . $png . '" alt="Distribution Plots" width="1600" height="1200"></p></div>' . "\n";
-}
+#sub mypng {
+#  my $png = shift;
+#  print '<div><p><img src="' . $png . '" alt="Distribution Plots" width="1600" height="1200"></p></div>' . "\n";
+#}
 
 sub mydiv {
   my $pos = shift;

@@ -21,25 +21,26 @@ distro<-function(g_local, pfile, afile, mypalette) {
   attribs <-c( 'pr', 'evcent', 'betweenness_vertex', 'closeness_in', 'closeness_out',
             'degree', 'graph_strength_in', 'graph_strength_out', 'graph_strength_tot', 'lcc')
 #  png(filename=pfile, bg="white", width=1600, height=1200)
-  pdf(file="/tmp/hist.pdf", bg="white")
   par(mfrow=c(4,3))
   for (i in attribs ) {
+    pdf(file=sprintf("/tmp/%s.pdf",i), bg="white")
     d<-df[[i]]
     d<-d[!is.na(d)]
     d<-d[!is.infinite(d)]
     title<-as.character(dn[dn$name==i,]$desc)
     hist(d, breaks=seq(min(d), max(d), (max(d)-min(d))/30), main=title,
         xlab=xl[xl$name==i,]$desc, ylab=yl[yl$name==i,]$desc, probability=FALSE, col="grey", border="white")
-#    Density is a material property defined as mass per
-#    unit volume, which obviously does not apply here. 
+#    Density is a material property defined as mass per unit volume, which obviously does not apply here. 
 #    dens<-density(d)
 #    lines(dens, col="red")
+    dev.off()
   }
 
   attribs <- c('community')
   # plot "isperson" if there are people AND mailinglists
   if (length(unique(V(g_local)$isperson))>1) attribs <- c(attribs, 'isperson')
   for (i in attribs) {
+    pdf(file=sprintf("/tmp/%s.pdf",i), bg="white")
     d<-df[[i]]
     title<-as.character(dn[dn$name==i,]$desc)
     xlab<-as.character(xl[xl$name==i,]$desc)
@@ -52,6 +53,7 @@ distro<-function(g_local, pfile, afile, mypalette) {
       names <- c("List", "Person")
     }
     barplot(table(d), main=title, border="white", xlab=xlab, ylab=ylab, names.arg=names, col=colors)
+    dev.off()
   }
-  dev.off()
+#  dev.off()
 }
