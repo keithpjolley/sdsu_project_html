@@ -53,5 +53,5 @@ distro<-function(g_local, pfile, afile, mypalette) {
     barplot(table(d), main=title, border="white", xlab=xlab, ylab=ylab, names.arg=names, col=colors)
   }
   dev.off()
-  system("cp", pfile, "/tmp/hist.png")
+  save.image(file="/tmp/rdata")
 }
