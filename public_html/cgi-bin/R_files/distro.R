@@ -29,8 +29,10 @@ distro<-function(g_local, pfile, afile, mypalette) {
     title<-as.character(dn[dn$name==i,]$desc)
     hist(d, breaks=seq(min(d), max(d), (max(d)-min(d))/50), main=title,
         xlab=xl[xl$name==i,]$desc, probability=TRUE, col="grey", border="white")
-    dens<-density(d)
-    lines(dens, col="red")
+#    Density is a material property defined as mass per
+#    unit volume, which obviously does not apply here. 
+#    dens<-density(d)
+#    lines(dens, col="red")
   }
 
   attribs <- c('community')
