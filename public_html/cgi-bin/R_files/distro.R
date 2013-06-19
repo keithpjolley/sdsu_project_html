@@ -29,10 +29,6 @@ distro<-function(g_local, pfile, afile, mypalette) {
     title<-as.character(dn[dn$name==i,]$desc)
     hist(d, breaks=seq(min(d), max(d), (max(d)-min(d))/30), main=title,
         xlab=xl[xl$name==i,]$desc, probability=TRUE, col="grey", border="white")
-    png(filename="/tmp/hist.png",  bg="white", res=600, width=5000, height=7500)
-    hist(d, breaks=seq(min(d), max(d), (max(d)-min(d))/30), main=title,
-        xlab=xl[xl$name==i,]$desc, probability=TRUE, col="grey", border="white")
-    dev.off()
 #    Density is a material property defined as mass per
 #    unit volume, which obviously does not apply here. 
 #    dens<-density(d)
@@ -57,4 +53,5 @@ distro<-function(g_local, pfile, afile, mypalette) {
     barplot(table(d), main=title, border="white", xlab=xlab, ylab=ylab, names.arg=names, col=colors)
   }
   dev.off()
+  system("cp", pfile, "/tmp/hist.png")
 }
