@@ -10,14 +10,16 @@
 #
 # key: display_name: string  -- the column header text to display
 # key:   popup_text: string  -- text to put in a little popup display. less is more.
+# key:         xlab: string  -- xlabel for the histogram chart
+# key:         ylab: string  -- ylabel for the histogram chart
 #
 # row order here decides column order on screen - that means things will display
 # on the screen in the same order as they are listed here.
 #
 name;display_name;Name
 name;popup_text;The name of the vertex - typically the person's email address.
-name;xlab;
-name;ylab;
+name;xlab;this label left intentionally blank
+name;ylab;this label left intentionally blank
 #
 community;display_name;Community
 community;popup_text;The Community shows groups of vertices that regularly communicate within the group. We use the algorithm shown in the "Fast unfolding of communities in large networks" paper to determine the communities. A community shows that there is more communication among those within a community than to those outside.
@@ -27,57 +29,57 @@ community;ylab;Vertices
 pr;display_name;PageRank
 pr;popup_text;PageRank is a measure of influence in a network. A higher PageRank says that people are reaching out more to that person on that particular topic. If all roads lead to Rome, then Rome must be important. PageRank shows where all roads lead to.
 pr;xlab;(dimensionless)
-pr;ylab;
+pr;ylab;Vertices
 #
 evcent;display_name;Eigenvector Centrality
 evcent;popup_text;Eigenvector Centrality shows the influence of a vertex in a network by assigning a higher value to those vertices closely connected to highly connected vertices than to those that are only connected to poorly connected vertices. It's closely related to the PageRank. Tom, in the Godfather, would have low connection count but a high Eigenvector Centrality score because he did not have a lot of connections but those he did have were very powerful.
 evcent;xlab;(dimensionless)
-evcent;ylab;
+evcent;ylab;Vertices
 #
 betweenness_vertex;display_name;Betweenness
 betweenness_vertex;popup_text;Vertex Betweenness shows how many times a vertex is on the shortest path between other vertices. A high Betweenness score indicates that this person connects a lot of people. A mailing list always has a score of 0 because there is no path "out of" a mailing list.
 betweenness_vertex;xlab;Paths
-betweenness_vertex;ylab;
+betweenness_vertex;ylab;Vertices
 #
 closeness_in;display_name;Closeness In
 closeness_in;popup_text;Closeness In is the average distance between this vertex FROM all other vertices. A vertex with a HIGHER score will receive information more quickly than others in this network.
 closeness_in;xlab;(dimensionless)
-closeness_in;ylab;
+closeness_in;ylab;Vertices
 #
 closeness_out;display_name;Closeness Out
 closeness_out;popup_text;A HIGH Closeness Out score means that this vertex will disseminate information within this network more quickly than those with a low score.
 closeness_out;xlab;(dimensionless)
-closeness_out;ylab;
+closeness_out;ylab;Vertices
 #
 degree;display_name;Degree
 degree;popup_text;Number of vertices this vertex is connected to, regardless of direction or weight.
 degree;xlab;edges
-degree;ylab;
+degree;ylab;Vertices
 #
 dpd;display_name;Degree Probability
 dpd;popup_text;Ratio of nodes with this many incident edges
 dpd;xlab;
-dpd;ylab;
+dpd;ylab;Vertices
 #
 graph_strength_in;display_name;Strength In
 graph_strength_in;popup_text;Total incoming edges.
 graph_strength_in;xlab;emails
-graph_strength_in;ylab;
+graph_strength_in;ylab;Vertices
 #
 graph_strength_out;display_name;Strength Out
 graph_strength_out;popup_text;Total outbound edges
 graph_strength_out;xlab;emails
-graph_strength_out;ylab;
+graph_strength_out;ylab;Vertices
 #
 graph_strength_tot;display_name;Total Strength
 graph_strength_tot;popup_text;Total number of inbound and outbound edges
 graph_strength_tot;xlab;emails
-graph_strength_tot;ylab;
+graph_strength_tot;ylab;Vertices
 #
 lcc;display_name;Local Clustering Coefficient
 lcc;popup_text;Transitivity measures the probability that the adjacent vertices of a vertex are connected. This is sometimes also called the clustering coefficient.
 lcc;xlab;dimensionless
-lcc;ylab;
+lcc;ylab;Vertices
 #
 isperson;display_name;Type
 isperson;popup_text;Is this vertex a person or a mailing list?
