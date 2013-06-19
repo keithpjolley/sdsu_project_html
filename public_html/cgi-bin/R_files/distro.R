@@ -20,21 +20,31 @@ distro<-function(g_local, pfile, afile, mypalette) {
   yl$attrib<-NULL
   attribs <-c( 'pr', 'evcent', 'betweenness_vertex', 'closeness_in', 'closeness_out',
             'degree', 'graph_strength_in', 'graph_strength_out', 'graph_strength_tot', 'lcc')
-#  png(filename=pfile, bg="white", width=1600, height=1200)
-  par(mfrow=c(4,3))
+ png(filename=pfile, bg="white", width=1600, height=1200)
+ par(mfrow=c(4,3))
   for (i in attribs ) {
     d<-df[[i]]
     d<-d[!is.na(d)]
     d<-d[!is.infinite(d)]
     title<-as.character(dn[dn$name==i,]$desc)
     p<-sprintf("/tmp/foo/%s.pdf",i)
-    pdf(file=p, bg="white")
-    hist(d, breaks=seq(min(d), max(d), (max(d)-min(d))/30), main=title,
-        xlab=xl[xl$name==i,]$desc, ylab=yl[yl$name==i,]$desc, probability=FALSE, col="grey", border="white")
+#    pdf(file=p, bg="white")
+#    hist(d, breaks=50, main=title, xlab=xl[xl$name==i,]$desc, ylab=yl[yl$name==i,]$desc,
+#        probability=FALSE, col="grey", border="white")
+#    hist(d, y=(..count../sum(..count..)), breaks=seq(min(d), max(d), (max(d)-min(d))/30), main=title,
+#        xlab=xl[xl$name==i,]$desc, ylab=yl[yl$name==i,]$desc, probability=FALSE, col="grey", border="white")
 #    Density is a material property defined as mass per unit volume, which obviously does not apply here. 
 #    dens<-density(d)
 #    lines(dens, col="red")
-    dev.off()
+
+    p<-ggplot(as.data.frame(d))
+    p<-p+geom_histogram(aes(x=d,y=..count../sum(..count..)), fill="grey",colour="darkgrey", binwidth=(max(d)-min(d))/50)
+    p<-p+ggtitle(title)
+    p<-p+xlab(xl[xl$name==i,]$desc)
+    p<-p+ylab(yl[yl$name==i,]$desc)
+    p<-p+theme_bw()
+    print(p)
+#     dev.off()
   }
 
   attribs <- c('community')
@@ -53,9 +63,9 @@ distro<-function(g_local, pfile, afile, mypalette) {
       names <- c("List", "Person")
     }
     p<-sprintf("/tmp/foo/%s.pdf",i)
-    pdf(file=p, bg="white")
+#    pdf(file=p, bg="white")
     barplot(table(d), main=title, border="white", xlab=xlab, ylab=ylab, names.arg=names, col=colors)
-    dev.off()
+#    dev.off()
   }
-#  dev.off()
+  dev.off()
 }

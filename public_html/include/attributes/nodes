@@ -78,7 +78,7 @@ graph_strength_tot;ylab;Vertices
 #
 lcc;display_name;Local Clustering Coefficient
 lcc;popup_text;Transitivity measures the probability that the adjacent vertices of a vertex are connected. This is sometimes also called the clustering coefficient.
-lcc;xlab;dimensionless
+lcc;xlab;(dimensionless)
 lcc;ylab;Vertices
 #
 isperson;display_name;Type
