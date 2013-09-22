@@ -17,6 +17,11 @@
 # to sync changes from github to local without doing an 'rm -r'
 # git pull
 #
+#
+# presentation here:
+# http://www.slideshare.net/keithpjolley/keith-jolley-project-report-final-rev-b
+#
+#
 # if you are running under apache you must do this (and probably should even if you running under python):
 cd public_html/cgi-bin/community
 make clean all
