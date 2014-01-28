@@ -80,7 +80,10 @@ isperson <- function(a, d) {
 
 # get rid of any vertices without edges
 mysimplify <- function(g_local) {
-  g_local <- delete.vertices(g_local, 0)
+# some update or another of R or graph module made this not work anymore. :/
+# keith
+# Mon Jan 27 16:08:18 PST 2014
+#  g_local <- delete.vertices(g_local, 0)
   g_local <- delete.vertices(g_local, (which(degree(g_local, mode="all", loops=FALSE)<1)))
   g_local <- simplify(g_local)
   return(g_local)

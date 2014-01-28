@@ -1,8 +1,11 @@
 #!/bin/bash
 
 CC=g++
-CFLAGS= -ansi -O5 -Wall
-LDFLAGS= -ansi -lm -Wall
+#kjolley - xcode stopped liking "-O5" for some reason.
+#Mon Jan 27 16:13:00 PST 2014
+#CFLAGS= -ansi -O5 -Wall
+CFLAGS= -Wall
+LDFLAGS= -lm -Wall
 EXEC=community convert hierarchy
 OBJ1= graph_binary.o community.o
 OBJ2= graph.o

@@ -26,6 +26,11 @@
 #include "graph_binary.h"
 #include "community.h"
 
+// new xcode don't like not having this in here.
+// kjolley
+// Mon Jan 27 16:14:25 PST 2014
+#include <unistd.h>
+
 using namespace std;
 
 char *filename = NULL;
